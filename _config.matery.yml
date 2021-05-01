@@ -1,0 +1,58 @@
+# main menu navigation url and icon
+# 配置新的自定义菜单导航的名称、路径和图标icon.
+menu:
+  topics:
+    icon: fas fa-comment-alt
+    children:
+      - name: topics
+        url: /topics
+        icon: fas fa-comment
+      - name: python
+        url: python
+        icon: fas fa-tools
+  chaos:
+    icon: fas fa-list
+    children:
+      - name: taiChi
+        url: /chaos
+        icon: fas fa-atom
+      - name: books
+        url: /books
+        icon: fas fa-book
+
+postInfo:
+  date: true # 发布日期
+  update: true # 更新日期
+  wordCount: true # 文章字数统计
+  totalCount: true # 站点总文章字数
+  min2read: true # 文章阅读时长
+  readCount: true # 文章阅读次数
+
+copyright:
+  enable: false
+
+# Website start time.
+# 站点运行开始时间.
+time:
+  enable: true
+  year: 2019 # 年份
+  month: 07 # 月份
+  date: 01 # 日期
+  hour: 00 # 小时
+  minute: 00 # 分钟
+  second: 00 # 秒
+
+libs:
+  css:
+    xin_prism: /css/xin-prism.css
+
+# the Gitalk config，default disabled
+# Gitalk 评论模块的配置，默认为不激活
+gitalk:
+  enable: true
+  owner: xinetzone
+  repo: dao # dao
+  oauth:
+    clientId:
+    clientSecret:
+  admin: [xinetzone]

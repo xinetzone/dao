@@ -1,0 +1,179 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: "上善若水"
+subtitle: 'Explore everything!'
+description: '利用 AI 开发一切有意思的东西'
+author: xinetzone
+language: 
+  - zh-CN
+  - en-US
+timezone: 'Asia/Shanghai'
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: https://xinetzone.github.io
+root: /dao/
+
+permalink: :layout/:lang/:hash.html # :year/:month/:day/:title/
+permalink_defaults:
+  lang: zh-CN # 设定默认 en 
+
+pretty_urls:
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :layout/:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase （把标题转换为 title case）
+external_link:
+  enable: true # Open external links in new tab （在新标签中打开链接）
+  field: site # Apply to the whole site （对整个网站（site）生效或仅对文章（post）生效）
+  exclude: '' # 需要排除的域名。主域名和子域名如 www 需分别配置
+filename_case: 0  # 把文件名称转换为 (1) 小写或 (2) 大写
+render_drafts: true  # 显示草稿
+post_asset_folder: true # 启动 Asset 文件夹（资源（Asset）代表 source 文件夹中除了文章以外的所有文件，例如图片、CSS、JS 文件等。）
+marked: # 保证资源的链接正确
+  prependRoot: true
+  postAsset: true
+  gfm: true
+relative_link: false # 把链接改为与根目录的相对位址
+future: true # 显示未来的文章
+highlight:
+  enable: false
+  line_number: false
+  auto_detect: false # 自动检测代码块的语言，很耗资源
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: true
+  preprocess: true # 使用服务器端高亮
+  line_number: true
+  tab_replace: ''
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator: # 通过 hexo-generator-index 生成文章的 archive
+  path: '' # # Root path for your blog’s index page
+  per_page: 12 # Posts displayed per page 首页放置的页面数量
+  order_by: -date # Posts order. Order by descending date (new to old) by default.
+
+# Category & Tag
+default_category: uncategorized
+category_map: # 分类别名
+tag_map: # 标签别名
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+## updated_option 控制了当 Front Matter 中没有指定 updated 时，updated 如何取值：
+### mtime: 使用文件的最后修改时间。这是从 Hexo 3.0.0 开始的默认行为。
+### date: 使用 date 作为 updated 的值。可被用于 Git 工作流之中，因为使用 Git 管理站点时，文件的最后修改日期常常会发生改变
+### empty: 直接删除 updated。使用这一选项可能会导致大部分主题和插件无法正常工作。
+updated_option: 'date'
+
+# Pagination 分页
+## Set per_page to 0 to disable pagination
+per_page: 12 # 每页显示的文章量 (0 = 关闭分页功能)
+pagination_dir: page
+
+# Include / Exclude file(s)
+## Hexo 默认会忽略隐藏文件和文件夹（包括名称以下划线和 . 开头的文件和文件夹，
+### Hexo 的 _posts 和 _data 等目录除外）。通过设置此字段将使 Hexo 处理他们并将它们复制到 source 目录下。
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude: # Hexo 会忽略这些文件和目录
+ignore: # Ignore files/folders
+
+# Extensions 扩展
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+## 通常情况下，Hexo 主题是一个独立的项目，并拥有一个独立的 _config.yml 配置文件。
+## 除了自行维护独立的主题配置文件，你也可以在其它地方对主题进行配置。
+theme: matery
+theme_config: # 主题的配置文件。在这里放置的配置会覆盖主题目录下的 _config.yml 中的配置
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: 'git'
+  repo: git@github.com:xinetzone/dao.git
+  branch: gh-pages
+
+# 添加emoji表情支持
+## npm install hexo-filter-github-emojis
+## https://github.com/crimx/hexo-filter-github-emojis
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
+
+# 添加 RSS 订阅支持
+## https://github.com/hexojs/hexo-generator-feed
+## npm install hexo-generator-feed
+feed:
+  # Generate both atom and rss2 feeds
+  type:
+    - rss2
+  path:
+    - rss2.xml
+
+## 添加动漫人物 
+live2d:  # https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md
+  enable: false # 默认 false
+  scriptFrom: local # 默认
+  pluginRootPath: live2dw/ # 插件在站点上的根目录(相对路径)
+  pluginJsPath: lib/ # 脚本文件相对与插件根目录路径
+  pluginModelPath: assets/ # 模型文件相对与插件根目录路径
+  # scriptFrom: jsdelivr # jsdelivr CDN
+  # scriptFrom: unpkg # unpkg CDN
+  # scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url
+  tagMode: false # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中
+  debug: false # 调试, 是否在控制台输出日志
+  # log: false
+  model: # https://github.com/xiazeyu/live2d-widget-models
+    use: live2d-widget-model-shizuku # npm-module package name，
+    # use: wanko # 博客根目录/live2d_models/ 下的目录名
+    # use: ./wives/wanko # 相对于博客根目录的路径
+    # use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url
+  display:
+    position: left
+    width: 150
+    height: 300
+  mobile: # 是否在移动设备上显示
+    show: true # 默认 false
+    scale: 0.5 # 移动设备上的缩放  
+  react:
+    opacity: 0.7
+
+## Hexo使用 hexo-generator-search 添加local-search
+search:
+  path: search.xml
+  field: post
+  content: true
