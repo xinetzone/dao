@@ -1,1 +1,5 @@
-# dao
+# 道
+
+[![GitHub issues](https://img.shields.io/github/issues/xinetzone/dao)](https://github.com/xinetzone/dao/issues) [![GitHub forks](https://img.shields.io/github/forks/xinetzone/dao)](https://github.com/xinetzone/dao/network) [![GitHub stars](https://img.shields.io/github/stars/xinetzone/dao)](https://github.com/xinetzone/dao/stargazers) [![GitHub license](https://img.shields.io/github/license/xinetzone/dao)](https://github.com/xinetzone/dao/blob/master/LICENSE)  ![repo size](https://img.shields.io/github/repo-size/xinetzone/dao.svg) [![contributors](https://img.shields.io/github/contributors/xinetzone/dao.svg)](https://github.com/xinetzone/dao/graphs/contributors) [![watcher](https://img.shields.io/github/watchers/xinetzone/dao.svg)](https://github.com/xinetzone/dao/watchers)
+
+使用说明见 [help](help.md)。
