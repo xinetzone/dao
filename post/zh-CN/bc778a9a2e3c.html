@@ -1,0 +1,1933 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="description" content="future 是代表尚未完成的工作结果的数据结构。事件循环可以监视将 Future 对象设置为完成的状态，从而允许应用程序的一部分等待另一部分完成某些工作。除 future 外，asyncio 还包括其他并发原语，例如锁和信号量（semaphores）。 Task 是 Future 的子类，它知道如何包装和管理协程的执行。可以使用事件循环调度任务，以在所需资源可用时运行它们，并产生可以被其他协程消">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 异步编程">
+<meta property="og:url" content="https://xinetzone.github.io/post/zh-CN/bc778a9a2e3c.html">
+<meta property="og:site_name" content="上善若水">
+<meta property="og:description" content="future 是代表尚未完成的工作结果的数据结构。事件循环可以监视将 Future 对象设置为完成的状态，从而允许应用程序的一部分等待另一部分完成某些工作。除 future 外，asyncio 还包括其他并发原语，例如锁和信号量（semaphores）。 Task 是 Future 的子类，它知道如何包装和管理协程的执行。可以使用事件循环调度任务，以在所需资源可用时运行它们，并产生可以被其他协程消">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-19T05:19:49.000Z">
+<meta property="article:modified_time" content="2021-04-19T05:19:49.000Z">
+<meta property="article:author" content="xinetzone">
+<meta property="article:tag" content="asyncio">
+<meta name="twitter:card" content="summary">
+    <link rel="shortcut icon" href="/dao/favicon.png">
+    
+    <title>Python 异步编程 | 上善若水</title>
+    
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/w3css/4/w3.css">
+
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/xinet-css/tabs.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://xinetzone.github.io/Font-Awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
+    <script src="/dao/libs/jquery/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/dao/" class="waves-effect waves-light">
+                    
+                    <img src="/dao/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">上善若水</span>
+                </a>
+            </div>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/archives">
+          
+          <i class="far fa-calendar-alt" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时间线</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-comment-alt" style="zoom: 0.6;"></i>
+      
+      <span>话题</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/topics">
+          
+          <i class="fas fa-comment" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>话题</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/python">
+          
+          <i class="fas fa-tools" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Python</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>混沌</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/chaos">
+          
+          <i class="fas fa-atom" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>太极</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>资源库</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/dao/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">上善若水</div>
+        <div class="logo-desc">
+            
+            利用 AI 开发一切有意思的东西
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/tags " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tags" style="position: absolute;left:50px" ></i>
+			      
+            <span>标签</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/categories " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+            <span>分类</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/archives " style="margin-left: 75px">
+				  
+            <i class="fa far fa-calendar-alt" style="position: absolute;left:50px" ></i>
+			      
+            <span>时间线</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-comment-alt"></i>
+			
+			话题
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/topics " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-comment" style="position: absolute;left:50px" ></i>
+			      
+            <span>话题</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/python " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tools" style="position: absolute;left:50px" ></i>
+			      
+            <span>Python</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			混沌
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/chaos " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-atom" style="position: absolute;left:50px" ></i>
+			      
+            <span>太极</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/books " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+            <span>资源库</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/xinetzone/notebook" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/xinetzone/notebook" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/dao/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Python 异步编程</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+    <div class="row tag-cate">
+        <div class="col s7">
+            
+            <div class="article-tag">
+                
+                    <a href="/dao/tags/asyncio/">
+                        <span class="chip bg-color">asyncio</span>
+                    </a>
+                
+            </div>
+            
+        </div>
+        <div class="col s5 right-align">
+            
+            <div class="post-cate">
+                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                
+                    <a href="/dao/categories/Python-%E7%BC%96%E7%A8%8B/" class="post-category">
+                        Python 编程
+                    </a>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="post-info">
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+            2021-04-19
+        </div>
+        
+
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+            2021-04-19
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+            4.4k
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+            18 分
+        </div>
+        
+
+        
+            <div id="busuanzi_container_page_pv" class="info-break-policy">
+                <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                <span id="busuanzi_value_page_pv"></span>
+            </div>
+        
+    </div>
+</div>
+<hr class="clearfix">
+        
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+        <div class="card-content article-card-content">
+    <div id="articleContent">
+        <p><code>future</code> 是代表尚未完成的工作结果的数据结构。事件循环可以监视将 <code>Future</code> 对象设置为完成的状态，从而允许应用程序的一部分等待另一部分完成某些工作。除 <code>future</code> 外，<code>asyncio</code> 还包括其他并发原语，例如锁和信号量（semaphores）。</p>
+<p><code>Task</code> 是 <code>Future</code> 的子类，它知道如何包装和管理协程的执行。可以使用事件循环调度任务，以在所需资源可用时运行它们，并产生可以被其他协程消耗的结果。</p>
+<h2 id="Awaitables"><a href="#Awaitables" class="headerlink" title="Awaitables"></a>Awaitables</h2><p>若一个对象可以被用于 <code>await</code> 表达式，则可被称为<dfn class="xin-term">可等待</dfn>（awaitable）对象。<dfn class="xin-term">可等待</dfn> 对象有三种主要类型: <dfn class="xin-term">协程</dfn>（coroutines）, <dfn class="xin-term">任务</dfn>（Tasks） 和 <dfn class="xin-term">Futures</dfn>。</p>
+<h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3><p><dfn class="xin-term">协程</dfn> 通过 <code>async/await</code> 语法进行声明，是编写 asyncio 应用的推荐方式。例如，以下代码段（需要 Python 3.7+）会打印 “hello”，等待 1 秒，再打印 “world”：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> asyncio
+
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'world'</span><span class="token punctuation">)</span>
+
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+hello
+world<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：简单地调用一个协程并不会使其被调度（schedule）执行</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span>coroutine <span class="token builtin">object</span> main at <span class="token number">0x1053bb7c8</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>要真正运行一个协程，asyncio 提供了三种主要机制:</p>
+<ul>
+<li><code>asyncio.run()</code> 函数用来运行最高层级的入口点 “main()” 函数 (参见上面的示例。)</li>
+<li>等待一个协程。以下代码段会在等待 1 秒后打印 “hello”，然后 再次 等待 2 秒后打印 “world”：</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> time
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">say_after</span><span class="token punctuation">(</span>delay<span class="token punctuation">,</span> what<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>delay<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>what<span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"started at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+    <span class="token keyword">await</span> say_after<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'hello'</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> say_after<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'world'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"finished at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>预期的输出：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">started at <span class="token number">17</span>:13:52
+hello
+world
+finished at <span class="token number">17</span>:13:55<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><code>asyncio.create_task()</code> 函数用来并发运行作为 asyncio <strong>任务</strong> 的多个协程。</li>
+</ul>
+<p>修改以上示例，<strong>并发</strong>（concurrently）运行两个 <code>say_after</code> 协程:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    task1 <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>create_task<span class="token punctuation">(</span>
+        say_after<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'hello'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    task2 <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>create_task<span class="token punctuation">(</span>
+        say_after<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'world'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"started at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+    <span class="token comment"># Wait until both tasks are completed (should take</span>
+    <span class="token comment"># around 2 seconds.)</span>
+    <span class="token keyword">await</span> task1
+    <span class="token keyword">await</span> task2
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"finished at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意，预期的输出显示代码段的运行时间比之前快了 1 秒：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">started at <span class="token number">17</span>:14:32
+hello
+world
+finished at <span class="token number">17</span>:14:34<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Python <i>协程</i> 属于 可等待 对象，因此可以在其他协程中被等待：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">nested</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token number">42</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Nothing happens if we just call "nested()".</span>
+    <span class="token comment"># A coroutine object is created but not awaited,</span>
+    <span class="token comment"># so it *won't run at all*.</span>
+    nested<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># Let's do it differently now and await it:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token keyword">await</span> nested<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># will print "42".</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><span class="w3-yellow">重要</span> ：<dfn class="xin-term">协程</dfn> 一般有两个紧密关联的概念:</p>
+<ul>
+<li><dfn class="xin-term">协程函数</dfn>: 定义形式为 <code>async def</code> 的函数;</li>
+<li><dfn class="xin-term">协程对象</dfn>: 调用 协程函数 所返回的对象。</li>
+</ul>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p><dfn class="xin-term">任务</dfn> 被用来“并发的”（concurrently）调度协程。当一个协程通过 <code>asyncio.create_task()</code> 等函数被封装为一个 <strong>任务</strong>，该协程会被自动调度执行：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">nested</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token number">42</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Schedule nested() to run soon concurrently</span>
+    <span class="token comment"># with "main()".</span>
+    task <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>create_task<span class="token punctuation">(</span>nested<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># "task" can now be used to cancel "nested()", or</span>
+    <span class="token comment"># can simply be awaited to wait until it is complete:</span>
+    <span class="token keyword">await</span> task
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Future-对象"><a href="#Future-对象" class="headerlink" title="Future 对象"></a>Future 对象</h3><p><dfn class="xin-term">Future</dfn> 是一种特殊的 <strong>低层级</strong> 可等待对象，表示一个异步操作的 <strong>最终结果</strong>。</p>
+<p>当一个 Future 对象 被等待，这意味着协程将保持等待直到该 Future 对象在其他地方操作完毕。</p>
+<p>在 asyncio 中需要 <dfn class="xin-term">Future</dfn> 对象以便允许通过 async/await 使用基于回调的代码。</p>
+<p>通常情况下 <strong>没有必要</strong> 在应用层级的代码中创建 <dfn class="xin-term">Future</dfn> 对象。</p>
+<p><dfn class="xin-term">Future</dfn> 对象有时会由库和某些 asyncio API 暴露给用户，用作可等待对象：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">await</span> function_that_returns_a_future_object<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># this is also valid:</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>gather<span class="token punctuation">(</span>
+        function_that_returns_a_future_object<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        some_python_coroutine<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>一个很好的返回对象的低层级函数的示例是 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/asyncio-eventloop.html#asyncio.loop.run_in_executor"><code>loop.run_in_executor()</code></a>。</p>
+<h2 id="在-Jupyter-Notebook-中使用异步编程"><a href="#在-Jupyter-Notebook-中使用异步编程" class="headerlink" title="在 Jupyter Notebook 中使用异步编程"></a>在 Jupyter Notebook 中使用异步编程</h2><p>在 Jupyter Notebook 中使用 <code>asyncio.run()</code> 时会触发异常：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">---------------------------------------------------------------------------
+RuntimeError                              Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span>
+<span class="token operator">&lt;</span>ipython-input-5-eaadc83a82ea<span class="token operator">&gt;</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+----<span class="token operator">&gt;</span> <span class="token number">1</span> asyncio.run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">))</span>
+
+~<span class="token punctuation">\</span>anaconda3<span class="token punctuation">\</span>envs<span class="token punctuation">\</span>ui<span class="token punctuation">\</span>lib<span class="token punctuation">\</span>asyncio<span class="token punctuation">\</span>runners.py <span class="token keyword">in</span> run<span class="token punctuation">(</span>main, debug<span class="token punctuation">)</span>
+     <span class="token number">31</span>     <span class="token string">""</span>"
+     <span class="token number">32</span>     <span class="token keyword">if</span> events._get_running_loop<span class="token punctuation">(</span><span class="token punctuation">)</span> is not None:
+---<span class="token operator">&gt;</span> <span class="token number">33</span>         raise RuntimeError<span class="token punctuation">(</span>
+     <span class="token number">34</span>             <span class="token string">"asyncio.run() cannot be called from a running event loop"</span><span class="token punctuation">)</span>
+     <span class="token number">35</span> 
+
+RuntimeError: asyncio.run<span class="token punctuation">(</span><span class="token punctuation">)</span> cannot be called from a running event loop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这是因为 Jupyter 已经运行了 事件循环，无需自己激活，采用上文中的 <code>await()</code> 调用即可。</p>
+<p>比如，如下程序：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'world'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在 Jupyter Notebook 和 Python Shell 中分别为：</p>
+<article>
+    <div class="tab-set w3-light-grey">
+        <input checked="True" id="tab-set--0-input--1" name="tab-set--0" type="radio">
+        <label for="tab-set--0-input--1">Jupyter Notebook</label>
+        <div class="tab-content w3-padding">
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">await</span> main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+        </div>
+        <input id="tab-set--0-input--2" name="tab-set--0" type="radio">
+        <label for="tab-set--0-input--2">Python Shell</label>
+        <div class="tab-content w3-padding">
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+        </div>
+    </div>
+</article>
+
+<h2 id="运行-asyncio-程序"><a href="#运行-asyncio-程序" class="headerlink" title="运行 asyncio 程序"></a>运行 asyncio 程序</h2><p><code>asyncio.run(coro, *, debug=False)</code> 执行 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.10/glossary.html#term-coroutine">coroutine</a> coro 并返回结果。此函数会运行传入的协程，负责管理 <code>asyncio</code> 事件循环，终结异步生成器，并关闭线程池。</p>
+<p>当有其他 <code>asyncio</code> 事件循环在同一线程中运行时，此函数不能被调用。</p>
+<p>如果 <code>debug</code> 为 <code>True</code>，事件循环将以调试模式运行。此函数总是会创建一个新的事件循环并在结束时关闭之。它应当被用作 <code>asyncio</code> 程序的主入口点，理想情况下应当只被调用一次。</p>
+<p>示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h2><p><code>asyncio.create_task(coro, *, name=None)</code> 将 <code>coro</code> 协程 封装为一个 <code>Task</code> 并调度其执行。返回 <code>Task</code> 对象。<code>name</code> 不为 <code>None</code>，它将使用 <code>Task.set_name()</code> 来设为任务的名称。</p>
+<p>该任务会在 <code>get_running_loop()</code> 返回的循环中执行，如果当前线程没有在运行的循环则会引发 <code>RuntimeError</code>。此函数 在 Python 3.7 中被加入。在 Python 3.7 之前，可以改用低层级的 <code>asyncio.ensure_future()</code> 函数。</p>
+<h2 id="休眠"><a href="#休眠" class="headerlink" title="休眠"></a>休眠</h2><p>coroutine <code>asyncio.sleep(delay, result=None)</code> 阻塞 <code>delay</code> 指定的秒数。如果指定了 <code>result</code>，则当协程完成时将其返回给调用者。<code>sleep()</code> 总是会挂起当前任务，以允许其他任务运行。</p>
+<p>将 <code>delay</code> 设置为 <code>0</code> 提供了优化的路径，以允许其他任务运行。长时间运行的函数可以使用它来避免在函数调用的整个过程中阻塞事件循环。</p>
+<p>以下协程示例运行 5 秒，每秒显示一次当前日期：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> datetime
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">display_date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    loop <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>get_running_loop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    end_time <span class="token operator">=</span> loop<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">5.0</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>loop<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1.0</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> end_time<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>display_date<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="并发运行任务"><a href="#并发运行任务" class="headerlink" title="并发运行任务"></a>并发运行任务</h2><p>awaitable <code>asyncio.gather(*aws, return_exceptions=False)</code> 并发 运行 <code>aws</code> 序列中的 <dfn class="xin-term">可等待对象</dfn>。如果 <code>aws</code> 中的某个可等待对象为<dfn class="xin-term">协程</dfn>，它将自动被作为一个任务调度。如果所有<dfn class="xin-term">可等待对象</dfn>都成功完成，结果将是一个由所有返回值聚合而成的列表。结果值的顺序与 <code>aws</code> 中可等待对象的顺序一致。</p>
+<p>如果 <code>return_exceptions</code> 为 <code>False</code> (默认)，所引发的首个异常会立即传播给等待 <code>gather()</code> 的任务。<code>aws</code> 序列中的其他可等待对象 <strong>不会被取消</strong> 并将继续运行。如果 <code>return_exceptions</code> 为 <code>True</code>，异常会和成功的结果一样处理，并聚合至结果列表。</p>
+<p>如果 <code>gather()</code> 被取消，所有被提交 (尚未完成) 的可等待对象也会 被取消。如果 <code>aws</code> 序列中的任一 Task 或 Future 对象 被取消，它将被当作引发了 CancelledError 一样处理 – 在此情况下 <code>gather()</code> 调用 不会 被取消。这是为了防止一个已提交的 Task/Future 被取消导致其他 Tasks/Future 也被取消。</p>
+<p>示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">factorial</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    f <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> number <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Task </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">: Compute factorial(</span><span class="token interpolation"><span class="token punctuation">{</span>i<span class="token punctuation">}</span></span><span class="token string">)..."</span></span><span class="token punctuation">)</span>
+        <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        f <span class="token operator">*=</span> i
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Task </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">: factorial(</span><span class="token interpolation"><span class="token punctuation">{</span>number<span class="token punctuation">}</span></span><span class="token string">) = </span><span class="token interpolation"><span class="token punctuation">{</span>f<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Schedule three calls *concurrently*:</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>gather<span class="token punctuation">(</span>
+        factorial<span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        factorial<span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        factorial<span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<output>
+Task A: Compute factorial(2)...
+Task B: Compute factorial(2)...
+Task C: Compute factorial(2)...
+Task A: factorial(2) = 2
+Task B: Compute factorial(3)...
+Task C: Compute factorial(3)...
+Task B: factorial(3) = 6
+Task C: Compute factorial(4)...
+Task C: factorial(4) = 24
+</output>
+
+<h2 id="屏蔽取消操作"><a href="#屏蔽取消操作" class="headerlink" title="屏蔽取消操作"></a>屏蔽取消操作</h2><p>awaitable <code>asyncio.shield(aw)</code> 保护一个 <dfn class="xin-term">可等待对象</dfn> 防止其被 取消。如果 <code>aw</code> 是一个协程，它将自动被作为任务调度。以下语句：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">res <span class="token operator">=</span> <span class="token keyword">await</span> shield<span class="token punctuation">(</span>something<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>相当于：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">res <span class="token operator">=</span> <span class="token keyword">await</span> something<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>不同之处：如果包含它的协程被取消，在 <code>something()</code> 中运行的任务不会被取消。从 <code>something()</code> 的角度看来，取消操作并没有发生。然而其调用者已被取消，因此 <code>"await"</code> 表达式仍然会引发 <code>CancelledError</code>。如果通过其他方式取消 <code>something()</code> (例如在其内部操作) 则 <code>shield()</code> 也会取消。如果希望完全忽略取消操作 (不推荐) 则 <code>shield()</code> 函数需要配合一个 <code>try/except</code> 代码段，如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    res <span class="token operator">=</span> <span class="token keyword">await</span> shield<span class="token punctuation">(</span>something<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> CancelledError<span class="token punctuation">:</span>
+    res <span class="token operator">=</span> <span class="token boolean">None</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h2><p>coroutine <code>asyncio.wait_for(aw, timeout)</code> 等待 <code>aw</code> 可等待对象 完成，指定 <code>timeout</code> 秒数后超时。如果 <code>aw</code> 是一个协程，它将自动被作为任务调度。<code>timeout</code> 可以为 <code>None</code>，也可以为 <code>float</code> 或 <code>int</code> 型数值表示的等待秒数。如果 <code>timeout</code> 为 <code>None</code>，则等待直到完成。</p>
+<p>如果发生超时，任务将取消并引发 <code>asyncio.TimeoutError</code>。要避免任务 被取消，可以加上 <code>shield()</code>。此函数将等待直到 <code>Future</code> 确实被取消，所以总等待时间可能超过 <code>timeout</code>。如果在取消期间发生了异常，异常将会被传播。如果等待被取消，则 <code>aw</code> 指定的对象也会被取消。</p>
+<p>示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">eternity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Sleep for one hour</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">3600</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'yay!'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Wait for at most 1 second</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>wait_for<span class="token punctuation">(</span>eternity<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> timeout<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> asyncio<span class="token punctuation">.</span>TimeoutError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'timeout!'</span><span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<output>
+timeout!
+</output>
+
+<p>Python 3.8 版后已移除: <code>asyncio.wait</code>，所以尽量使用 <code>asyncio.wait_for</code>。</p>
+<h2 id="as-completed"><a href="#as-completed" class="headerlink" title="as_completed"></a>as_completed</h2><p><code>asyncio.as_completed(aws, *, timeout=None)</code> 并发地运行 <code>aws</code> 可迭代对象中的 可等待对象。返回一个协程的迭代器。所返回的每个协程可被等待以从剩余的可等待对象的可迭代对象中获得最早的下一个结果。</p>
+<p>如果在所有 <code>Future</code> 对象完成前发生超时则将引发 <code>asyncio.TimeoutError</code>。示例:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> coro <span class="token keyword">in</span> as_completed<span class="token punctuation">(</span>aws<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    earliest_result <span class="token operator">=</span> <span class="token keyword">await</span> coro
+    <span class="token comment"># ...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="在线程中运行"><a href="#在线程中运行" class="headerlink" title="在线程中运行"></a>在线程中运行</h2><p><code>coroutine asyncio.to_thread(func, /, *args, **kwargs)</code> 在不同的线程中异步地运行函数 <code>func</code>。</p>
+<p>向此函数提供的任何 <code>*args</code> 和 <code>**kwargs</code> 会被直接传给 <code>func</code>。并且，当前 <code>contextvars.Context</code> 会被传播，允许在不同的线程中访问来自事件循环的上下文变量。返回一个可被等待以获取 <code>func</code> 的最终结果的协程。</p>
+<p>这个协程函数主要是用于执行在其他情况下会阻塞事件循环的 IO 密集型函数/方法。例如：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">blocking_io</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"start blocking_io at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token comment"># Note that time.sleep() can be replaced with any blocking</span>
+    <span class="token comment"># IO-bound operation, such as file operations.</span>
+    time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"blocking_io complete at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"started main at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>gather<span class="token punctuation">(</span>
+        asyncio<span class="token punctuation">.</span>to_thread<span class="token punctuation">(</span>blocking_io<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"finished main at </span><span class="token interpolation"><span class="token punctuation">{</span>time<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%X'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<output>
+started main at 14:55:04
+start blocking_io at 14:55:04
+blocking_io complete at 14:55:05
+finished main at 14:55:05
+</output>
+
+<p>在任何协程中直接调用 <code>blocking_io()</code> 将会在调用期间阻塞事件循环，导致额外的 1 秒运行时间。而通过改用 <code>asyncio.to_thread()</code>，我们可以在不同的线程中运行它从而不会阻塞事件循环。</p>
+<h2 id="跨线程调度"><a href="#跨线程调度" class="headerlink" title="跨线程调度"></a>跨线程调度</h2><p><code>asyncio.run_coroutine_threadsafe(coro, loop)</code> 向指定事件循环提交一个协程。（线程安全）</p>
+<p>返回一个 <code>concurrent.futures.Future</code> 以等待来自其他 OS 线程的结果。</p>
+<p>此函数应该从另一个 OS 线程中调用，而非事件循环运行所在线程。示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Create a coroutine</span>
+coro <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> result<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Submit the coroutine to a given loop</span>
+future <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>run_coroutine_threadsafe<span class="token punctuation">(</span>coro<span class="token punctuation">,</span> loop<span class="token punctuation">)</span>
+
+<span class="token comment"># Wait for the result with an optional timeout argument</span>
+<span class="token keyword">assert</span> future<span class="token punctuation">.</span>result<span class="token punctuation">(</span>timeout<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果在协程内产生了异常，将会通知返回的 Future 对象。它也可被用来取消事件循环中的任务：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> future<span class="token punctuation">.</span>result<span class="token punctuation">(</span>timeout<span class="token punctuation">)</span>
+<span class="token keyword">except</span> asyncio<span class="token punctuation">.</span>TimeoutError<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The coroutine took too long, cancelling the task...'</span><span class="token punctuation">)</span>
+    future<span class="token punctuation">.</span>cancel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> Exception <span class="token keyword">as</span> exc<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'The coroutine raised an exception: </span><span class="token interpolation"><span class="token punctuation">{</span>exc<span class="token conversion-option punctuation">!r</span><span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'The coroutine returned: </span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token conversion-option punctuation">!r</span><span class="token punctuation">}</span></span><span class="token string">'</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不同与其他 <code>asyncio</code> 函数，此函数要求显式地传入 <code>loop</code> 参数。</p>
+<h2 id="内省"><a href="#内省" class="headerlink" title="内省"></a>内省</h2><p><code>asyncio.current_task(loop=None)</code> 返回当前运行的 <code>Task</code> 实例，如果没有正在运行的任务则返回 <code>None</code>。如果 <code>loop</code> 为 <code>None</code> 则会使用 <code>asyncio.get_running_loop()</code> 获取当前事件循环。</p>
+<p><code>asyncio.all_tasks(loop=None)</code> 返回事件循环所运行的未完成的 <code>Task</code> 对象的集合。如果 <code>loop</code> 为 <code>None</code>，则会使用 <code>asyncio.get_running_loop()</code> 获取当前事件循环。</p>
+<h2 id="Task-对象"><a href="#Task-对象" class="headerlink" title="Task 对象"></a>Task 对象</h2><p><code>class asyncio.Task(coro, *, name=None)</code> 与 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/asyncio-future.html#asyncio.Future">Future 类似</a>，可运行 Python 协程。非线程安全。</p>
+<p>Task 对象被用来在事件循环中运行协程。如果一个协程在等待一个 <code>Future</code> 对象，<code>Task</code> 对象会挂起该协程的执行并等待该 <code>Future</code> 对象完成。当该 <code>Future</code> 对象 完成，被打包的协程将恢复执行。事件循环使用协同日程调度: 一个事件循环每次运行一个 Task 对象。而一个 Task 对象会等待一个 Future 对象完成，该事件循环会运行其他 Task、回调或执行 IO 操作。</p>
+<p>使用高层级的 <code>asyncio.create_task()</code> 函数来创建 <code>Task</code> 对象，也可用低层级的 <code>asyncio.loop.create_task()</code> 或 <code>asyncio.ensure_future()</code> 函数。不建议手动实例化 <code>Task</code> 对象。</p>
+<p>要取消一个正在运行的 <code>Task</code> 对象可使用 <code>asyncio.Task.cancel()</code> 方法。调用此方法将使该 <code>Task</code> 对象抛出一个 <code>CancelledError</code> 异常给打包的协程。如果取消期间一个协程正在等待一个 <code>Future</code> 对象，该 <code>Future</code> 对象也将被取消。</p>
+<p><code>asyncio.Task.cancelled()</code> 可被用来检测 <code>Task</code> 对象是否被取消。如果打包的协程没有抑制 <code>CancelledError</code> 异常并且确实被取消，该方法将返回 <code>True</code>。</p>
+<p><code>asyncio.Task</code> 从 <code>Future</code> 继承了其除 <code>Future.set_result()</code> 和 <code>Future.set_exception()</code> 以外的所有 API。</p>
+<p><code>Task</code> 对象支持 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/contextvars.html#module-contextvars">contextvars</a> 模块。当一个 <code>Task</code> 对象被创建，它将复制当前上下文，然后在复制的上下文中运行其协程。</p>
+<h3 id="cancel-msg-None"><a href="#cancel-msg-None" class="headerlink" title="cancel(msg=None)"></a><code>cancel(msg=None)</code></h3><p>请求取消 <code>Task</code> 对象。这将安排在下一轮事件循环中抛出一个 <code>CancelledError</code> 异常给被封包的协程。协程在之后有机会进行清理甚至使用 <code>try ... ... except CancelledError ... finally</code> 代码块抑制异常来拒绝请求。不同于 <code>Future.cancel()</code>，<code>Task.cancel()</code> 不保证 <code>Task</code> 会被取消，虽然抑制完全取消并不常见，也很不鼓励这样做。</p>
+<p>以下示例演示了协程是如何侦听取消请求的：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">cancel_me</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cancel_me(): before sleep'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token comment"># Wait for 1 hour</span>
+        <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">3600</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> asyncio<span class="token punctuation">.</span>CancelledError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cancel_me(): cancel sleep'</span><span class="token punctuation">)</span>
+        <span class="token keyword">raise</span>
+    <span class="token keyword">finally</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cancel_me(): after sleep'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Create a "cancel_me" Task</span>
+    task <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>create_task<span class="token punctuation">(</span>cancel_me<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># Wait for 1 second</span>
+    <span class="token keyword">await</span> asyncio<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+    task<span class="token punctuation">.</span>cancel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">await</span> task
+    <span class="token keyword">except</span> asyncio<span class="token punctuation">.</span>CancelledError<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"main(): cancel_me is cancelled now"</span><span class="token punctuation">)</span>
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<output>
+cancel_me(): before sleep
+cancel_me(): cancel sleep
+cancel_me(): after sleep
+main(): cancel_me is cancelled now
+</output>
+
+<h3 id="cancelled"><a href="#cancelled" class="headerlink" title="cancelled()"></a><code>cancelled()</code></h3><p>如果 <code>Task</code> 对象 被取消 则返回 <code>True</code>。当使用 <code>cancel()</code> 发出取消请求时 <code>Task</code> 会被 取消，其封包的协程将传播被抛入的 <code>CancelledError</code> 异常。</p>
+<h3 id="done"><a href="#done" class="headerlink" title="done()"></a><code>done()</code></h3><p>如果 <code>Task</code> 对象 已完成 则返回 <code>True</code>。当 <code>Task</code> 所封包的协程返回一个值、引发一个异常或 <code>Task</code> 本身被取消时，则会被认为 已完成。</p>
+<h3 id="result"><a href="#result" class="headerlink" title="result()"></a><code>result()</code></h3><p>返回 <code>Task</code> 的结果。如果 <code>Task</code> 对象 已完成，其封包的协程的结果会被返回 (或者当协程引发异常时，该异常会被重新引发)。如果 <code>Task</code> 对象 被取消，此方法会引发一个 <code>CancelledError</code> 异常。如果 <code>Task</code> 对象的结果还不可用，此方法会引发一个 <code>InvalidStateError</code> 异常。</p>
+<h3 id="exception"><a href="#exception" class="headerlink" title="exception()"></a><code>exception()</code></h3><p>返回 <code>Task</code> 对象的异常。如果所封包的协程引发了一个异常，该异常将被返回。如果所封包的协程正常返回则该方法将返回 <code>None</code>。如果 <code>Task</code> 对象 被取消，此方法会引发一个 <code>CancelledError</code> 异常。如果 <code>Task</code> 对象尚未 完成，此方法将引发一个 <code>InvalidStateError</code> 异常。</p>
+<h3 id="add-done-callback-callback-context-None"><a href="#add-done-callback-callback-context-None" class="headerlink" title="add_done_callback(callback, *, context=None)"></a><code>add_done_callback(callback, *, context=None)</code></h3><p>添加一个回调，将在 <code>Task</code> 对象 完成 时被运行。此方法应该仅在低层级的基于回调的代码中使用。要了解更多细节请查看 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/asyncio-future.html#asyncio.Future.add_done_callback">Future.add_done_callback()</a> 的文档。</p>
+<h3 id="remove-done-callback-callback"><a href="#remove-done-callback-callback" class="headerlink" title="remove_done_callback(callback)"></a><code>remove_done_callback(callback)</code></h3><p>从回调列表中移除 <code>callback</code> 指定的回调。此方法应该仅在低层级的基于回调的代码中使用。</p>
+<p>要了解更多细节请查看 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/asyncio-future.html#asyncio.Future.remove_done_callback">Future.remove_done_callback()</a> 的文档。</p>
+<h3 id="get-stack-limit-None"><a href="#get-stack-limit-None" class="headerlink" title="get_stack(*, limit=None)"></a><code>get_stack(*, limit=None)</code></h3><p>返回此 <code>Task</code> 对象的栈 frame 列表。如果所封包的协程未完成，这将返回其挂起所在的栈。如果协程已成功完成或被取消，这将返回一个空列表。如果协程被一个异常终止，这将返回回溯 frame 列表。</p>
+<p>frame 总是从按从旧到新排序。</p>
+<p>每个被挂起的协程只返回一个栈 frame。</p>
+<p>可选的 <code>limit</code> 参数指定返回 frame 的数量上限；默认返回所有 frame。返回列表的顺序要看是返回一个栈还是一个回溯：栈返回最新的 frame，回溯返回最旧的frame。(这与 traceback 模块的行为保持一致。)</p>
+<h3 id="print-stack-limit-None-file-None"><a href="#print-stack-limit-None-file-None" class="headerlink" title="print_stack(*, limit=None, file=None)"></a><code>print_stack(*, limit=None, file=None)</code></h3><p>打印此 <code>Task</code> 对象的栈或回溯。</p>
+<p>此方法产生的输出类似于 traceback 模块通过 get_stack() 所获取的框架。</p>
+<p><code>limit</code> 参数会直接传递给 <code>get_stack()</code>。</p>
+<p><code>file</code> 参数是输出所写入的 I/O 流；默认情况下输出会写入 <code>sys.stderr</code>。</p>
+<h3 id="get-coro"><a href="#get-coro" class="headerlink" title="get_coro()"></a><code>get_coro()</code></h3><p>返回由 Task 包装的协程对象。</p>
+<h3 id="get-name"><a href="#get-name" class="headerlink" title="get_name()"></a>get_name()</h3><p>返回 Task 的名称。</p>
+<p>如果没有一个 Task 名称被显式地赋值，默认的 asyncio Task 实现会在实例化期间生成一个默认名称。</p>
+<h4 id="set-name-value"><a href="#set-name-value" class="headerlink" title="set_name(value)"></a><code>set_name(value)</code></h4><p>设置 Task 的名称。</p>
+<p><code>value</code> 参数可以为任意对象，它随后会被转换为字符串。</p>
+<p>在默认的 Task 实现中，名称将在任务对象的 <code>repr()</code> 输出中可见</p>
+
+        
+    </div>
+    <hr/>
+
+    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/dao/about" rel="external nofollow noreferrer">xinetzone</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xinetzone.github.io/dao/post/zh-CN/bc778a9a2e3c.html">https://xinetzone.github.io/dao/post/zh-CN/bc778a9a2e3c.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特别声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/dao/about" target="_blank">xinetzone</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+    <div class="tag_share" style="display: block;">
+        <div class="post-meta__tag-list" style="display: inline-block;">
+    
+        <div class="article-tag">
+            
+                <a href="/dao/tags/asyncio/">
+                    <span class="chip bg-color">asyncio</span>
+                </a>
+            
+        </div>
+    
+</div>
+<div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/share/css/share.min.css">
+<div id="article-share">
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/dao/libs/share/js/social-share.min.js"></script>
+    
+
+    
+</div>
+
+</div>
+    </div>
+    
+        <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/dao/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/dao/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+    
+</div>
+    </div>
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/dao/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'dao',
+        owner: 'xinetzone',
+        admin: ["xinetzone"],
+        id: '2021-04-19T13-19-49',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/a8441a397d6a.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/16.jpg" class="responsive-img" alt="执行 网络 IO 和 IPC">
+                        
+                        <span class="card-title">执行 网络 IO 和 IPC</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/Python-%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    Python 编程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/asyncio/">
+                        <span class="chip bg-color">asyncio</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一页&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/d125b0b0c8ae.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/19.jpg" class="responsive-img" alt="从零开始制作 Hexo 博客">
+                        
+                        <span class="card-title">从零开始制作 Hexo 博客</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/How-To/" class="post-category">
+                                    How To
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+    </div>
+    <link rel="stylesheet" href="/dao/libs/tocbot/tocbot.css">
+
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+
+<div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+    <div class="toc-widget card" style="background-color: white;">
+        <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+        <div id="toc-content"></div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+    <div id="floating-toc-btn" class="hide-on-med-and-down">
+        <a class="btn-floating btn-large bg-color">
+            <i class="fas fa-list-ul"></i>
+        </a>
+    </div>
+
+
+<script src="/dao/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    
+            
+            /* 修复文章卡片 div 的宽度. */
+            let fixPostCardWidth = function (srcId, targetId) {
+                let srcDiv = $('#' + srcId);
+                if (srcDiv.length === 0) {
+                    return;
+                }
+
+                let w = srcDiv.width();
+                if (w >= 450) {
+                    w = w + 21;
+                } else if (w >= 350 && w < 450) {
+                    w = w + 18;
+                } else if (w >= 300 && w < 350) {
+                    w = w + 16;
+                } else {
+                    w = w + 14;
+                }
+                $('#' + targetId).width(w);
+            };
+
+            // 切换TOC目录展开收缩的相关操作.
+            const expandedClass = 'expanded';
+            let $tocAside = $('#toc-aside');
+            let $mainContent = $('#main-content');
+            $('#floating-toc-btn .btn-floating').click(function () {
+                if ($tocAside.hasClass(expandedClass)) {
+                    $tocAside.removeClass(expandedClass).hide();
+                    $mainContent.removeClass('l9');
+                } else {
+                    $tocAside.addClass(expandedClass).show();
+                    $mainContent.addClass('l9');
+                }
+                fixPostCardWidth('artDetail', 'prenext-posts');
+            });
+            
+        });
+</script>
+</div>
+
+    
+</main>
+
+
+    <footer class="page-footer bg-color">
+    
+        <style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+    
+</style>
+<div class="wyya">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" 
+        integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js" 
+        integrity="sha512-RWosNnDNw8FxHibJqdFRySIswOUgYhFxnmYO3fp+BgCU7gfo4z0oS7mYFBvaa8qu+axY39BmQOrhW3Tp70XbaQ==" crossorigin="anonymous">
+    </script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <div class="">
+        
+        <div class="row">
+            <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                       server="netease"
+                       type="playlist"
+                       id="503838841"
+                       fixed='true'
+                       autoplay='false'
+                       theme='#42b983'
+                       loop='all'
+                       order='random'
+                       preload='auto'
+                       volume='0.7'
+                       list-folded='true'>
+            </meting-js>
+        </div>
+    </div>
+</div>
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/dao/about" target="_blank">xinetzone</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/xinetzone/matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">119.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xinetzone" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:q735613050@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=735613050" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 735613050" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/xinet" class="tooltipped" data-tooltip="领英联系我: xinet" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="/dao/rss2.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/dao/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+    <script src="/dao/libs/materialize/materialize.min.js"></script>
+    <script src="/dao/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/dao/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/dao/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/dao/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/dao/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/dao/libs/others/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<!--腾讯兔小巢-->
+
+
+
+
+
+
+
+
+<script src="/dao/libs/instantpage/instantpage.js" type="module"></script>
+
+</body>
+
+</html>

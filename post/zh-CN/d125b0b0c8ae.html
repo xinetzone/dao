@@ -1,0 +1,2098 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="description" content="本教程介绍如何动手从零开始制作 Hexo 主题的博客网站。 Hexo 简介 参考 Hexo 官方文档 安装 Hexo。 在 GitHub 创建一个空白仓库，比如：xinetzone&#x2F;xin（本教程，就以此为例介绍）。接着，将其克隆到本地。 在 xinetzone&#x2F;xin 下初始化 Hexo 环境：  hexo init book   接着便可以预览网站（虽然会因为缺少主题而报一些警告，但不影响预览">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始制作 Hexo 博客">
+<meta property="og:url" content="https://xinetzone.github.io/post/zh-CN/d125b0b0c8ae.html">
+<meta property="og:site_name" content="上善若水">
+<meta property="og:description" content="本教程介绍如何动手从零开始制作 Hexo 主题的博客网站。 Hexo 简介 参考 Hexo 官方文档 安装 Hexo。 在 GitHub 创建一个空白仓库，比如：xinetzone&#x2F;xin（本教程，就以此为例介绍）。接着，将其克隆到本地。 在 xinetzone&#x2F;xin 下初始化 Hexo 环境：  hexo init book   接着便可以预览网站（虽然会因为缺少主题而报一些警告，但不影响预览">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-14T15:32:17.000Z">
+<meta property="article:modified_time" content="2021-04-14T15:32:17.000Z">
+<meta property="article:author" content="xinetzone">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+    <link rel="shortcut icon" href="/dao/favicon.png">
+    
+    <title>从零开始制作 Hexo 博客 | 上善若水</title>
+    
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/w3css/4/w3.css">
+
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/xinet-css/tabs.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://xinetzone.github.io/Font-Awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
+    <script src="/dao/libs/jquery/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/dao/" class="waves-effect waves-light">
+                    
+                    <img src="/dao/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">上善若水</span>
+                </a>
+            </div>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/archives">
+          
+          <i class="far fa-calendar-alt" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时间线</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-comment-alt" style="zoom: 0.6;"></i>
+      
+      <span>话题</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/topics">
+          
+          <i class="fas fa-comment" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>话题</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/python">
+          
+          <i class="fas fa-tools" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Python</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>混沌</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/chaos">
+          
+          <i class="fas fa-atom" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>太极</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>资源库</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/dao/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">上善若水</div>
+        <div class="logo-desc">
+            
+            利用 AI 开发一切有意思的东西
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/tags " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tags" style="position: absolute;left:50px" ></i>
+			      
+            <span>标签</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/categories " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+            <span>分类</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/archives " style="margin-left: 75px">
+				  
+            <i class="fa far fa-calendar-alt" style="position: absolute;left:50px" ></i>
+			      
+            <span>时间线</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-comment-alt"></i>
+			
+			话题
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/topics " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-comment" style="position: absolute;left:50px" ></i>
+			      
+            <span>话题</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/python " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tools" style="position: absolute;left:50px" ></i>
+			      
+            <span>Python</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			混沌
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/chaos " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-atom" style="position: absolute;left:50px" ></i>
+			      
+            <span>太极</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/books " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+            <span>资源库</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/xinetzone/notebook" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/xinetzone/notebook" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/dao/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">从零开始制作 Hexo 博客</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+    <div class="row tag-cate">
+        <div class="col s7">
+            
+            <div class="article-tag">
+                
+                    <a href="/dao/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                
+            </div>
+            
+        </div>
+        <div class="col s5 right-align">
+            
+            <div class="post-cate">
+                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                
+                    <a href="/dao/categories/How-To/" class="post-category">
+                        How To
+                    </a>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="post-info">
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+            2021-04-14
+        </div>
+        
+
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+            2021-04-14
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+            3.8k
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+            16 分
+        </div>
+        
+
+        
+            <div id="busuanzi_container_page_pv" class="info-break-policy">
+                <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                <span id="busuanzi_value_page_pv"></span>
+            </div>
+        
+    </div>
+</div>
+<hr class="clearfix">
+        
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+        <div class="card-content article-card-content">
+    <div id="articleContent">
+        <p>本教程介绍如何动手从零开始制作 Hexo 主题的博客网站。</p>
+<h2 id="Hexo-简介"><a href="#Hexo-简介" class="headerlink" title="Hexo 简介"></a>Hexo 简介</h2><ol>
+<li>参考 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官方文档</a> 安装 Hexo。</li>
+<li>在 GitHub 创建一个空白仓库，比如：<a target="_blank" rel="noopener" href="https://github.com/xinetzone/xin">xinetzone/xin</a>（本教程，就以此为例介绍）。接着，将其克隆到本地。</li>
+<li>在 <a target="_blank" rel="noopener" href="https://github.com/xinetzone/xin">xinetzone/xin</a> 下初始化 Hexo 环境：</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo init book<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="4">
+<li>接着便可以预览网站（虽然会因为缺少主题而报一些警告，但不影响预览）：</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="5">
+<li>在 <code>themes</code> 下创建自己的主题文件夹，比如：<code>themes/xin</code>，最后，还要修改网址配置文件 <code>_config.yml</code> 内的 <code>theme</code> 设定为 <code>xin</code>。</li>
+</ol>
+<h3 id="主题创建"><a href="#主题创建" class="headerlink" title="主题创建"></a>主题创建</h3><p>创建 Hexo 主题非常容易，您只要在 <code>themes</code> 文件夹内，新增一个任意名称的文件夹（比如 <code>xin</code>），并修改网站配置文件 <code>_config.yml</code> 内的 <code>theme</code> 设定，即可切换主题。一个主题可能会有以下的结构：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">.</span>
+├── _config.yml
+├── languages
+├── layout
+├── scripts
+└── <span class="token builtin class-name">source</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><code>_config.yml</code>：主题的配置文件。和 Hexo 配置文件不同，主题配置文件修改时会自动更新，无需重启 Hexo Server。</li>
+<li><code>languages</code>：语言文件夹。请参见 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/internationalization">国际化 (i18n)</a>。</li>
+<li><code>layout</code>：布局文件夹。用于存放主题的模板文件，决定了网站内容的呈现方式，Hexo 内建&nbsp;<a target="_blank" rel="noopener" href="https://github.com/node-swig/swig-templates">Swig</a>&nbsp;模板引擎，您可以另外安装插件来获得&nbsp;<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-ejs">EJS</a>、<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-haml">Haml</a>、<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-jade">Jade</a>&nbsp;或&nbsp;<a target="_blank" rel="noopener" href="https://github.com/maxknee/hexo-render-pug">Pug</a>&nbsp;支持，Hexo 根据模板文件的扩展名来决定所使用的模板引擎，例如：</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">layout.ejs   - 使用 EJS
+layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>您可参考&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/templates">模板</a>&nbsp;以获得更多信息。</p>
+<ol start="4">
+<li><code>scripts</code>：脚本文件夹。在启动时，Hexo 会载入此文件夹内的 JavaScript 文件，请参见 <a target="_blank" rel="noopener" href="https://hexo.io/docs/plugins">插件</a> 以获得更多信息。</li>
+<li><code>source</code>：资源文件夹，除了模板以外的 assets，例如 CSS、JavaScript 文件等，都应该放在这个文件夹中。文件或文件夹开头名称为 <code>_</code>（下划线线）或隐藏的文件会被忽略。如果文件可以被渲染的话，会经过解析然后储存到 <code>public</code> 文件夹，否则会直接拷贝到 <code>public</code> 文件夹。</li>
+<li>可以直接参考一些优秀的主题进行一些主题配置，比如，复制主题 <a target="_blank" rel="noopener" href="https://hexojs.github.io/hexo-theme-landscape/"><code>landscape</code></a> 的 <code>languages</code> 文件。</li>
+</ol>
+<h3 id="构建-xin-主题模板"><a href="#构建-xin-主题模板" class="headerlink" title="构建 xin 主题模板"></a>构建 xin 主题模板</h3><p>模板决定了网站内容的呈现方式，每个主题至少都应包含一个 <code>index</code> 模板，以下是各页面相对应的模板名称：</p>
+<table>
+<thead>
+<tr>
+<th align="left">模板</th>
+<th align="left">用途</th>
+<th align="left">回退</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">index</td>
+<td align="left">首页</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">post</td>
+<td align="left">文章</td>
+<td align="left">index</td>
+</tr>
+<tr>
+<td align="left">page</td>
+<td align="left">分页</td>
+<td align="left">index</td>
+</tr>
+<tr>
+<td align="left">archive</td>
+<td align="left">归档</td>
+<td align="left">index</td>
+</tr>
+<tr>
+<td align="left">category</td>
+<td align="left">分类归档</td>
+<td align="left">archive</td>
+</tr>
+<tr>
+<td align="left">tag</td>
+<td align="left">标签归档</td>
+<td align="left">archive</td>
+</tr>
+</tbody></table>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>如果页面结构类似，例如两个模板都有页首（Header）和页脚（Footer），您可考虑通过 <code>layout</code> 文件让两个模板共享相同的结构。每个布局文件都应包含一个 <code>body</code> 变量，以显示相关模板的内容，否则不能正常显示模板。例如：</p>
+<p><output>index.ejs</output></p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">index<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><output>layout.ejs</output></p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> body </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>生成：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>index<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>默认情况下，所有其他模板都使用<code>layout</code>模板。您可以在最前面指定其他布局，或将其设置为<code>false</code>以禁用它。通过在顶部布局中包含更多布局模板，甚至可以构建复杂的嵌套结构。</p>
+<h4 id="局部模版"><a href="#局部模版" class="headerlink" title="局部模版"></a>局部模版</h4><p>局部模板对于在模板之间共享组件很有用。典型示例包括页眉，页脚或侧边栏。您可能需要将局部文件放在单独的文件中，以使网站维护更加方便。例如：</p>
+<p><output>partial/header.ejs</output></p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%=</span><span class="token language-javascript"> config<span class="token punctuation">.</span>title </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><output>index.ejs</output></p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'partial/header'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>生成：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>My Site<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>您可以在局部模板中指定局部变量并使用。</p>
+<p><output>partial/header.ejs</output></p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%=</span><span class="token language-javascript"> title </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><output>index.ejs</output></p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'partial/header'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>title<span class="token operator">:</span> <span class="token string">'Hello World'</span><span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>生成：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hello World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>如果您的主题太过于复杂，或是需要生成的文件量太过于庞大，可能会大幅降低性能，除了简化主题外，您可以考虑 Hexo 2.7 新增的局部缓存（Fragment Caching） 功能。本功能借鉴于 <a target="_blank" rel="noopener" href="http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching">Ruby on Rails</a>，它储存局部内容，下次便能直接使用缓存内容，可以减少文件夹查询并使生成速度更快。</p>
+<p>它可用于页首、页脚、侧边栏等文件不常变动的位置，举例来说：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">&lt;%- fragment_cache('header', function(){
+  return '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>';
+});<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如果您使用局部模板的话，可以更简单：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">&lt;%- partial('header', {}, {cache: true});<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p><code>fragment_cache()</code> 将会缓存第一次的渲染结果，并在之后直接输出缓存的结果。因此只有在不同页面的渲染结果都相同时才应使用局部缓存。比如，在配置中启用了 <code>relative_link</code> 后不应该使用局部缓存，因为相对链接在每个页面可能不同。</p>
+</blockquote>
+<h3 id="Hexo-网站初步介绍"><a href="#Hexo-网站初步介绍" class="headerlink" title="Hexo 网站初步介绍"></a>Hexo 网站初步介绍</h3><p>我们先了解 Hexo 网站的架构：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">.</span>
+├── _config.yml
+├── package.json
+├── scaffolds
+├── <span class="token builtin class-name">source</span>
+<span class="token operator">|</span>   ├── _drafts
+<span class="token operator">|</span>   └── _posts
+└── themes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><code>_config.yml</code>：网站的 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">配置</a> 信息，可以在此配置大部分的参数。</li>
+<li><code>package.json</code>：应用程序的信息。<a target="_blank" rel="noopener" href="https://ejs.co/">EJS</a>, <a target="_blank" rel="noopener" href="http://learnboost.github.io/stylus/">Stylus</a> 和 <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown renderer</a> 已默认安装，可以自由移除。</li>
+<li><code>scaffolds</code>：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">模版</a> 文件夹。当新建文章时，Hexo 会根据 <code>scaffold</code> 来建立文件。Hexo 的模板是指在新建的文章文件中默认填充的内容。例如，如果修改 <code>scaffold/post.md</code> 中的 Front-matter 内容，那么每次新建一篇文章时都会包含这个修改。</li>
+<li><code>source</code>：资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 <code>_</code> (下划线)的文件/文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹，而其他文件会被拷贝过去。</li>
+<li><code>themes</code>：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/themes">主题</a> 文件夹。Hexo 会根据主题来生成静态页面。</li>
+</ol>
+<p>可以在 <code>_config.yml</code> 或<a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration.html#Using-an-Alternate-Config">备用配置文件</a> 中修改站点设置。</p>
+<h4 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h4><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">title</td>
+<td align="left">网站标题</td>
+</tr>
+<tr>
+<td align="center">subtitle</td>
+<td align="left">网站副标题</td>
+</tr>
+<tr>
+<td align="center">description</td>
+<td align="left">网站描述</td>
+</tr>
+<tr>
+<td align="center">author</td>
+<td align="left">您的名字</td>
+</tr>
+<tr>
+<td align="center">language</td>
+<td align="left">网站使用的语言。对于简体中文用户来说，使用不同的主题可能需要设置成不同的值，请参考你的主题的文档自行设置，常见的有 zh-Hans 和 zh-CN。</td>
+</tr>
+<tr>
+<td align="center">timezone</td>
+<td align="left">网站时区。Hexo 默认使用您电脑的时区。请参考 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">时区列表</a> 进行设置，如 America/New_York, Japan, 和 UTC 。一般的，对于中国大陆地区可以使用 Asia/Shanghai。</td>
+</tr>
+</tbody></table>
+<p>其中，<code>description</code> 主要用于 SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code> 参数用于主题显示文章的作者。</p>
+<h4 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h4><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">描述</th>
+<th align="left">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">url</td>
+<td align="left">网址, must starts with http:// or https://</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">root</td>
+<td align="left">网站根目录</td>
+<td align="left">url’s pathname</td>
+</tr>
+<tr>
+<td align="center">permalink</td>
+<td align="left">文章的 永久链接 格式</td>
+<td align="left">:year/:month/:day/:title/</td>
+</tr>
+<tr>
+<td align="center">permalink_defaults</td>
+<td align="left">永久链接中各部分的默认值</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">pretty_urls</td>
+<td align="left">改写 permalink 的值来美化 URL</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">pretty_urls.trailing_index</td>
+<td align="left">是否在永久链接中保留尾部的 index.html，设置为 false 时去除</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="center">pretty_urls.trailing_html</td>
+<td align="left">是否在永久链接中保留尾部的 .html, 设置为 false 时去除 (对尾部的 index.html无效)</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<div class="w3-pale-green">
+<b>网站存放在子目录</b>：如果您的网站存放在子目录中，例如 <code>http://example.com/blog</code>，则请将您的 <code>url</code> 设为 <code>http://example.com/blog</code>。
+</div>
+
+<p>例如：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># 比如，一个页面的永久链接是 http://example.com/foo/bar/index.html
+pretty_urls:
+  trailing_index: false
+# 此时页面的永久链接会变为 http://example.com/foo/bar/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>更多的配置信息请移步 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">Hexo 配置</a>。</p>
+<h2 id="重构-landscape-主题"><a href="#重构-landscape-主题" class="headerlink" title="重构 landscape 主题"></a>重构 landscape 主题</h2><p>为了探讨如何从零开始构建 Hexo 博客，对 landscape 主题进行重构，具体见 <a target="_blank" rel="noopener" href="https://github.com/xinetzone/xin/tags">xin/tags</a> v0.1 。接下来便以 v0.1 为基础重写 Hexo 主题。</p>
+<p>为了 Hexo 可以正常使用，需要添加 Hexo 部署功能：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">npm</span> i hexo-deployer-git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接着修改网站的配置文件 <code>_config.yml</code>：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: 道法自然
+subtitle: 主宰自我
+description: "利用 AI 开发一切有意思的东西"
+author: xinetzone
+language: zh-CN
+timezone: "Asia/Shanghai"
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, 
+## set url as 'https://username.github.io/project'
+url: https://xinetzone.github.io/xin
+permalink: /:year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ""
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: false
+  line_number: true
+  auto_detect: false
+  tab_replace: ""
+  wrap: true
+  hljs: false
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: true
+  tab_replace: ""
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ""
+  per_page: 12
+  order_by: -date
+
+# Category &amp; Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: "mtime"
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 12
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: xin
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: 'git'
+  repo: git@github.com:xinetzone/xin.git
+  branch: gh-pages<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为了支持 rss/rss2 需要安装：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">npm</span> <span class="token function">install</span> hexo-generator-feed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>并在网站配置文件 <code>_config.yml</code> 下添加如下内容：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># 添加 RSS 订阅支持
+## https://github.com/hexojs/hexo-generator-feed
+## npm install hexo-generator-feed
+feed:
+  # Generate both atom and rss2 feeds
+  type:
+    - rss2
+    - atom
+  path:
+    - rss2.xml
+    - atom.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="重构-partial-head-ejs"><a href="#重构-partial-head-ejs" class="headerlink" title="重构 _partial/head.ejs"></a>重构 <code>_partial/head.ejs</code></h3><p>对于一个网站，<code>&lt;head&gt;</code> 很重要，为此，我们首要重构 <code>_partial/head.ejs</code>。首先编写一些处理标题相关的代码：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">// _partial/head.ejs
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript">
+    <span class="token keyword">let</span> title <span class="token operator">=</span> page<span class="token punctuation">.</span>title
+    <span class="token comment">// archives, category, tag pages title</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_archive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        title <span class="token operator">=</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token string">'archive_a'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_month</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            title <span class="token operator">+=</span> <span class="token string">': '</span> <span class="token operator">+</span> page<span class="token punctuation">.</span>year <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> page<span class="token punctuation">.</span>month
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_year</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            title <span class="token operator">+=</span> <span class="token string">': '</span> <span class="token operator">+</span> page<span class="token punctuation">.</span>year
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_category</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        title <span class="token operator">=</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token string">'category'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> page<span class="token punctuation">.</span>category
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        title <span class="token operator">=</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token string">'tag'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> page<span class="token punctuation">.</span>tag
+    <span class="token punctuation">}</span>
+    <span class="token comment">// final page title.</span>
+    <span class="token keyword">let</span> pageTitle <span class="token operator">=</span> title <span class="token operator">?</span> title <span class="token operator">+</span> <span class="token string">' | '</span> <span class="token operator">+</span> config<span class="token punctuation">.</span>title <span class="token operator">:</span> config<span class="token punctuation">.</span>title
+</span><span class="token delimiter punctuation">%&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里将网页 <code>page.title</code> 进行一些预处理，可以令其自适应 <code>_config.yml</code> 与 <code>themes/xin/_config.yml</code> 的 <code>title</code>。</p>
+<p>最后，便可以定制一个 <code>&lt;head&gt;</code> 元素模板：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">// _partial/head.ejs
+...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'google-analytics'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1, shrink-to-fit=no<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%=</span><span class="token language-javascript"> pageTitle </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">open_graph</span><span class="token punctuation">(</span><span class="token punctuation">{</span>twitter_id<span class="token operator">:</span> theme<span class="token punctuation">.</span>twitter<span class="token punctuation">,</span> fb_admins<span class="token operator">:</span> theme<span class="token punctuation">.</span>fb_admins<span class="token punctuation">,</span> fb_app_id<span class="token operator">:</span> theme<span class="token punctuation">.</span>fb_app_id<span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>feed<span class="token punctuation">)</span> <span class="token punctuation">{</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+        <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>theme<span class="token punctuation">.</span>rss<span class="token punctuation">)</span> <span class="token punctuation">{</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+        <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span>theme<span class="token punctuation">.</span>rss<span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">}</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'css/style'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面一一介绍 <code>&lt;head&gt;</code> 元素模板：</p>
+<ol>
+<li>第 5 行定义了 谷歌分析的模板（暂不展开）。</li>
+<li>第 6 行设置视口自适应不同平台和屏幕。</li>
+<li>第 7 行定义了页面标题，即 <code>&lt;title&gt;</code> 元素。</li>
+<li>第 8 行插入 Open Graph 资源。</li>
+<li>第 9~13 行，使用 <code>feed_tag</code> 辅助函数插入 RSS 链接。</li>
+<li>第 14 行定义了 CSS 链接。</li>
+</ol>
+<p>可以参考如下示例理解 <code>feed_tag</code> 辅助函数：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token string">'atom.xml'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>alternate<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/atom.xml<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Hexo<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>application/atom+xml<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token string">'rss.xml'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token string">'RSS Feed'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'rss'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>alternate<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/atom.xml<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>RSS Feed<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>application/rss+xml<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+/* Defaults to hexo-generator-feed's config if no argument */
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>alternate<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/atom.xml<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Hexo<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>application/atom+xml<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Hexo 提供辅助函数 <code>css</code> 用于载入 CSS 资源。语法：<code>&lt;%- css(path, ...) %&gt;</code>。<code>path</code> 可以是数组或字符串，如果 <code>path</code> 开头不是 <code>/</code> 或任何协议，则会自动加上根路径；如果后面没有加上 <code>.css</code> 扩展名的话，也会自动加上。使用对象类型可以自定义 CSS 属性。示例如下：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'style.css'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'style.css'</span><span class="token punctuation">,</span> <span class="token string">'screen.css'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/screen.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">{</span> href<span class="token operator">:</span> <span class="token string">'style.css'</span><span class="token punctuation">,</span> integrity<span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>foo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> href<span class="token operator">:</span> <span class="token string">'style.css'</span><span class="token punctuation">,</span> integrity<span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> href<span class="token operator">:</span> <span class="token string">'screen.css'</span><span class="token punctuation">,</span> integrity<span class="token operator">:</span> <span class="token string">'bar'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>foo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+// <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/screen.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再回头看看那个有点奇怪的元数据 Open Graph。Open Graph Protocol(开放内容协议) 是一种新的 HTTP 头部标记，即这种协议可以让网页成为一个“富媒体对象”。用了 <code>meta property=og</code> 标签，就是你同意了网页内容可以被其他社会化网站引用等。</p>
+<p>Hexo 提供了 Open Graph 的辅助函数用于插入 open graph 资源。语法：<code>&lt;%- open_graph([options]) %&gt;</code>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+<th align="left">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">title</td>
+<td align="left">页面标题 (og:title)</td>
+<td align="left">page.title</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">页面类型 (og:type)</td>
+<td align="left">blog</td>
+</tr>
+<tr>
+<td align="left">url</td>
+<td align="left">页面网址 (og:url)</td>
+<td align="left">url</td>
+</tr>
+<tr>
+<td align="left">image</td>
+<td align="left">页面图片 (og:image)</td>
+<td align="left">内容中的图片</td>
+</tr>
+<tr>
+<td align="left">site_name</td>
+<td align="left">网站名称 (og:site_name)</td>
+<td align="left">config.title</td>
+</tr>
+<tr>
+<td align="left">description</td>
+<td align="left">页面描述 (og:description)</td>
+<td align="left">内容摘要或前 200 字</td>
+</tr>
+<tr>
+<td align="left">twitter_card</td>
+<td align="left">Twitter 卡片类型 (twitter:card)</td>
+<td align="left">summary</td>
+</tr>
+<tr>
+<td align="left">twitter_id</td>
+<td align="left">Twitter ID (twitter:creator)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">twitter_site</td>
+<td align="left">Twitter 网站 (twitter:site)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">google_plus</td>
+<td align="left">Google+ 个人资料链接</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fb_admins</td>
+<td align="left">Facebook 管理者 ID</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">fb_app_id</td>
+<td align="left">Facebook 应用程序 ID</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h3 id="关于资源文件夹"><a href="#关于资源文件夹" class="headerlink" title="关于资源文件夹"></a>关于资源文件夹</h3><p>如果我们的文章里面有图片，我们可以在 source 文件夹下建立一个统一的 images 文件夹来存放图片，但是如果有的文章有很多的资源文件如图片，我们可以通过设置该配置为 <code>true</code>，这样在<code>source</code>文件夹下创建文件的同时也会创建一个同名文件夹来存放相应的资源。</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">post_asset_folder: true # 是否启动资源文件夹
+marked: # 保证资源的链接正确
+  prependRoot: true
+  postAsset: true
+  gfm: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="设定多语言支持"><a href="#设定多语言支持" class="headerlink" title="设定多语言支持"></a>设定多语言支持</h3><p>为了添加多语言支持，需要修改网站配置文件 <code>_config.yml</code>：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># URL
+## Set your site url here. For example, if you use GitHub Page,
+## set url as 'https://username.github.io/project'
+url: https://xinetzone.github.io/xin
+permalink: :lang/:year/:month/:day/:title/
+permalink_defaults:
+  lang: en-US # 设定默认<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为了令网址具有唯一性，可以在配置文件 <code>_config.yml</code> 中加入如下内容并配置：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">## npm install hexo-abbrlink
+### https://github.com/rozbo/hexo-abbrlink
+# abbrlink config
+abbrlink:
+  alg: crc32      #support crc16(default) and crc32
+  rep: hex        #support dec(default) and hex
+  drafts: false   #(true)Process draft,(false)Do not process draft. false(default) 
+  # Generate categories from directory-tree
+  # depth: the max_depth of directory-tree you want to generate, should &gt; 0
+  auto_category:
+     enable: true  #true(default)
+     depth:        #3(default)
+     over_write: false 
+  auto_title: false #enable auto title, it can auto fill the title by path
+  auto_date: false #enable auto date, it can auto fill the date by time today
+  force: false #enable force mode,in this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had abbrlink.
+permalink: :layout/:lang/:abbrlink.html # :year/:month/:day/:title/
+permalink_defaults:
+  lang: en-US # 设定默认<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3><p>Hexo 使用 <code>hexo-generator-search</code> 添加 <code>local-search</code>，需要在网站配置文件 <code>_config.yml</code> 新增如下内容：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">## Hexo使用hexo-generator-search添加local-search
+search:
+  path: search.xml
+  field: post
+  content: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="支持代码行显示数字"><a href="#支持代码行显示数字" class="headerlink" title="支持代码行显示数字"></a>支持代码行显示数字</h3><p>为了支持代码行支持显示数字序号，可以添加文件 <code>themes/xin/source/css/xin-prism.css/</code>，并在 <code>themes/xin/layout/_partial/head.ejs</code> 中新增 CSS 引用。</p>
+<h3 id="添加-W3-CSS-与-tab-切换-支持"><a href="#添加-W3-CSS-与-tab-切换-支持" class="headerlink" title="添加 W3.CSS 与 tab 切换 支持"></a>添加 W3.CSS 与 tab 切换 支持</h3><p>在 <code>themes/xin/layout/_partial/head.ejs</code> 中新增：</p>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'https://xinetzone.github.io/w3css/4/w3.css'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'https://xinetzone.github.io/xinet-css/tabs.css'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+        
+    </div>
+    <hr/>
+
+    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/dao/about" rel="external nofollow noreferrer">xinetzone</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xinetzone.github.io/dao/post/zh-CN/d125b0b0c8ae.html">https://xinetzone.github.io/dao/post/zh-CN/d125b0b0c8ae.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特别声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/dao/about" target="_blank">xinetzone</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+    <div class="tag_share" style="display: block;">
+        <div class="post-meta__tag-list" style="display: inline-block;">
+    
+        <div class="article-tag">
+            
+                <a href="/dao/tags/Hexo/">
+                    <span class="chip bg-color">Hexo</span>
+                </a>
+            
+        </div>
+    
+</div>
+<div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/share/css/share.min.css">
+<div id="article-share">
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/dao/libs/share/js/social-share.min.js"></script>
+    
+
+    
+</div>
+
+</div>
+    </div>
+    
+        <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/dao/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/dao/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+    
+</div>
+    </div>
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/dao/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'dao',
+        owner: 'xinetzone',
+        admin: ["xinetzone"],
+        id: '2021-04-14T23-32-17',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/bc778a9a2e3c.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/20.jpg" class="responsive-img" alt="Python 异步编程">
+                        
+                        <span class="card-title">Python 异步编程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/Python-%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    Python 编程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/asyncio/">
+                        <span class="chip bg-color">asyncio</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一页&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/e45b79088298.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/8.jpg" class="responsive-img" alt="shlex --- 简单的词法分析">
+                        
+                        <span class="card-title">shlex --- 简单的词法分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/shlex/">
+                        <span class="chip bg-color">shlex</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+    </div>
+    <link rel="stylesheet" href="/dao/libs/tocbot/tocbot.css">
+
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+
+<div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+    <div class="toc-widget card" style="background-color: white;">
+        <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+        <div id="toc-content"></div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+    <div id="floating-toc-btn" class="hide-on-med-and-down">
+        <a class="btn-floating btn-large bg-color">
+            <i class="fas fa-list-ul"></i>
+        </a>
+    </div>
+
+
+<script src="/dao/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    
+            
+            /* 修复文章卡片 div 的宽度. */
+            let fixPostCardWidth = function (srcId, targetId) {
+                let srcDiv = $('#' + srcId);
+                if (srcDiv.length === 0) {
+                    return;
+                }
+
+                let w = srcDiv.width();
+                if (w >= 450) {
+                    w = w + 21;
+                } else if (w >= 350 && w < 450) {
+                    w = w + 18;
+                } else if (w >= 300 && w < 350) {
+                    w = w + 16;
+                } else {
+                    w = w + 14;
+                }
+                $('#' + targetId).width(w);
+            };
+
+            // 切换TOC目录展开收缩的相关操作.
+            const expandedClass = 'expanded';
+            let $tocAside = $('#toc-aside');
+            let $mainContent = $('#main-content');
+            $('#floating-toc-btn .btn-floating').click(function () {
+                if ($tocAside.hasClass(expandedClass)) {
+                    $tocAside.removeClass(expandedClass).hide();
+                    $mainContent.removeClass('l9');
+                } else {
+                    $tocAside.addClass(expandedClass).show();
+                    $mainContent.addClass('l9');
+                }
+                fixPostCardWidth('artDetail', 'prenext-posts');
+            });
+            
+        });
+</script>
+</div>
+
+    
+</main>
+
+
+    <footer class="page-footer bg-color">
+    
+        <style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+    
+</style>
+<div class="wyya">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" 
+        integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js" 
+        integrity="sha512-RWosNnDNw8FxHibJqdFRySIswOUgYhFxnmYO3fp+BgCU7gfo4z0oS7mYFBvaa8qu+axY39BmQOrhW3Tp70XbaQ==" crossorigin="anonymous">
+    </script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <div class="">
+        
+        <div class="row">
+            <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                       server="netease"
+                       type="playlist"
+                       id="503838841"
+                       fixed='true'
+                       autoplay='false'
+                       theme='#42b983'
+                       loop='all'
+                       order='random'
+                       preload='auto'
+                       volume='0.7'
+                       list-folded='true'>
+            </meting-js>
+        </div>
+    </div>
+</div>
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/dao/about" target="_blank">xinetzone</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/xinetzone/matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">119.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xinetzone" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:q735613050@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=735613050" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 735613050" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/xinet" class="tooltipped" data-tooltip="领英联系我: xinet" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="/dao/rss2.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/dao/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+    <script src="/dao/libs/materialize/materialize.min.js"></script>
+    <script src="/dao/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/dao/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/dao/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/dao/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/dao/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/dao/libs/others/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<!--腾讯兔小巢-->
+
+
+
+
+
+
+
+
+<script src="/dao/libs/instantpage/instantpage.js" type="module"></script>
+
+</body>
+
+</html>

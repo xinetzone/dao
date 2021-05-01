@@ -1,0 +1,1757 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="description" content="CherryPy 中的配置是通过字典实现的。键是命名映射值的字符串。值可以是任何类型。在 CherryPy3 中，您可以使用配置（文件或字典）直接在引擎，服务器，请求，响应和日志对象上设置属性。因此，要了解配置文件中所有可用内容的全部范围，最好的方法是简单地导入这些对象，然后查看 help(obj) 告诉您什么。 Architecture关于 CherryPy 3 的配置，您需要了解的第一件事是它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CherryPy 配置">
+<meta property="og:url" content="https://xinetzone.github.io/post/zh-CN/66fcbe5b6847.html">
+<meta property="og:site_name" content="上善若水">
+<meta property="og:description" content="CherryPy 中的配置是通过字典实现的。键是命名映射值的字符串。值可以是任何类型。在 CherryPy3 中，您可以使用配置（文件或字典）直接在引擎，服务器，请求，响应和日志对象上设置属性。因此，要了解配置文件中所有可用内容的全部范围，最好的方法是简单地导入这些对象，然后查看 help(obj) 告诉您什么。 Architecture关于 CherryPy 3 的配置，您需要了解的第一件事是它">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-16T00:40:06.000Z">
+<meta property="article:modified_time" content="2021-03-16T00:40:06.000Z">
+<meta property="article:author" content="xinetzone">
+<meta property="article:tag" content="CherryPy">
+<meta name="twitter:card" content="summary">
+    <link rel="shortcut icon" href="/dao/favicon.png">
+    
+    <title>CherryPy 配置 | 上善若水</title>
+    
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/w3css/4/w3.css">
+
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/xinet-css/tabs.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://xinetzone.github.io/Font-Awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
+    <script src="/dao/libs/jquery/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/dao/" class="waves-effect waves-light">
+                    
+                    <img src="/dao/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">上善若水</span>
+                </a>
+            </div>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/archives">
+          
+          <i class="far fa-calendar-alt" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时间线</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-comment-alt" style="zoom: 0.6;"></i>
+      
+      <span>话题</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/topics">
+          
+          <i class="fas fa-comment" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>话题</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/python">
+          
+          <i class="fas fa-tools" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Python</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>混沌</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/chaos">
+          
+          <i class="fas fa-atom" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>太极</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>资源库</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/dao/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">上善若水</div>
+        <div class="logo-desc">
+            
+            利用 AI 开发一切有意思的东西
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/tags " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tags" style="position: absolute;left:50px" ></i>
+			      
+            <span>标签</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/categories " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+            <span>分类</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/archives " style="margin-left: 75px">
+				  
+            <i class="fa far fa-calendar-alt" style="position: absolute;left:50px" ></i>
+			      
+            <span>时间线</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-comment-alt"></i>
+			
+			话题
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/topics " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-comment" style="position: absolute;left:50px" ></i>
+			      
+            <span>话题</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/python " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tools" style="position: absolute;left:50px" ></i>
+			      
+            <span>Python</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			混沌
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/chaos " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-atom" style="position: absolute;left:50px" ></i>
+			      
+            <span>太极</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/books " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+            <span>资源库</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/xinetzone/notebook" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/xinetzone/notebook" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/dao/medias/featureimages/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CherryPy 配置</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+    <div class="row tag-cate">
+        <div class="col s7">
+            
+            <div class="article-tag">
+                
+                    <a href="/dao/tags/CherryPy/">
+                        <span class="chip bg-color">CherryPy</span>
+                    </a>
+                
+            </div>
+            
+        </div>
+        <div class="col s5 right-align">
+            
+            <div class="post-cate">
+                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                
+                    <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                        教程
+                    </a>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="post-info">
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+            2021-03-16
+        </div>
+        
+
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+            2021-03-16
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+            3.6k
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+            13 分
+        </div>
+        
+
+        
+            <div id="busuanzi_container_page_pv" class="info-break-policy">
+                <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                <span id="busuanzi_value_page_pv"></span>
+            </div>
+        
+    </div>
+</div>
+<hr class="clearfix">
+        
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+        <div class="card-content article-card-content">
+    <div id="articleContent">
+        <p>CherryPy 中的配置是通过字典实现的。键是命名映射值的字符串。值可以是任何类型。在 CherryPy3 中，您可以使用配置（文件或字典）直接在引擎，服务器，请求，响应和日志对象上设置属性。因此，要了解配置文件中所有可用内容的全部范围，最好的方法是简单地导入这些对象，然后查看 <code>help(obj)</code> 告诉您什么。</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>关于 CherryPy 3 的配置，您需要了解的第一件事是它将全局配置与应用程序配置分开。如果您要在同一站点上部署多个应用程序（越来越多的人（由于 Python Web 应用程序趋向于分散管理）），则还需要注意分开配置。只有一个“全局配置”，但是您部署的每个应用都有一个单独的“应用配置”。</p>
+<p>CherryPy Requests 是应用程序的一部分，该应用程序在全局上下文中运行，并且配置数据可能适用于这三个范围中的任何一个。让我们依次查看每个范围。</p>
+<h3 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h3><p>全局配置条目适用于任何地方，并存储在 <code>cherrypy.config</code> 中。这个简单的字典只保存全局配置数据。也就是说，“站点范围”配置条目会影响所有已安装的应用程序。</p>
+<p>全局配置存储在 <code>cherrypy.config</code> 字典中，因此您可以通过调用 <code>cherrypy.config.update(conf)</code> 对其进行更新。<code>conf</code> 参数可以是文件名，打开的文件或配置条目的字典。这是一个传递 <code>dict</code> 参数的示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'server.socket_host'</span><span class="token punctuation">:</span> <span class="token string">'64.72.221.48'</span><span class="token punctuation">,</span>
+                        <span class="token string">'server.socket_port'</span><span class="token punctuation">:</span> <span class="token number">80</span><span class="token punctuation">,</span>
+                       <span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>本示例中的 <code>server.socket_host</code> 选项确定 CherryPy 将在哪个网络接口上侦听。<code>server.socket_port</code> 选项声明要侦听的 TCP 端口。</p>
+<h3 id="应用配置"><a href="#应用配置" class="headerlink" title="应用配置"></a>应用配置</h3><p>应用程序条目适用于单个已安装的应用程序，并作为 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cptree.html#cherrypy._cptree.Application.config"><code>app.config</code></a> 存储在每个 Application 对象本身上。这是一个两级字典，其中每个顶级关键字是一个路径或“相对URL”（例如，<code>"/"</code> 或 <code>"/my/page"</code>），每个值是一个配置条目的字典。该 URL 相对于该应用程序的脚本名称（挂载点）。通常，所有这些数据都在对 <code>tree.mount(root(), script_name='/path/to', config=conf)</code> 的调用中提供，尽管您也可以使用 <code>app.merge(conf)</code>。<code>conf</code> 参数可以是文件名，打开的文件或配置条目的字典。</p>
+<p>配置文件的例子：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.trailing_slash.on = False
+request.dispatch: cherrypy.dispatch.MethodDispatcher()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>或者 Python 代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'/'</span><span class="token punctuation">:</span>
+    <span class="token punctuation">{</span>
+        <span class="token string">'request.dispatch'</span><span class="token punctuation">:</span> cherrypy<span class="token punctuation">.</span>dispatch<span class="token punctuation">.</span>MethodDispatcher<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.trailing_slash.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>Root<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>CherryPy 仅使用以 <code>"/"</code> 开头的部分（<code>[global]</code>除外，请参见下文）。这意味着您可以通过为自己的配置条目提供一个不以 <code>"/"</code> 开头的部分名称来将它们放置在 CherryPy 配置文件中。例如，您可能包括以下数据库条目：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[global]
+server.socket_host: "0.0.0.0"
+
+[Databases]
+driver: "postgres"
+host: "localhost"
+port: 5432
+
+[/path]
+response.timeout: 6000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后，在您的应用程序代码中，您可以在请求期间通过 <code>cherrypy.request.app.config['Databases']</code> 读取这些值。对于超出请求流程的代码，您必须将引用传递给您的应用程序。</p>
+<h3 id="Request-配置"><a href="#Request-配置" class="headerlink" title="Request 配置"></a>Request 配置</h3><p>每个 Request 对象都具有一个 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cprequest.html#cherrypy._cprequest.Request.config">request.config</a> 字典。在请求过程的早期，通过合并全局配置，应用程序配置以及在查找页面处理程序时获取的任何配置来填充此 dict（请参见下文）。该字典仅包含适用于给定请求的那些配置条目。</p>
+<p class="w3-pale-red"> 当您执行 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cperror.html#cherrypy._cperror.InternalRedirect">InternalRedirect</a> 时，将为新路径重新计算此 config 属性。</p><p>
+
+</p><h2 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h2><p>配置数据可以作为 Python 字典，文件名或打开文件对象提供。</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>当提供文件名或文件时，CherryPy 使用 Python 的内置 ConfigParser。您可以通过将每个路径写为 section header，并将每个条目写为 <code>"key: value"</code>（或 <code>"key = value"</code>）对来声明 Application config：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/path/to/my/page]
+response.stream: True
+tools.trailing_slash.extra = False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="组合配置文件"><a href="#组合配置文件" class="headerlink" title="组合配置文件"></a>组合配置文件</h4><p>如果仅部署单个应用程序，则可以制作一个包含全局条目和应用程序条目的配置文件。只需将全局条目粘贴到名为 <code>[global]</code> 的配置节中，然后将同一文件传递到 <code>config.update</code> 和 <code>tree.mount &lt;cherrypy._cptree.Tree.mount()</code>。如果您要调用 <code>cherrypy.quickstart(app root, script name, config)</code>，它将为您将配置传递到两个地方。但是，一旦您决定将另一个应用程序添加到同一站点，就需要将两个配置文件/字典分开。</p>
+<h4 id="单独的配置文件"><a href="#单独的配置文件" class="headerlink" title="单独的配置文件"></a>单独的配置文件</h4><p>如果您要在同一过程中部署多个应用程序，则需要（1）文件进行全局配置，另外还需要（1）文件用于每个应用程序。 全局配置是通过调用 <code>cherrypy.config.update</code> 来应用的，而应用程序配置通常是在对 <code>cherrypy.tree.mount</code> 的调用中传递的。</p>
+<p>通常，您应该先设置全局配置，然后再使用自己的配置挂载每个应用程序。除其他好处外，它还使您可以设置全局日志记录，这样，如果在尝试装入应用程序时出现问题，您将看到回溯。换句话说，使用以下顺序：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># global config</span>
+cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'environment'</span><span class="token punctuation">:</span> <span class="token string">'production'</span><span class="token punctuation">,</span>
+                        <span class="token string">'log.error_file'</span><span class="token punctuation">:</span> <span class="token string">'site.log'</span><span class="token punctuation">,</span>
+                        <span class="token comment"># ...</span>
+                        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Mount each app and pass it its own config</span>
+cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>root1<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> appconf1<span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>root2<span class="token punctuation">,</span> <span class="token string">"/forum"</span><span class="token punctuation">,</span> appconf2<span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>root3<span class="token punctuation">,</span> <span class="token string">"/blog"</span><span class="token punctuation">,</span> appconf3<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">,</span> <span class="token string">'block'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 3.1 syntax</span>
+    cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>block<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token comment"># 3.0 syntax</span>
+    cherrypy<span class="token punctuation">.</span>server<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="配置文件中的值使用-Python-语法"><a href="#配置文件中的值使用-Python-语法" class="headerlink" title="配置文件中的值使用 Python 语法"></a>配置文件中的值使用 Python 语法</h4><p>Config 条目始终是键/值对，例如 <code>server.socket_port = 8080</code>。键始终是名称，值始终是 Python 对象。也就是说，如果您要设置的值是一个 int（或其他数字），则它必须看起来像 Python int；例如 8080。如果该值为字符串，则需要将其引号，就像 Python 字符串一样。也可以创建任意对象，就像在 Python 代码中一样（假定可以找到/导入）。这是一个扩展的示例，向您展示了一些不同的类型：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[global]
+log.error_file: "/home/fumanchu/myapp.log"
+environment = 'production'
+server.max_request_body_size: 1200
+
+[/myapp]
+tools.trailing_slash.on = False
+request.dispatch: cherrypy.dispatch.MethodDispatcher()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="cp-config：将配置附加到处理程序"><a href="#cp-config：将配置附加到处理程序" class="headerlink" title="_cp_config：将配置附加到处理程序"></a><code>_cp_config</code>：将配置附加到处理程序</h4><p>配置文件有一个严格的限制：值始终由URL键入。例如：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/path/to/page]
+methods_with_bodies = ("POST", "PUT", "PROPPATCH")<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>显然，额外的方法是该路径的规范；实际上，如果没有该代码，则可以认为该代码已损坏。在 CherryPy 中，您可以直接在页面处理程序上附加该配置位：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+<span class="token keyword">def</span> <span class="token function">page</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Hello, world!"</span>
+page<span class="token punctuation">.</span>_cp_config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"request.methods_with_bodies"</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">,</span> <span class="token string">"PUT"</span><span class="token punctuation">,</span> <span class="token string">"PROPPATCH"</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>_cp_config</code> 是保留的属性，调度程序在对象树中的每个节点上查找该属性。<code>_cp_config</code> 属性必须是 CherryPy 配置字典。如果调度程序找到了 <code>_cp_config</code> 属性，它将将该字典合并到配置的其余部分中。整个合并的配置字典放置在 <code>cherrypy.request.config</code> 中。</p>
+<p>可以在对象树的任何位置完成此操作。例如，我们可以将该配置附加到包含 page 方法的类中：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">SetOPages</span><span class="token punctuation">:</span>
+
+    _cp_config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"request.methods_with_bodies"</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">,</span> <span class="token string">"PUT"</span><span class="token punctuation">,</span> <span class="token string">"PROPPATCH"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">page</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"Hullo, Werld!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p class="w3-pale-red">
+仅默认调度程序可以保证此行为。其他调度程序可能对在何处附加 <code>_cp_config</code> 属性有不同的限制。另外，由于分派器负责处理 <code>_cp_config</code>，因此无法更改分派器（即，在此构造中不执行 <code>request.dispatch</code>）。
+</p>
+
+<p>此技术使您可以：</p>
+<ul>
+<li>将配置放在用于提高可读性和可维护性的位置。</li>
+<li>将配置附加到对象而不是 URL。这样一来，多个 URL 都可以指向同一个对象，但是您只需定义一次配置即可。</li>
+<li>提供仍可在配置文件中覆盖的默认值。</li>
+</ul>
+<h2 id="Namespaces"><a href="#Namespaces" class="headerlink" title="Namespaces"></a>Namespaces</h2><p>因为配置条目通常只是在对象上设置属性，所以它们几乎都是以下形式：<code>object.attribute</code>。其中一些格式为：<code>object.subobject.attribute</code>。它们看起来像普通的 Python 属性链，因为它们像它们一样工作。我们将链中的名字称为“配置名称空间”。当您提供配置条目时，它会尽早绑定到名称空间引用的实际对象。例如，条目 <code>response.stream</code> 实际上设置了 <code>cherrypy.response</code> 的 <code>stream</code> 属性！这样，您可以通过启动 Python 解释器并键入以下内容来轻松确定默认值：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> cherrypy
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> cherrypy<span class="token punctuation">.</span>response<span class="token punctuation">.</span>stream
+<span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>每个配置名称空间都有其自己的处理程序。例如，“request” 名称空间具有一个处理程序，该处理程序获取您的配置条目并在适当的“请求”属性上设置该值。有一些名称空间无法像幕后的普通属性那样工作； 但是，它们仍然使用点键，并被认为是“具有名称空间”。</p>
+<h3 id="内置名称空间"><a href="#内置名称空间" class="headerlink" title="内置名称空间"></a>内置名称空间</h3><p>可以在全局，应用程序根目录（<code>"/"</code>）或每个路径配置或以下组合中允许来自每个名称空间的条目。</p>
+<h4 id="engine"><a href="#engine" class="headerlink" title="engine"></a>engine</h4><p>该命名空间中的条目控制着“应用程序引擎”。这些只能在全局配置中声明。<code>cherrypy.engine</code> 的任何属性都可以在 <code>config</code> 中设置；但是，在 <code>config</code> 中还有一些额外的条目可用：</p>
+<ul>
+<li><span class="w3-pale-yellow">Plugin 属性</span>：许多引擎插件本身就是 <code>cherrypy.engine</code> 的属性。 您可以通过简单地命名附件插件来设置任何属性。例如，在 <code>engine.autoreload</code> 处有一个 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy.process.plugins.html#cherrypy.process.plugins.Autoreloader">Autoreloader</a> 类的实例。您可以通过配置条目 <code>engine.autoreload.frequency = 60</code> 设置其“frequency”属性。此外，您可以通过将 <code>engine.autoreload.on = True</code> 或 <code>False</code> 设置为打开或关闭此类插件。</li>
+<li><span class="w3-pale-yellow">engine.SIGHUP/SIGTERM</span>：这些条目可用于设置给定通道的侦听器列表。通常，这用于关闭通过 <code>cherrypy.quickstart()</code> 自动获取的信号处理。</li>
+</ul>
+<h4 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h4><p>声明其他请求处理功能。使用它可以将自己的 Hook 函数附加到请求。例如，要将 <code>my_hook_func</code> 添加到 <code>before_handler</code> 挂钩点：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+hooks.before_handler = myapp.my_hook_func<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="log"><a href="#log" class="headerlink" title="log"></a>log</h4><p>配置日志记录。这些只能在全局配置（用于全局日志记录）或 <code>[/]</code> 配置（对于每个应用程序）中声明。有关可配置属性的列表，请参见 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cplogging.html#cherrypy._cplogging.LogManager">LogManager</a>。通常，“access_file”，“error_file” 和 “screen” 属性是最常用的配置。</p>
+<h4 id="request"><a href="#request" class="headerlink" title="request"></a>request</h4><p>在每个 Request 上设置属性。有关完整列表，请参见 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cprequest.html#cherrypy._cprequest.Request">Request</a> 类。</p>
+<h4 id="response"><a href="#response" class="headerlink" title="response"></a>response</h4><p>在每个 Response 上设置属性。有关完整列表，请参见 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cprequest.html#cherrypy._cprequest.Response">Response</a> 类。</p>
+<h4 id="server"><a href="#server" class="headerlink" title="server"></a>server</h4><p>通过 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cpserver.html#cherrypy._cpserver.Server">cherrypy.server</a> 控制默认的 HTTP 服务器（有关可配置属性的完整列表，请参见该类）。这些只能在全局配置中声明。</p>
+<h4 id="tools"><a href="#tools" class="headerlink" title="tools"></a>tools</h4><p>启用和配置其他请求处理程序包。有关更多信息，请参见 /tutorial/tools 概述。</p>
+<h4 id="wsgi"><a href="#wsgi" class="headerlink" title="wsgi"></a>wsgi</h4><p>将 WSGI 中间件添加到应用程序的“pipeline”中。这些只能在应用的根配置（“/”）中声明。</p>
+<ul>
+<li><code>wsgi.pipeline</code>：附加到 WSGI 管道。该值必须是（name, app factory）对的列表。每个应用程序工厂必须是 WSGI 可调用类（或返回 WSGI 可调用的可调用类）；它必须带有一个初始的 “nextapp” 参数，以及任何可选的关键字参数。可选参数可以通过 <code>wsgi.&lt;name&gt;.&lt;arg&gt;</code> 进行配置。</li>
+<li><code>wsgi.response_class</code>：覆盖默认的 Response 类。</li>
+</ul>
+<h4 id="checker"><a href="#checker" class="headerlink" title="checker"></a>checker</h4><p>控制“checker”，该检查器在引擎启动时在应用程序状态（包括配置）中查找常见错误。您可以通过在配置中将单个检查设置为 <code>False</code> 来关闭单个检查。请参阅 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cpchecker.html#cherrypy._cpchecker.Checker">cherrypy._cpchecker.Checker</a> 以获取完整列表。仅全局配置。</p>
+<h3 id="自定义配置名称空间"><a href="#自定义配置名称空间" class="headerlink" title="自定义配置名称空间"></a>自定义配置名称空间</h3><p>如果愿意，您可以定义自己的名称空间，它们可以做的事情远不止简单地设置属性。例如，<code>test/test_config</code> 模块显示了一个自定义名称空间的示例，该名称空间强制输入的参数和输出的正文内容。<a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cpwsgi.html#module-cherrypy._cpwsgi">cherrypy._cpwsgi</a> 模块包括一个附加的内置名称空间，用于调用 WSGI 中间件。</p>
+<p>本质上，配置名称空间处理程序只是一个函数，该函数将传递其名称空间中的所有配置条目。您将其添加到名称空间注册表（字典），其中键是名称空间名称，值是处理函数。当遇到您的名称空间的配置条目时，将调用相应的处理程序函数，并传递 <code>config</code> 键和值；即 <code>namespaces[namespace](k, v)</code>。例如，如果您编写：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">db_namespace</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> k <span class="token operator">==</span> <span class="token string">'connstring'</span><span class="token punctuation">:</span>
+        orm<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>namespaces<span class="token punctuation">[</span><span class="token string">'db'</span><span class="token punctuation">]</span> <span class="token operator">=</span> db_namespace<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后 <code>cherrypy.config.update({"db.connstring": "Oracle:host=1.10.100.200;sid=TEST"})</code> 将调用<code>db_namespace('connstring', 'Oracle:host=1.10.100.200;sid=TEST')</code>。</p>
+<p>调用名称空间处理程序的时间点取决于添加它的位置：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Scope</th>
+<th align="center">Namespace dict</th>
+<th align="center">Handler is called in</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Global</td>
+<td align="center">cherrypy.config.namespaces</td>
+<td align="center">cherrypy.config.update</td>
+</tr>
+<tr>
+<td align="center">Application</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cptree.html#cherrypy._cptree.Application.namespaces">app.namespaces</a></td>
+<td align="center">Application.merge (which is called by cherrypy.tree.mount)</td>
+</tr>
+<tr>
+<td align="center">Request</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cprequest.html#cherrypy._cprequest.Request.namespaces">app.request_class.namespaces</a></td>
+<td align="center">Request.configure (called for each request, after the handler is looked up)</td>
+</tr>
+</tbody></table>
+<p>名称可以是任何字符串，并且处理程序必须是可调用的或（Python 2.5 样式）上下文管理器。</p>
+<p>如果在收集所有名称空间键时需要其他代码来运行，则可以提供可调用的上下文管理器来代替处理程序的常规功能。在 <a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0343">PEP 343</a> 中定义了上下文管理器。</p>
+<h3 id="Environments"><a href="#Environments" class="headerlink" title="Environments"></a>Environments</h3><p>命名空间中唯一不存在的键是“environment”条目。它仅适用于全局配置，并且仅在使用 <code>cherrypy.config.update</code> 时适用。此特殊条目从存储在 <code>cherrypy._cpconfig.environments[environment]</code> 中的以下模板中导入其他配置条目。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Config<span class="token punctuation">.</span>environments <span class="token operator">=</span> environments <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'staging'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'engine.autoreload.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'checker.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.log_headers.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_tracebacks'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_mismatched_params'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'production'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'engine.autoreload.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'checker.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.log_headers.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_tracebacks'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_mismatched_params'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'log.screen'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'embedded'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token comment"># For use with CherryPy embedded in another deployment stack.</span>
+        <span class="token string">'engine.autoreload.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'checker.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.log_headers.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_tracebacks'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_mismatched_params'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'log.screen'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'engine.SIGHUP'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span>
+        <span class="token string">'engine.SIGTERM'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'test_suite'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'engine.autoreload.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'checker.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.log_headers.on'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_tracebacks'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token string">'request.show_mismatched_params'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token string">'log.screen'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果发现现有环境集（生产，暂存等）过于局限或完全错误，请随时扩展它们或添加新环境：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>_cpconfig<span class="token punctuation">.</span>environments<span class="token punctuation">[</span><span class="token string">'staging'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'log.screen'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">False</span>
+
+cherrypy<span class="token punctuation">.</span>_cpconfig<span class="token punctuation">.</span>environments<span class="token punctuation">[</span><span class="token string">'Greek'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'tools.encode.encoding'</span><span class="token punctuation">:</span> <span class="token string">'ISO-8859-7'</span><span class="token punctuation">,</span>
+    <span class="token string">'tools.decode.encoding'</span><span class="token punctuation">:</span> <span class="token string">'ISO-8859-7'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+        
+    </div>
+    <hr/>
+
+    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/dao/about" rel="external nofollow noreferrer">xinetzone</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xinetzone.github.io/dao/post/zh-CN/66fcbe5b6847.html">https://xinetzone.github.io/dao/post/zh-CN/66fcbe5b6847.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特别声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/dao/about" target="_blank">xinetzone</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+    <div class="tag_share" style="display: block;">
+        <div class="post-meta__tag-list" style="display: inline-block;">
+    
+        <div class="article-tag">
+            
+                <a href="/dao/tags/CherryPy/">
+                    <span class="chip bg-color">CherryPy</span>
+                </a>
+            
+        </div>
+    
+</div>
+<div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/share/css/share.min.css">
+<div id="article-share">
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/dao/libs/share/js/social-share.min.js"></script>
+    
+
+    
+</div>
+
+</div>
+    </div>
+    
+        <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/dao/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/dao/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+    
+</div>
+    </div>
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/dao/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'dao',
+        owner: 'xinetzone',
+        admin: ["xinetzone"],
+        id: '2021-03-16T08-40-06',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/8432efb27024.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/18.jpg" class="responsive-img" alt="CherryPy 插件">
+                        
+                        <span class="card-title">CherryPy 插件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/CherryPy/">
+                        <span class="chip bg-color">CherryPy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一页&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/8d2e9bc8b6bf.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/0.jpg" class="responsive-img" alt="常用的 HTML 元素使用参考">
+                        
+                        <span class="card-title">常用的 HTML 元素使用参考</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/%E6%89%8B%E5%86%8C/" class="post-category">
+                                    手册
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/HTML/">
+                        <span class="chip bg-color">HTML</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+    </div>
+    <link rel="stylesheet" href="/dao/libs/tocbot/tocbot.css">
+
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+
+<div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+    <div class="toc-widget card" style="background-color: white;">
+        <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+        <div id="toc-content"></div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+    <div id="floating-toc-btn" class="hide-on-med-and-down">
+        <a class="btn-floating btn-large bg-color">
+            <i class="fas fa-list-ul"></i>
+        </a>
+    </div>
+
+
+<script src="/dao/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    
+            
+            /* 修复文章卡片 div 的宽度. */
+            let fixPostCardWidth = function (srcId, targetId) {
+                let srcDiv = $('#' + srcId);
+                if (srcDiv.length === 0) {
+                    return;
+                }
+
+                let w = srcDiv.width();
+                if (w >= 450) {
+                    w = w + 21;
+                } else if (w >= 350 && w < 450) {
+                    w = w + 18;
+                } else if (w >= 300 && w < 350) {
+                    w = w + 16;
+                } else {
+                    w = w + 14;
+                }
+                $('#' + targetId).width(w);
+            };
+
+            // 切换TOC目录展开收缩的相关操作.
+            const expandedClass = 'expanded';
+            let $tocAside = $('#toc-aside');
+            let $mainContent = $('#main-content');
+            $('#floating-toc-btn .btn-floating').click(function () {
+                if ($tocAside.hasClass(expandedClass)) {
+                    $tocAside.removeClass(expandedClass).hide();
+                    $mainContent.removeClass('l9');
+                } else {
+                    $tocAside.addClass(expandedClass).show();
+                    $mainContent.addClass('l9');
+                }
+                fixPostCardWidth('artDetail', 'prenext-posts');
+            });
+            
+        });
+</script>
+</div>
+
+    
+</main>
+
+
+    <footer class="page-footer bg-color">
+    
+        <style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+    
+</style>
+<div class="wyya">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" 
+        integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js" 
+        integrity="sha512-RWosNnDNw8FxHibJqdFRySIswOUgYhFxnmYO3fp+BgCU7gfo4z0oS7mYFBvaa8qu+axY39BmQOrhW3Tp70XbaQ==" crossorigin="anonymous">
+    </script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <div class="">
+        
+        <div class="row">
+            <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                       server="netease"
+                       type="playlist"
+                       id="503838841"
+                       fixed='true'
+                       autoplay='false'
+                       theme='#42b983'
+                       loop='all'
+                       order='random'
+                       preload='auto'
+                       volume='0.7'
+                       list-folded='true'>
+            </meting-js>
+        </div>
+    </div>
+</div>
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/dao/about" target="_blank">xinetzone</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/xinetzone/matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">119.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xinetzone" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:q735613050@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=735613050" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 735613050" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/xinet" class="tooltipped" data-tooltip="领英联系我: xinet" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="/dao/rss2.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/dao/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+    <script src="/dao/libs/materialize/materialize.min.js"></script>
+    <script src="/dao/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/dao/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/dao/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/dao/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/dao/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/dao/libs/others/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<!--腾讯兔小巢-->
+
+
+
+
+
+
+
+
+<script src="/dao/libs/instantpage/instantpage.js" type="module"></script>
+
+</body>
+
+</html>

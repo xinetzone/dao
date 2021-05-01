@@ -1,0 +1,1741 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="description" content="本章主要针对“如何构建一个属于自己的计算机视觉项目”为主题进行展开。 本章导航：  在 GitHub 上创建个人项目 利用 Git 子模块组织子项目  1 创建个人项目由于构建个人或者公司的私有服务器涉及的知识点太多，本文考虑以 GitHub 作为远端服务器来构建个人项目。如果您的私有服务器已经搭建好了的话，直接把它当作 GitHub 进行操作即可。因而，本文介绍的创建项目的方法同样适用于私有服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构建属于自己的项目">
+<meta property="og:url" content="https://xinetzone.github.io/post/zh-CN/5f351e8f5e4a.html">
+<meta property="og:site_name" content="上善若水">
+<meta property="og:description" content="本章主要针对“如何构建一个属于自己的计算机视觉项目”为主题进行展开。 本章导航：  在 GitHub 上创建个人项目 利用 Git 子模块组织子项目  1 创建个人项目由于构建个人或者公司的私有服务器涉及的知识点太多，本文考虑以 GitHub 作为远端服务器来构建个人项目。如果您的私有服务器已经搭建好了的话，直接把它当作 GitHub 进行操作即可。因而，本文介绍的创建项目的方法同样适用于私有服务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/set.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/GithubPages.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/edit.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/clone.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/checklist.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/issue.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/CCC.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/submodule.png">
+<meta property="og:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/9.png">
+<meta property="article:published_time" content="2019-09-18T08:40:59.000Z">
+<meta property="article:modified_time" content="2019-09-18T08:40:59.000Z">
+<meta property="article:author" content="xinetzone">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="github">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a/set.png">
+    <link rel="shortcut icon" href="/dao/favicon.png">
+    
+    <title>构建属于自己的项目 | 上善若水</title>
+    
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/w3css/4/w3.css">
+
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/xinet-css/tabs.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://xinetzone.github.io/Font-Awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
+    <script src="/dao/libs/jquery/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/dao/" class="waves-effect waves-light">
+                    
+                    <img src="/dao/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">上善若水</span>
+                </a>
+            </div>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/archives">
+          
+          <i class="far fa-calendar-alt" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时间线</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-comment-alt" style="zoom: 0.6;"></i>
+      
+      <span>话题</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/topics">
+          
+          <i class="fas fa-comment" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>话题</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/python">
+          
+          <i class="fas fa-tools" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Python</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>混沌</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/chaos">
+          
+          <i class="fas fa-atom" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>太极</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>资源库</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/dao/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">上善若水</div>
+        <div class="logo-desc">
+            
+            利用 AI 开发一切有意思的东西
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/tags " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tags" style="position: absolute;left:50px" ></i>
+			      
+            <span>标签</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/categories " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+            <span>分类</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/archives " style="margin-left: 75px">
+				  
+            <i class="fa far fa-calendar-alt" style="position: absolute;left:50px" ></i>
+			      
+            <span>时间线</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-comment-alt"></i>
+			
+			话题
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/topics " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-comment" style="position: absolute;left:50px" ></i>
+			      
+            <span>话题</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/python " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tools" style="position: absolute;left:50px" ></i>
+			      
+            <span>Python</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			混沌
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/chaos " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-atom" style="position: absolute;left:50px" ></i>
+			      
+            <span>太极</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/books " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+            <span>资源库</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/xinetzone/notebook" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/xinetzone/notebook" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/dao/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">构建属于自己的项目</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+    <div class="row tag-cate">
+        <div class="col s7">
+            
+            <div class="article-tag">
+                
+                    <a href="/dao/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                
+                    <a href="/dao/tags/github/">
+                        <span class="chip bg-color">github</span>
+                    </a>
+                
+            </div>
+            
+        </div>
+        <div class="col s5 right-align">
+            
+            <div class="post-cate">
+                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                
+                    <a href="/dao/categories/%E9%A1%B9%E7%9B%AE/" class="post-category">
+                        项目
+                    </a>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="post-info">
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+            2019-09-18
+        </div>
+        
+
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+            2019-09-18
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+            3.7k
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+            14 分
+        </div>
+        
+
+        
+            <div id="busuanzi_container_page_pv" class="info-break-policy">
+                <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                <span id="busuanzi_value_page_pv"></span>
+            </div>
+        
+    </div>
+</div>
+<hr class="clearfix">
+        
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+        <div class="card-content article-card-content">
+    <div id="articleContent">
+        <p>本章主要针对“如何构建一个属于自己的计算机视觉项目”为主题进行展开。</p>
+<p>本章导航：</p>
+<ul>
+<li>在 GitHub 上创建个人项目</li>
+<li>利用 Git 子模块组织子项目</li>
+</ul>
+<h2 id="1-创建个人项目"><a href="#1-创建个人项目" class="headerlink" title="1 创建个人项目"></a>1 创建个人项目</h2><p>由于构建个人或者公司的私有服务器涉及的知识点太多，本文考虑以 GitHub 作为远端服务器来构建个人项目。如果您的私有服务器已经搭建好了的话，直接把它当作 GitHub 进行操作即可。因而，本文介绍的创建项目的方法同样适用于私有服务器，区别不过是您提供的服务器的地址不同和仓库的使用权限不同而已。本节内容参考：<a target="_blank" rel="noopener" href="https://opensource.guide/zh-cn/">https://opensource.guide/zh-cn/</a>。</p>
+<h3 id="1-1-创建一个项目"><a href="#1-1-创建一个项目" class="headerlink" title="1.1 创建一个项目"></a>1.1 创建一个项目</h3><p>第 1 步：在 GitHub（<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a>）上创建一个仓库，取名为 <strong>cv-actions</strong>，接着选择一个 <strong>LICENSE</strong>（如 GNU GPL v3.0，相关介绍见：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56759711">https://zhuanlan.zhihu.com/p/56759711</a>） 和 <strong>gitignore</strong>（选择 Python）。然后选择 <code>settings</code>：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/set.png" alt="图1 GitHub 的 settings"></p>
+<p>往下滑动鼠标，找到 GitHub Pages，选择主题，随后便会生成一个网址：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/GithubPages.png" alt="图2 GitHub Pages"></p>
+<p>接着，填写项目的简介：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/edit.png" alt="图 3 编写项目简介"></p>
+<p>第 2 步：将远端的项目克隆到本地。首先，按照下图操作获取项目的远程仓库地址（<a target="_blank" rel="noopener" href="https://github.com/xinetzone/cv-actions.git">https://github.com/xinetzone/cv-actions.git</a>）：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/clone.png" alt="图4 获取远程仓库地址"></p>
+<p>第 3 步：在本地电脑端打开 vscode 并在终端输入：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git clone https://github.com/xinetzone/cv-actions.git
+$ cd cv-actions/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这样便在本地端拥有一个 cv-actions 的副本。</p>
+<h3 id="1-2-修改-README"><a href="#1-2-修改-README" class="headerlink" title="1.2 修改 README"></a>1.2 修改 README</h3><p>对于一个项目来说，README（自述文档）是十分重要的。自述文件不仅仅是用于说明人们如何使用你的项目，还要解释你的项目为什么重要，以及它可以为你的用户做什么。在您的自述文件中，尝试回答以下问题：</p>
+<ul>
+<li>What：这个项目做什么？</li>
+<li>Why：为什么这个项目有用？</li>
+<li>How：如何开始？</li>
+<li>Help：如果需要，我可以在哪里获得更多的帮助？</li>
+<li>Who：谁维护和参与项目？</li>
+</ul>
+<p>参考<a target="_blank" rel="noopener" href="https://github.com/PurpleBooth">@PurpleBooth</a> 的 <a target="_blank" rel="noopener" href="https://gist.github.com/PurpleBooth/109311bb0361f32d87a2">README 模板</a> 编写自述文档 <a target="_blank" rel="noopener" href="https://github.com/xinetzone/cv-actions/blob/master/README.md">README</a>（<a target="_blank" rel="noopener" href="https://github.com/xinetzone/cv-actions/blob/master/README.md">https://github.com/xinetzone/cv-actions/blob/master/README.md</a>）。其中的图标可以参考 <a href="https://xinetzone.github.io/zh-CN/f7c6a6b8.html">github 编写 README 时如何获取 fork 等图标</a>（<a href="https://xinetzone.github.io/zh-CN/f7c6a6b8.html">https://xinetzone.github.io/zh-CN/f7c6a6b8.html</a>）进行设计。</p>
+<p>接着创建一些目录，这些目录均代表不同的功能。在项目根目录打开终端并输入：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">mkdir data draft models outputs app notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><code>data/</code>: 数据的存放</li>
+<li><code>models/</code>: 模型的参数存储</li>
+<li><code>outputs/</code>: 模型的输出结果</li>
+<li><code>app/</code>：存放相关的 API</li>
+<li><code>notebook/</code>：存放 jupyter notebook 等相关的文件</li>
+<li><code>draft/</code>：(可以放置在任何位置)存放一些不成熟的或者未开发完成的一些相关内容，不被上传到 github</li>
+</ul>
+<p>其中 <code>data/</code>，<code>models/</code>，<code>draft/</code> 加入到 <code>.gitignore</code> 不被 git 管理。</p>
+<p>进入项目的 Insights 栏目，选择 Community，您可以看到图5 的结果：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/checklist.png" alt="图5 项目配置检查列表"></p>
+<p>图5 列出了一个比较规范的项目需要满足的文件的清单。后续章节将逐渐填充检查清单。</p>
+<h3 id="1-3-编写贡献者指南"><a href="#1-3-编写贡献者指南" class="headerlink" title="1.3 编写贡献者指南"></a>1.3 编写贡献者指南</h3><p>编写 <code>CONTRIBUTING.md</code>（贡献者指南） 文档有助于贡献者们快速了解如何加入本项目的贡献之中。下面介绍如何编写贡献者指南？</p>
+<p>一般地，使用热情友好的语气并提供具体的贡献建议可以大大提高新人的参与度。比如，您可以在开头这样引入：</p>
+<blockquote>
+<p>首先，非常感谢您为 cv actions 提供新鲜血液。正是更多像您这样的人，使得 cv actions 将逐渐发展为一个强大的计算机视觉社区。</p>
+</blockquote>
+<h4 id="1-3-1-准备工作1：创建-Issue-与-PR-模板"><a href="#1-3-1-准备工作1：创建-Issue-与-PR-模板" class="headerlink" title="1.3.1 准备工作1：创建 Issue 与 PR 模板"></a>1.3.1 准备工作1：创建 Issue 与 PR 模板</h4><p>对于一个比较健全的社区，需要拥有一个优雅的 Issue templates（见图 5）。它可以令 Issue 的参与者有着一个统一而清晰的框架，同时，也方便其他人参与 Issue 的讨论之中。Issue templates 的创建可以直接从 GitHub 中需要选择一个模板，之后点击绿色按钮 <code>Propose changes</code> 提交修改即可：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/issue.png" alt="图6 添加 Issue templates"></p>
+<p>当然，您也可以添加多个模板甚至自定义模板（具体细节见<a target="_blank" rel="noopener" href="https://help.github.com/cn/articles/creating-a-pull-request-template-for-your-repository">https://help.github.com/cn/articles/creating-a-pull-request-template-for-your-repository</a>）。这些模板仅仅是一个雏形，还需要与后续的工作进行匹配。所以，刚开始先不用管这么多，先生成这些模板再说。如果需要创建有多个作者的<strong>提交</strong>，您可以参考 <a target="_blank" rel="noopener" href="https://help.github.com/cn/articles/creating-a-commit-with-multiple-authors">https://help.github.com/cn/articles/creating-a-commit-with-multiple-authors</a>。</p>
+<p>您还需要在 <code>/.github/</code> 下创建文档 <code>PULL_REQUEST_TEMPLATE.md</code> 用于 Pull request（拉取请求，PR）的生成。因为编写良好的 PR 说明可以加速审阅者了解代码的预期结果的进程。它们也是帮助跟踪并应对每次的 commit（如测试、添加单元测试和更新文档）应执行的工作的好方法。更多优秀模板参考：<a target="_blank" rel="noopener" href="https://github.com/XNoteW/github-issue-templates">https://github.com/XNoteW/github-issue-templates</a>。下面以一个简单的例子来说明 PR 模板的样式：</p>
+<pre class="line-numbers language-md" data-language="md"><code class="language-md">非常感谢您参与到 cv actions 的项目中来，但为了创建一个良好的社区环境，在您提交 PR 之前，请您确保已经满足下列要求：
+
+<span class="token list punctuation">-</span> [ ] 您的 code 是否已经还存在错误或者警告信息
+<span class="token list punctuation">-</span> [ ] 您正在使用的术语（terminology）是否是社区约定的或者已经被公认的
+<span class="token list punctuation">-</span> [ ] 您是否已经做过单元测试（unit tests）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>一般地，一个相对优秀的 PR 应该包含如下问题：</p>
+<ul>
+<li>您做了什么改变？</li>
+<li>您修复了什么问题？</li>
+<li>你发起的是一个 bug 修复(bug fix) 还是创建了一个新的功能？对旧的版本是否有重大影响？对已经存在的函数或者模块是否进行重构？</li>
+<li>您是如何验证它的？</li>
+</ul>
+<p>更多关于 PR 的细节可参考：<a target="_blank" rel="noopener" href="https://github.com/embeddedartistry/templates/blob/master/oss_docs/PULL_REQUEST_TEMPLATE.md">https://github.com/embeddedartistry/templates/blob/master/oss_docs/PULL_REQUEST_TEMPLATE.md</a>。</p>
+<h4 id="1-3-2-准备工作2：编写行为准则"><a href="#1-3-2-准备工作2：编写行为准则" class="headerlink" title="1.3.2 准备工作2：编写行为准则"></a>1.3.2 准备工作2：编写行为准则</h4><p>一个社区想要可持续地且健康地发展需要拥有一份约定的行为准则：<code>CODE_OF_CONDUCT.md</code>。顾名思义，<strong>行为准则</strong>即是参与社区时的一些礼仪、说话方式、行为等，它帮助社区形成一种友好的氛围，且在某种程度上它也是展示项目对于贡献者的友好程度。</p>
+<p>当前已经不需要我们自己创建行为准则，在<a target="_blank" rel="noopener" href="https://www.contributor-covenant.org/">贡献者公约</a>(<a target="_blank" rel="noopener" href="https://www.contributor-covenant.org/">https://www.contributor-covenant.org/</a>)之中已经提供了一份行之有效的行为规范，已经被用在包括 Kubernetes，Rails，以及 Swift等<a target="_blank" rel="noopener" href="https://www.contributor-covenant.org/adopters">超过 4000 个开源项目</a>(<a target="_blank" rel="noopener" href="https://www.contributor-covenant.org/adopters">https://www.contributor-covenant.org/adopters</a>)之中。参考图5 点击 <code>Add</code> Code of conduct，便会弹出图7 的结果：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/CCC.png" alt="图7 添加行为准则"></p>
+<p>选择贡献者公约（Contributor Covenant）并在右侧填写电子邮箱用于处理违反公约的行为和反馈。最后，提交修改即可。</p>
+<h4 id="1-3-3-贡献指南编写细则"><a href="#1-3-3-贡献指南编写细则" class="headerlink" title="1.3.3 贡献指南编写细则"></a>1.3.3 贡献指南编写细则</h4><p>考虑到项目的可读性，需要设计一些贡献指南编写的细则。如果您想要获得更多有关编写贡献指南的方式，可以查阅 @nayafia 的 <a target="_blank" rel="noopener" href="https://github.com/nayafia/contributing-template/blob/master/CONTRIBUTING-template.md">贡献指南模板</a> 或者 @mozilla 的 <a target="_blank" rel="noopener" href="https://mozillascience.github.io/working-open-workshop/contributing/">“如何构建 CONTRIBUTION.md”</a>。下面给出 cv actions 的贡献指南：</p>
+<pre class="line-numbers language-md" data-language="md"><code class="language-md"><span class="token title important"><span class="token punctuation">#</span> 贡献指南</span>
+
+非常感谢您乐意为 cv actions 提供新鲜血液。正是更多像您这样的人，使得 cv actions 将逐渐发展为一个强大的计算机视觉社区。
+
+为了创建一个良好的社区环境，请您遵守我们社区的《<span class="token url">[<span class="token content">行为准则</span>](<span class="token url">CODE_OF_CONDUCT.md</span>)</span>》。如果您想要发起一个 Bug report 或者 Feature request，请您遵循 Issue 的模板进行贡献。同时也欢迎您贡献新的且实用的 Issue 与 Pull request templates。
+
+请您仔细阅读这份指南，因为，如果您这样做了，既可以节省您的宝贵时间，同时也对其他贡献者或者审阅者们的极大的尊重。
+
+本项目的<span class="token bold"><span class="token punctuation">**</span><span class="token content">目标</span><span class="token punctuation">**</span></span>是<span class="token bold"><span class="token punctuation">**</span><span class="token content">打造一个健康且可持续发展的计算机视觉社区。</span><span class="token punctuation">**</span></span>
+
+<span class="token title important"><span class="token punctuation">##</span> 贡献的类型</span>
+
+本项目不仅仅欢迎您贡献代码，同时也欢迎您贡献文档（请在 <span class="token code keyword">`/docs/`</span> 中进行），教程或者本项目的使用手册等内容。
+
+<span class="token title important"><span class="token punctuation">##</span> 贡献的必要条件</span>
+
+<span class="token list punctuation">1.</span> 如果您不了解如何对项目进贡献，请您参考 <span class="token url">[<span class="token content">如何为开源做贡献</span>](<span class="token url">https://opensource.guide/zh-cn/how-to-contribute/</span>)</span>。
+<span class="token list punctuation">2.</span> 为了方便项目的管理，请您使用 Git Flow 进行管理。当您将项目克隆到您的本地电脑后，请您运行：<span class="token code keyword">`git flow init`</span> 并随之切换到 develop。具体是使用细节请 📖 &lt;https://xinetzone.github.io/projects/&gt;。
+<span class="token list punctuation">3.</span> 本项目暂定以 Python 作为代码的开发语言，而文档的编写请使用 Markdown 进行工作。
+<span class="token list punctuation">4.</span> 本项目在 GitHub 上维护的 master 分支作为预发布版本，而 develop 分支作为开发版本。其他功能版本请以 git flow 的规则进行管理。
+<span class="token list punctuation">5.</span> 您贡献的 Python 代码需要支持 pep8，数学公式最好使用 markdown 的标准语法，比如 <span class="token code keyword">`$x^2=1$`</span>等。
+
+<span class="token title important"><span class="token punctuation">##</span> Issue 与 Pull request 的行为准则</span>
+
+考虑到可读性与可理解性，在您创建 Issue 或者 Pull request（简写为 PR） 时，请遵循如下约定：
+
+<span class="token list punctuation">1.</span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">请给出您的 issue 或者 PR 的 context</span><span class="token punctuation">**</span></span>：即给出上下文语境。比如当您你运行程序时遇到一个错误，请解释你是如何操作的，并描述该错误现象是否具有再现性；当您提交一个新的idea，请您解释该 idea 您是如何想到的，并且说明您的 idea 的适用范围，是否可以将您的 idea 进行推广或者拓展。
+<span class="token list punctuation">2.</span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">您是否已经完成准备工作</span><span class="token punctuation">**</span></span>：请确认您是否阅读了项目的 README、文档、问题（开放的和关闭的），检查您的 issue 或者 PR 是否已经有人做过或者正在做，避免提交重复的议题或者请求。
+<span class="token list punctuation">3.</span> 请您<span class="token bold"><span class="token punctuation">**</span><span class="token content">保持请求内容的短小而直接</span><span class="token punctuation">**</span></span>：每个人的时间和精力都是有限的，短小而直接的请求对大家都有益处。
+<span class="token list punctuation">4.</span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">请保持您的优雅</span><span class="token punctuation">**</span></span>：本社区禁止发布不良信息，注意用语文明而优雅，杜绝各种辱骂和打口水仗的行为。
+
+<span class="token title important"><span class="token punctuation">##</span> 获得联系</span>
+
+<span class="token list punctuation">-</span> 您可以在 Gitter @<span class="token url">[<span class="token content">cv-actions</span>](<span class="token url">https://gitter.im/cv-actions/community</span>)</span> 上讨论 Issue
+<span class="token list punctuation">-</span> 如果有疑问，请您 ✉️ xinzone@outlook.com
+
+<span class="token title important"><span class="token punctuation">##</span> TODOS</span>
+
+<span class="token list punctuation">-</span> [ ] 利用 <span class="token url">[<span class="token content">pre-commit</span>](<span class="token url">https://pre-commit.com/</span>)</span> 自动部署代码的格式，使其自动化支持 pep8 等格式。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>至此，我们便在 GitHub 上完成了项目的构建工作。</p>
+<h2 id="2-使用-git-submodule-管理子项目"><a href="#2-使用-git-submodule-管理子项目" class="headerlink" title="2 使用 git submodule 管理子项目"></a>2 使用 git submodule 管理子项目</h2><p>参考资料：<a target="_blank" rel="noopener" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">https://git-scm.com/book/en/v2/Git-Tools-Submodules</a>。</p>
+<p>情景：在您正在维护的项目（可记为 A）中存在一些子项目或者第三方库（可记为 B）。您不想在 A 中直接维护 B，希望 B 作为一个单独的项目进行管理，这种情况下便需要借助 Git 子模块工具了。Git 子模块工具将 B 作为 A 的一个子目录进行管理，使用 <code>git submodule</code> 来实现。下面以一个例子来说明如何使用子模块的。</p>
+<h3 id="2-1-开始使用子模块"><a href="#2-1-开始使用子模块" class="headerlink" title="2.1 开始使用子模块"></a>2.1 开始使用子模块</h3><ul>
+<li>前提：在 Github 上单独创建一个独立的项目<a href="https://xinetzone.github.io/image/">xinetzone/image</a>(<a href="https://xinetzone.github.io/image/">https://xinetzone.github.io/image/</a>)，该项目是一个数字图像处理的工具包。</li>
+<li>目标：在 <a href="https://xinetzone.github.io/cv-actions/">cv-actions</a> 项目中添加子项目 <a href="https://xinetzone.github.io/image/">image</a>。</li>
+</ul>
+<p>第 1 步：克隆 <a href="https://xinetzone.github.io/cv-actions/">cv-actions</a> 到个人电脑。即在终端输入：<code>git clone https://github.com/xinetzone/image.git</code>。<br>第 2 步：git flow 初始化，即在终端输入如下命令：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ cd cv-actions
+$ git flow init<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第 3 步：使用 git flow 创建并切换到新的分支 <code>feature/image</code>，即在命令行输入：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git flow feature start image<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>第 4 步：使用 <code>git submodule</code> 添加子项目 cv-actions 到目录 <code>app/</code> 之下，即在命令行输入：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ cd app/
+$ git submodule add https://github.com/xinetzone/image<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>其中 <code>https://github.com/xinetzone/image</code> 是子项目 image 的网址。</p>
+<p>此时，如果您运行 <code>git status</code> 查看项目 cv-actions 的状态，便看到：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/submodule.png" alt="图8 git 克隆子模块后的状态"></p>
+<p>从图8 可以看到此时在 <code>app/</code> 下新增目录 <code>image</code>，且在根目录新增文件 <code>.gitmodules</code>。</p>
+<p>其中 <code>.gitmodules</code> 文件记录了配置文件保存的项目 image 的 URL 与已经拉取的本地目录之间的映射：</p>
+<pre class="line-numbers language-.gitmodules" data-language=".gitmodules"><code class="language-.gitmodules">[submodule "app/image"]
+  path = app/image
+  url = https://github.com/xinetzone/image<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如果您有多个子模块需要被管理，<code>.gitmodules</code> 文件中就会有多条记录。虽然 <code>image/</code> 是 cv-actions 的工作目录的一个子目录，但是，git 并不会将其视作普通文件进行管理，而是将其作为一个整体当作子模块中的某个具体的提交进行管理。</p>
+<p>第 5 步：提交更改。为了让子模块 image 加入到 git 的历史（commit）之中，您需要将其提交：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ cd .. # 回到根目录
+$ git commit -am '添加子模块 image'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>其中 <code>-am</code> 是 <code>-a -m</code> 的组合。</p>
+<p>第 6 步：推送项目到远端分支 feature/image。</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git push origin feature/image<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="2-2-克隆含有子模块的项目"><a href="#2-2-克隆含有子模块的项目" class="headerlink" title="2.2 克隆含有子模块的项目"></a>2.2 克隆含有子模块的项目</h3><p>克隆含有子模块的项目一般有两种方法：</p>
+<ul>
+<li>方法1：<code>git clone URL</code></li>
+<li>方法2：<code>git clone --recursive URL</code></li>
+</ul>
+<p>下面先讨论如何使用方法1 克隆含有子模块的项目，首先使用语法 <code>git clone -b 分支名 URL</code> 克隆项目的指定分支。在终端运行：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git clone -b feature/image https://github.com/xinetzone/cv-actions
+$ cd cv-actions/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>此时，您进入 <code>app/image</code> 会发现其是一个空目录，这是因为含有子模块的项目需要进行初始化。初始化需要两步，具体操作是在 <code>app/image</code> 下面运行：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git submodule init
+$ git submodule update<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>其中 <code>git submodule init</code> 用于初始化本地配置，而 <code>git submodule update</code> 用于从项目 image 中抓取所有数据并检出（checked out）父项目中列出的合适的提交。使用 <code>git status</code> 查看当前状态：</p>
+<p><img src="/dao/post/zh-CN/5f351e8f5e4a/9.png" alt="图9 查看 git submodule update 后的状态"></p>
+<p>从图9 可以看出，此时 image 与其上游 <code>origin/feature/image</code> 已经同步了。</p>
+<p>对于方法2，仅仅运行如下命令即可达到上述的同样效果：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">$ git clone --recursive -b feature/image https://github.com/xinetzone/cv-actions<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="2-3-使用子模块"><a href="#2-3-使用子模块" class="headerlink" title="2.3 使用子模块"></a>2.3 使用子模块</h3><p>如果子模块的上游有的新的提交（commit），您想要获取更新，有两种方法：</p>
+<ol>
+<li>直接进入子模块所在目录 <code>app/image</code> 通过运行 <code>git fetch</code> 与 <code>git merge</code>，合并上游分支来更新本地代码。</li>
+<li>直接运行 <code>git submodule update --remote image</code> 获取上游分支来更新本地代码。</li>
+</ol>
+<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3 小结"></a>3 小结</h2><p>本文主要讨论了如何利用 Git 与 Github 创建属于自己的项目，同时也介绍了如何利用 <code>git submodule</code> 在大项目中管理小项目。</p>
+<h2 id="notebook"><a href="#notebook" class="headerlink" title="notebook"></a>notebook</h2><p>笔记本</p>
+
+        
+    </div>
+    <hr/>
+
+    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/dao/about" rel="external nofollow noreferrer">xinetzone</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a.html">https://xinetzone.github.io/dao/post/zh-CN/5f351e8f5e4a.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特别声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/dao/about" target="_blank">xinetzone</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+    <div class="tag_share" style="display: block;">
+        <div class="post-meta__tag-list" style="display: inline-block;">
+    
+        <div class="article-tag">
+            
+                <a href="/dao/tags/git/">
+                    <span class="chip bg-color">git</span>
+                </a>
+            
+                <a href="/dao/tags/github/">
+                    <span class="chip bg-color">github</span>
+                </a>
+            
+        </div>
+    
+</div>
+<div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/share/css/share.min.css">
+<div id="article-share">
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/dao/libs/share/js/social-share.min.js"></script>
+    
+
+    
+</div>
+
+</div>
+    </div>
+    
+        <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/dao/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/dao/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+    
+</div>
+    </div>
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/dao/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'dao',
+        owner: 'xinetzone',
+        admin: ["xinetzone"],
+        id: '2019-09-18T16-40-59',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/f23f55bfddea.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/21.jpg" class="responsive-img" alt="Python3 之类型注解">
+                        
+                        <span class="card-title">Python3 之类型注解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本文主要介绍如何注解 Python，方便代码的审查。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/typing/">
+                        <span class="chip bg-color">typing</span>
+                    </a>
+                    
+                    <a href="/dao/tags/dataclass/">
+                        <span class="chip bg-color">dataclass</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一页&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/669debb4e6fd.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/6.jpg" class="responsive-img" alt="计算机视觉入门必备工具">
+                        
+                        <span class="card-title">计算机视觉入门必备工具</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            介绍如何利用 Git 与 GitHub 获取计算机视觉项目。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                    <a href="/dao/tags/github/">
+                        <span class="chip bg-color">github</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+    </div>
+    <link rel="stylesheet" href="/dao/libs/tocbot/tocbot.css">
+
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+
+<div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+    <div class="toc-widget card" style="background-color: white;">
+        <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+        <div id="toc-content"></div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+    <div id="floating-toc-btn" class="hide-on-med-and-down">
+        <a class="btn-floating btn-large bg-color">
+            <i class="fas fa-list-ul"></i>
+        </a>
+    </div>
+
+
+<script src="/dao/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    
+            
+            /* 修复文章卡片 div 的宽度. */
+            let fixPostCardWidth = function (srcId, targetId) {
+                let srcDiv = $('#' + srcId);
+                if (srcDiv.length === 0) {
+                    return;
+                }
+
+                let w = srcDiv.width();
+                if (w >= 450) {
+                    w = w + 21;
+                } else if (w >= 350 && w < 450) {
+                    w = w + 18;
+                } else if (w >= 300 && w < 350) {
+                    w = w + 16;
+                } else {
+                    w = w + 14;
+                }
+                $('#' + targetId).width(w);
+            };
+
+            // 切换TOC目录展开收缩的相关操作.
+            const expandedClass = 'expanded';
+            let $tocAside = $('#toc-aside');
+            let $mainContent = $('#main-content');
+            $('#floating-toc-btn .btn-floating').click(function () {
+                if ($tocAside.hasClass(expandedClass)) {
+                    $tocAside.removeClass(expandedClass).hide();
+                    $mainContent.removeClass('l9');
+                } else {
+                    $tocAside.addClass(expandedClass).show();
+                    $mainContent.addClass('l9');
+                }
+                fixPostCardWidth('artDetail', 'prenext-posts');
+            });
+            
+        });
+</script>
+</div>
+
+    
+</main>
+
+
+    <footer class="page-footer bg-color">
+    
+        <style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+    
+</style>
+<div class="wyya">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" 
+        integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js" 
+        integrity="sha512-RWosNnDNw8FxHibJqdFRySIswOUgYhFxnmYO3fp+BgCU7gfo4z0oS7mYFBvaa8qu+axY39BmQOrhW3Tp70XbaQ==" crossorigin="anonymous">
+    </script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <div class="">
+        
+        <div class="row">
+            <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                       server="netease"
+                       type="playlist"
+                       id="503838841"
+                       fixed='true'
+                       autoplay='false'
+                       theme='#42b983'
+                       loop='all'
+                       order='random'
+                       preload='auto'
+                       volume='0.7'
+                       list-folded='true'>
+            </meting-js>
+        </div>
+    </div>
+</div>
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/dao/about" target="_blank">xinetzone</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/xinetzone/matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">119.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xinetzone" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:q735613050@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=735613050" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 735613050" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/xinet" class="tooltipped" data-tooltip="领英联系我: xinet" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="/dao/rss2.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/dao/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+    <script src="/dao/libs/materialize/materialize.min.js"></script>
+    <script src="/dao/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/dao/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/dao/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/dao/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/dao/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/dao/libs/others/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<!--腾讯兔小巢-->
+
+
+
+
+
+
+
+
+<script src="/dao/libs/instantpage/instantpage.js" type="module"></script>
+
+</body>
+
+</html>

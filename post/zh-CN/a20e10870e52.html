@@ -1,0 +1,2077 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="description" content="翻译自 CherryPy Basics 以下各节将引导您完成 CherryPy 应用程序的基础知识，并介绍一些基本概念。 1 一分钟的应用示例您可以用 CherryPy 编写的最基本的应用程序几乎涉及其所有核心概念。 import cherrypy   class Root:     @cherrypy.expose     def index(self):         return &quot;Hel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CherryPy 基础">
+<meta property="og:url" content="https://xinetzone.github.io/post/zh-CN/a20e10870e52.html">
+<meta property="og:site_name" content="上善若水">
+<meta property="og:description" content="翻译自 CherryPy Basics 以下各节将引导您完成 CherryPy 应用程序的基础知识，并介绍一些基本概念。 1 一分钟的应用示例您可以用 CherryPy 编写的最基本的应用程序几乎涉及其所有核心概念。 import cherrypy   class Root:     @cherrypy.expose     def index(self):         return &quot;Hel">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-12T01:11:05.000Z">
+<meta property="article:modified_time" content="2021-03-12T01:11:05.000Z">
+<meta property="article:author" content="xinetzone">
+<meta property="article:tag" content="CherryPy">
+<meta name="twitter:card" content="summary">
+    <link rel="shortcut icon" href="/dao/favicon.png">
+    
+    <title>CherryPy 基础 | 上善若水</title>
+    
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/w3css/4/w3.css">
+
+    
+<link rel="stylesheet" href="https://xinetzone.github.io/xinet-css/tabs.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://xinetzone.github.io/Font-Awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
+    <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
+    <script src="/dao/libs/jquery/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/dao/" class="waves-effect waves-light">
+                    
+                    <img src="/dao/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">上善若水</span>
+                </a>
+            </div>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dao/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/tags">
+          
+          <i class="fas fa-tags" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/archives">
+          
+          <i class="far fa-calendar-alt" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时间线</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-comment-alt" style="zoom: 0.6;"></i>
+      
+      <span>话题</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/topics">
+          
+          <i class="fas fa-comment" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>话题</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/python">
+          
+          <i class="fas fa-tools" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Python</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <span class="waves-effect waves-light">
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>混沌</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+      </span>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/dao/chaos">
+          
+          <i class="fas fa-atom" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>太极</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/dao/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>资源库</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/dao/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">上善若水</div>
+        <div class="logo-desc">
+            
+            利用 AI 开发一切有意思的东西
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dao/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/tags " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tags" style="position: absolute;left:50px" ></i>
+			      
+            <span>标签</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/categories " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+            <span>分类</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/archives " style="margin-left: 75px">
+				  
+            <i class="fa far fa-calendar-alt" style="position: absolute;left:50px" ></i>
+			      
+            <span>时间线</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-comment-alt"></i>
+			
+			话题
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/topics " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-comment" style="position: absolute;left:50px" ></i>
+			      
+            <span>话题</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/python " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-tools" style="position: absolute;left:50px" ></i>
+			      
+            <span>Python</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			混沌
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+    <ul  style="background:  ;" >
+      
+        <li>
+          <a href="/dao/chaos " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-atom" style="position: absolute;left:50px" ></i>
+			      
+            <span>太极</span>
+                  </a>
+                </li>
+              
+        <li>
+          <a href="/dao/books " style="margin-left: 75px">
+				  
+            <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+            <span>资源库</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/xinetzone/notebook" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/xinetzone/notebook" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/dao/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CherryPy 基础</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+    <div class="row tag-cate">
+        <div class="col s7">
+            
+            <div class="article-tag">
+                
+                    <a href="/dao/tags/CherryPy/">
+                        <span class="chip bg-color">CherryPy</span>
+                    </a>
+                
+            </div>
+            
+        </div>
+        <div class="col s5 right-align">
+            
+            <div class="post-cate">
+                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                
+                    <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                        教程
+                    </a>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="post-info">
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+            2021-03-12
+        </div>
+        
+
+        
+        <div class="post-date info-break-policy">
+            <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+            2021-03-12
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+            4.1k
+        </div>
+        
+
+        
+        <div class="info-break-policy">
+            <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+            16 分
+        </div>
+        
+
+        
+            <div id="busuanzi_container_page_pv" class="info-break-policy">
+                <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                <span id="busuanzi_value_page_pv"></span>
+            </div>
+        
+    </div>
+</div>
+<hr class="clearfix">
+        
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+        <div class="card-content article-card-content">
+    <div id="articleContent">
+        <p>翻译自 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id3">CherryPy Basics</a></p>
+<p>以下各节将引导您完成 CherryPy 应用程序的基础知识，并介绍一些基本概念。</p>
+<h2 id="1-一分钟的应用示例"><a href="#1-一分钟的应用示例" class="headerlink" title="1 一分钟的应用示例"></a>1 一分钟的应用示例</h2><p>您可以用 CherryPy 编写的最基本的应用程序几乎涉及其所有核心概念。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cherrypy
+
+
+<span class="token keyword">class</span> <span class="token class-name">Root</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"Hello World!"</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Root<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先，对于大多数任务，您将只需要第 1 行中所示的单个 <code>import</code> 语句即可。在讨论这些内容之前，让我们跳到第 11 行，该行显示如何使用 CherryPy 服务器应用程序托管您的应用程序，以及如何在 <code>/</code> 路径中将其与内置的 HTTP 服务器一起使用。</p>
+<p>现在回到实际的应用程序。即使 CherryPy 没有强制要求，大多数时候您的应用程序仍将被编写为 Python 类。这些类的方法将由 CherryPy 调用以响应客户端请求。但是，CherryPy 需要意识到可以使用这种方法，我们说该方法需要公开。这正是 <code>cherrypy.expose</code> 装饰器在第 5 行中所做的。</p>
+<p>执行此程序，在你的浏览器定位到：<code>http://127.0.0.1:8080</code> 可以预览效果。</p>
+<article class="w3-card w3-padding w3-light-grey">
+<p class="w3-text-yellow w3-wide w3-large">注意</p>
+<p>
+CherryPy 是一个小型框架，专注于一项任务：接收 HTTP 请求并找到与请求的 URL 匹配的最合适的 Python 函数或方法。与其他知名框架不同，CherryPy 不提供对数据库访问，HTML 模板或任何其他中间件漂亮功能的内置支持。
+</p>
+<p>
+简而言之，一旦 CherryPy 找到并调用了公开的方法，作为开发人员，您就应自行提供工具来实现应用程序的逻辑。
+</p>
+<p>
+CherryPy 认为您（开发人员）最了解。
+</p>
+</article>
+
+<article class="w3-card w3-padding w3-margin-top w3-pale-red">
+<p class="w3-text-yellow w3-wide w3-large">警告</p>
+<p>
+前面的示例演示了 CherryPy 接口的简单性，但是您的应用程序可能还会包含其他一些细节：静态服务，更复杂的结构，数据库访问等。这将在教程部分中进行开发。
+</p><p>
+</p></article>
+
+<p>CherryPy 是一个微型框架，但不是一个裸露的框架，它带有一些基本工具来涵盖您期望的常用用法。</p>
+<h2 id="2-托管一个或多个应用程序"><a href="#2-托管一个或多个应用程序" class="headerlink" title="2 托管一个或多个应用程序"></a>2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id5">托管一个或多个应用程序</a></h2><p>Web 应用程序需要访问 HTTP 服务器。 CherryPy 提供了自己的，可投入生产的 HTTP 服务器。有两种方法来托管应用程序。</p>
+<h3 id="2-1-单一应用"><a href="#2-1-单一应用" class="headerlink" title="2.1 单一应用"></a>2.1 单一应用</h3><p>最直接的方法是使用 <code>cherrypy.quickstart</code> 函数。它需要至少一个参数，即要托管的应用程序实例。另外两个设置是可选的。首先，可以从中访问应用程序的基本路径。其次，使用配置字典或文件来配置您的应用程序。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Blog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Blog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/blog'</span><span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Blog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/blog'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'/'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">'tools.gzip.on'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>第一个意味着您的应用程序将在 <code> http://hostname:port/</code> 上可用，而另两个将使您的博客应用程序在 <code>http://hostname:port/blog</code> 上可用。此外，最后一个为应用程序提供了特定的设置。</p>
+<article class="w3-card w3-padding w3-light-grey">
+<p class="w3-text-yellow w3-wide w3-large">注意</p>
+<p>
+注意在第三种情况下，设置如何仍然相对于应用程序，而不是在何处可用，因此使用 {'/': ... } 而不是 {'/blog': ... }。
+</p>
+</article>
+
+<h3 id="2-2-多元应用"><a href="#2-2-多元应用" class="headerlink" title="2.2 多元应用"></a>2.2 多元应用</h3><p><code>cherrypy.quickstart</code> 方法适用于单个应用程序，但缺乏使用服务器托管多个应用程序的能力。 为此，必须使用 <code>cherrypy.tree.mount</code> 函数，如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>Blog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/blog'</span><span class="token punctuation">,</span> blog_conf<span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>Forum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/forum'</span><span class="token punctuation">,</span> forum_conf<span class="token punctuation">)</span>
+
+cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>block<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>本质上，<code>cherrypy.tree.mount</code> 具有与 <code>cherrypy.quickstart</code> 相同的参数：应用程序，托管路径段和配置。最后两行只是启动应用程序服务器。</p>
+<article class="w3-card w3-padding w3-light-grey">
+<p class="w3-text-yellow w3-wide w3-large">重要</p>
+<p>
+    <code>cherrypy.quickstart</code> 和 <code>cherrypy.tree.mount</code> 不是唯一的。例如，前几行可以写成：
+</p>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>tree<span class="token punctuation">.</span>mount<span class="token punctuation">(</span>Blog<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/blog'</span><span class="token punctuation">,</span> blog_conf<span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Forum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/forum'</span><span class="token punctuation">,</span> forum_conf<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</article>
+
+<article class="w3-card w3-padding w3-margin-top w3-light-grey">
+<p class="w3-text-yellow w3-wide w3-large">注意</p>
+<p>
+您也可以 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/advanced.html#hostwsgiapp"> 托管外部 WSGI 应用程序</a>。
+</p>
+</article>
+
+<h2 id="3-Logging"><a href="#3-Logging" class="headerlink" title="3 Logging"></a>3 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id8">Logging</a></h2><p>日志记录（Logging）是任何应用程序中的重要任务。CherryPy 将记录所有传入的请求以及协议错误。</p>
+<p>为此，CherryPy 管理着两个记录器：</p>
+<ol>
+<li>记录每个传入请求的访问权限</li>
+<li>跟踪错误或其他应用程序级别消息的应用程序/错误日志</li>
+</ol>
+<p>您的应用程序可以通过调用 <code>cherrypy.log</code> 来利用第二个记录器。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token string">"hello there"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>您还可以记录异常：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">except</span> Exception<span class="token punctuation">:</span>
+   cherrypy<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token string">"kaboom!"</span><span class="token punctuation">,</span> traceback<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这两个日志都将写入由配置中的以下键标识的文件：</p>
+<ul>
+<li>使用<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Common_Log_Format">通用日志格式</a>的传入请求的 <code>log.access_file</code></li>
+<li>其他日志的 <code>log.error_file</code></li>
+</ul>
+<article class="w3-card w3-padding w3-margin-top w3-light-grey">
+<p class="w3-text-yellow w3-wide w3-large">也可以参考</p>
+<p>
+有关 CherryPy 的日志记录体系结构的更多详细信息，请参阅 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy._cplogging.html#module-cherrypy._cplogging">cherrypy._cplogging</a> 模块。
+</p>
+</article>
+
+<h3 id="3-1-Disable-logging"><a href="#3-1-Disable-logging" class="headerlink" title="3.1 Disable logging"></a>3.1 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id9">Disable logging</a></h3><p>您可能有兴趣禁用某个日志。</p>
+<p>要禁用文件日志记录，只需在<a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#globalsettings">全局配置</a>中为 <code>log.access_file</code> 或 <code>log.error_file</code> 键对应更多值设置一个空字符串。</p>
+<p>要禁用控制台日志记录，请将 <code>log.screen</code> 设置为 <code>False</code>。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'log.screen'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+                        <span class="token string">'log.access_file'</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                        <span class="token string">'log.error_file'</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3-2-与您的其他记录器一起玩"><a href="#3-2-与您的其他记录器一起玩" class="headerlink" title="3.2 与您的其他记录器一起玩"></a>3.2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id10">与您的其他记录器一起玩</a></h3><p>您的应用程序可能显然已经在使用日志记录模块来跟踪应用程序级别的消息。下面是一个简单的设置示例。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> logging
+<span class="token keyword">import</span> logging<span class="token punctuation">.</span>config
+
+<span class="token keyword">import</span> cherrypy
+
+logger <span class="token operator">=</span> logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span><span class="token punctuation">)</span>
+db_logger <span class="token operator">=</span> logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span><span class="token string">'db'</span><span class="token punctuation">)</span>
+
+LOG_CONF <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'version'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+
+    <span class="token string">'formatters'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'void'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'format'</span><span class="token punctuation">:</span> <span class="token string">''</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'standard'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'format'</span><span class="token punctuation">:</span> <span class="token string">'%(asctime)s [%(levelname)s] %(name)s: %(message)s'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span><span class="token string">'INFO'</span><span class="token punctuation">,</span>
+            <span class="token string">'class'</span><span class="token punctuation">:</span><span class="token string">'logging.StreamHandler'</span><span class="token punctuation">,</span>
+            <span class="token string">'formatter'</span><span class="token punctuation">:</span> <span class="token string">'standard'</span><span class="token punctuation">,</span>
+            <span class="token string">'stream'</span><span class="token punctuation">:</span> <span class="token string">'ext://sys.stdout'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'cherrypy_console'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span><span class="token string">'INFO'</span><span class="token punctuation">,</span>
+            <span class="token string">'class'</span><span class="token punctuation">:</span><span class="token string">'logging.StreamHandler'</span><span class="token punctuation">,</span>
+            <span class="token string">'formatter'</span><span class="token punctuation">:</span> <span class="token string">'void'</span><span class="token punctuation">,</span>
+            <span class="token string">'stream'</span><span class="token punctuation">:</span> <span class="token string">'ext://sys.stdout'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'cherrypy_access'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span><span class="token string">'INFO'</span><span class="token punctuation">,</span>
+            <span class="token string">'class'</span><span class="token punctuation">:</span> <span class="token string">'logging.handlers.RotatingFileHandler'</span><span class="token punctuation">,</span>
+            <span class="token string">'formatter'</span><span class="token punctuation">:</span> <span class="token string">'void'</span><span class="token punctuation">,</span>
+            <span class="token string">'filename'</span><span class="token punctuation">:</span> <span class="token string">'access.log'</span><span class="token punctuation">,</span>
+            <span class="token string">'maxBytes'</span><span class="token punctuation">:</span> <span class="token number">10485760</span><span class="token punctuation">,</span>
+            <span class="token string">'backupCount'</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+            <span class="token string">'encoding'</span><span class="token punctuation">:</span> <span class="token string">'utf8'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'cherrypy_error'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span><span class="token string">'INFO'</span><span class="token punctuation">,</span>
+            <span class="token string">'class'</span><span class="token punctuation">:</span> <span class="token string">'logging.handlers.RotatingFileHandler'</span><span class="token punctuation">,</span>
+            <span class="token string">'formatter'</span><span class="token punctuation">:</span> <span class="token string">'void'</span><span class="token punctuation">,</span>
+            <span class="token string">'filename'</span><span class="token punctuation">:</span> <span class="token string">'errors.log'</span><span class="token punctuation">,</span>
+            <span class="token string">'maxBytes'</span><span class="token punctuation">:</span> <span class="token number">10485760</span><span class="token punctuation">,</span>
+            <span class="token string">'backupCount'</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+            <span class="token string">'encoding'</span><span class="token punctuation">:</span> <span class="token string">'utf8'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'loggers'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">''</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'default'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span> <span class="token string">'INFO'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'db'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'default'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span> <span class="token string">'INFO'</span> <span class="token punctuation">,</span>
+            <span class="token string">'propagate'</span><span class="token punctuation">:</span> <span class="token boolean">False</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'cherrypy.access'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'cherrypy_access'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span> <span class="token string">'INFO'</span><span class="token punctuation">,</span>
+            <span class="token string">'propagate'</span><span class="token punctuation">:</span> <span class="token boolean">False</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'cherrypy.error'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'handlers'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'cherrypy_console'</span><span class="token punctuation">,</span> <span class="token string">'cherrypy_error'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'level'</span><span class="token punctuation">:</span> <span class="token string">'INFO'</span><span class="token punctuation">,</span>
+            <span class="token string">'propagate'</span><span class="token punctuation">:</span> <span class="token boolean">False</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Root</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+        logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">"boom"</span><span class="token punctuation">)</span>
+        db_logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">"bam"</span><span class="token punctuation">)</span>
+        cherrypy<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token string">"bang"</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> <span class="token string">"hello world"</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'log.screen'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+                            <span class="token string">'log.access_file'</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                            <span class="token string">'log.error_file'</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+cherrypy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>unsubscribe<span class="token punctuation">(</span><span class="token string">'graceful'</span><span class="token punctuation">,</span> cherrypy<span class="token punctuation">.</span>log<span class="token punctuation">.</span>reopen_files<span class="token punctuation">)</span>
+    logging<span class="token punctuation">.</span>config<span class="token punctuation">.</span>dictConfig<span class="token punctuation">(</span>LOG_CONF<span class="token punctuation">)</span>
+    cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Root<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在此代码段中，我们创建一个<a target="_blank" rel="noopener" href="https://docs.python.org/2/library/logging.config.html#logging.config.dictConfig">配置字典</a>，然后将其传递到 <code>logging</code> 模块以配置记录器：</p>
+<ul>
+<li>默认的根记录器与单个流处理程序关联</li>
+<li>db 后端的记录器，还有一个流处理程序</li>
+</ul>
+<p>另外，我们重新配置 CherryPy 记录器：</p>
+<ul>
+<li>顶级 <code>cherrypy.access</code> 记录器，将请求记录到文件中</li>
+<li><code>cherrypy.error</code> 记录器，将其他所有内容记录到文件中并登录到控制台</li>
+</ul>
+<p>当自动重新加载程序启动时，我们还阻止 CherryPy 尝试打开其日志文件。由于我们甚至都不让 CherryPy 首先打开它们，因此这不是严格要求的。但是，这样可以避免浪费时间在无用的东西上。</p>
+<h2 id="4-Configuring"><a href="#4-Configuring" class="headerlink" title="4 Configuring"></a>4 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id11">Configuring</a></h2><p>CherryPy 带有细粒度的配置机制，可以在各种级别上进行设置。</p>
+<article class="w3-card w3-padding w3-margin-top w3-light-grey">
+<p class="w3-text-yellow w3-wide w3-large">也可以参考</p>
+<p>
+复习了基础知识后，请参考有关配置的<a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/config.html#configindepth">深入讨论</a>。
+</p>
+</article>
+
+<h3 id="4-1-Global-server-configuration"><a href="#4-1-Global-server-configuration" class="headerlink" title="4.1 Global server configuration"></a>4.1 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id12">Global server configuration</a></h3><p>要配置 HTTP 和应用程序服务器，请使用 <code>cherrypy.config.update</code> 方法。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'server.socket_port'</span><span class="token punctuation">:</span> <span class="token number">9090</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>cherrypy.config</code> 对象是一个字典，<code>update</code> 方法将传递的字典合并到其中。您也可以改为传递文件（假设使用 <code>server.conf</code> 文件）：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[global]
+server.socket_port: 9090<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>config<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token string">"server.conf"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<article class="w3-light-grey">
+<p class="w3-red">警告</p>
+<code>cherrypy.config.update</code> 并非用于配置应用程序。这是一个常见的错误。它用于配置服务器和引擎。
+</article>
+
+<h3 id="4-2-Per-application-configuration"><a href="#4-2-Per-application-configuration" class="headerlink" title="4.2 Per-application configuration"></a>4.2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id13">Per-application configuration</a></h3><p>要配置您的应用程序，请在将应用程序与服务器关联时传入字典或文件。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>myapp<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'/'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token string">'tools.gzip.on'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或通过文件（例如，称为 <code>app.conf</code>）：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.gzip.on: True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>myapp<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token string">"app.conf"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>尽管您可以全局方式定义大多数配置，但有时在代码中应用它们的位置定义它们很方便。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Root</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>tools<span class="token punctuation">.</span>gzip</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"hello world!"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面的变体符号：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Root</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">"hello world!"</span>
+    index<span class="token punctuation">.</span>_cp_config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'tools.gzip.on'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>两种方法具有相同的效果，因此请选择最适合您的样式的方法。</p>
+<h3 id="4-3-Additional-application-settings"><a href="#4-3-Additional-application-settings" class="headerlink" title="4.3 Additional application settings"></a>4.3 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id14">Additional application settings</a></h3><p>您可以添加非特定于请求URL的设置，并从页面处理程序中检索它们，如下所示：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.gzip.on: True
+
+[googleapi]
+key = "..."
+appid = "..."<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Root</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        google_appid <span class="token operator">=</span> cherrypy<span class="token punctuation">.</span>request<span class="token punctuation">.</span>app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">'googleapi'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'appid'</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> <span class="token string">"hello world!"</span>
+
+cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Root<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token string">"app.conf"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="5-Cookies"><a href="#5-Cookies" class="headerlink" title="5 Cookies"></a>5 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id15">Cookies</a></h2><p>CherryPy 使用 Python 中的 <code>Cookie</code> 模块，尤其是 <code>Cookie.SimpleCookie</code> 对象类型来处理 Cookie。</p>
+<ul>
+<li>要将 Cookie 发送到浏览器，请设置 <code>cherrypy.response.cookie[key] = value</code>。</li>
+<li>要检索浏览器发送的 cookie，请使用 <code>cherrypy.request.cookie[key]</code>。</li>
+<li>要删除 cookie（在客户端），必须发送其有效时间设置为 <code>0</code> 的 cookie：</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>response<span class="token punctuation">.</span>cookie<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+cherrypy<span class="token punctuation">.</span>response<span class="token punctuation">.</span>cookie<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'expires'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>请务必注意，请求 Cookie 不会自动复制到响应 Cookie 中。客户端将在每个请求上发送相同的 cookie，因此每次都应填充 <code>cherrypy.request.cookie</code>。<br>但是服务器不需要在每次响应时都发送相同的 cookie；因此，<code>cherrypy.response.cookie</code> 通常为空。故而，当您希望“delete”（过期）cookie 时，必须首先设置<br><code>cherrypy.response.cookie[key] = value</code>，然后将其 <code>expires</code> 属性设置为 <code>0</code>。</p>
+<p>扩展示例：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">
+<span class="token keyword">class</span> <span class="token class-name">MyCookieApp</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">set</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cookie <span class="token operator">=</span> cherrypy<span class="token punctuation">.</span>response<span class="token punctuation">.</span>cookie
+        cookie<span class="token punctuation">[</span><span class="token string">'cookieName'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'cookieValue'</span>
+        cookie<span class="token punctuation">[</span><span class="token string">'cookieName'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'path'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'/'</span>
+        cookie<span class="token punctuation">[</span><span class="token string">'cookieName'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'max-age'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">3600</span>
+        cookie<span class="token punctuation">[</span><span class="token string">'cookieName'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'version'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token string">"&lt;html&gt;&lt;body&gt;Hello, I just sent you a cookie&lt;/body&gt;&lt;/html&gt;"</span>
+
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token keyword">def</span> <span class="token function">read</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cookie <span class="token operator">=</span> cherrypy<span class="token punctuation">.</span>request<span class="token punctuation">.</span>cookie
+        res <span class="token operator">=</span> <span class="token triple-quoted-string string">"""&lt;html&gt;&lt;body&gt;Hi, you sent me %s cookies.&lt;br /&gt;
+                Here is a list of cookie names/values:&lt;br /&gt;"""</span> <span class="token operator">%</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cookie<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> name <span class="token keyword">in</span> cookie<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            res <span class="token operator">+=</span> <span class="token string">"name: %s, value: %s&lt;br&gt;"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> cookie<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> res <span class="token operator">+</span> <span class="token string">"&lt;/body&gt;&lt;/html&gt;"</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>MyCookieApp<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/cookie'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="6-Using-sessions"><a href="#6-Using-sessions" class="headerlink" title="6 Using sessions"></a>6 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id16">Using sessions</a></h2><p>会话是开发人员用来识别用户并同步其活动的最常用机制之一。默认情况下，CherryPy 不激活会话，因为它不是必需的功能，要使其启用，只需在配置中添加以下设置：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.sessions.on: True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>myapp<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token string">"app.conf"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>默认情况下，会话存储在 RAM 中，因此，如果重新启动服务器，则所有当前会话都将丢失。您可以将它们存储在 memcached 或文件系统中。</p>
+<p>在应用程序中使用会话的操作如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cherrypy
+
+<span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token string">'count'</span> <span class="token keyword">not</span> <span class="token keyword">in</span> cherrypy<span class="token punctuation">.</span>session<span class="token punctuation">:</span>
+       cherrypy<span class="token punctuation">.</span>session<span class="token punctuation">[</span><span class="token string">'count'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+    cherrypy<span class="token punctuation">.</span>session<span class="token punctuation">[</span><span class="token string">'count'</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在此代码段中，每次调用索引页面处理程序时，当前用户的会话的 <code>'count'</code> 键都增加 1。</p>
+<p>CherryPy 通过检查与请求一起发送的 cookie 来知道要使用哪个会话。此 Cookie 包含 CherryPy 用于从存储中加载用户会话的会话标识符。</p>
+<article class="w3-light-grey">
+<p class="w3-yellow">也可以看看</p>
+<p>
+有关会话接口和实现的更多详细信息，请参阅 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/pkg/cherrypy.lib.sessions.html#module-cherrypy.lib.sessions">cherrypy.lib.sessions</a> 模块。值得注意的是，您将了解会话到期。
+</p>
+</article>
+
+<h3 id="6-1-Filesystem-backend"><a href="#6-1-Filesystem-backend" class="headerlink" title="6.1 Filesystem backend"></a>6.1 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id17">Filesystem backend</a></h3><p>使用文件系统很简单，不会在重新启动之间丢失会话。每个会话都保存在给定目录中的自己的文件中。</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.sessions.on: True
+tools.sessions.storage_class = cherrypy.lib.sessions.FileSession
+tools.sessions.storage_path = "/some/directory"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="6-2-Memcached-backend"><a href="#6-2-Memcached-backend" class="headerlink" title="6.2 Memcached backend"></a>6.2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id18">Memcached backend</a></h3><p><a target="_blank" rel="noopener" href="http://memcached.org/">Memcached</a> 是 RAM 上流行的密钥库，它是分布式的，如果您想在运行 CherryPy 的进程之外共享会话，它是一个不错的选择。要求安装 Python <a target="_blank" rel="noopener" href="https://pypi.org/project/memcached">memcached 软件包</a>，这可以通过安装 <code>cherrypy[memcached_session]</code> 来指示。</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.sessions.on: True
+tools.sessions.storage_class = cherrypy.lib.sessions.MemcachedSession<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="6-3-Other-backends"><a href="#6-3-Other-backends" class="headerlink" title="6.3 Other backends"></a>6.3 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id19">Other backends</a></h3><p>任何其他库都可以实现会话后端。只需将 <code>cherrypy.lib.sessions.Session</code> 子类化，并将该子类表示为 <code>tools.sessions.storage_class</code>。</p>
+<h2 id="7-Static-content-serving"><a href="#7-Static-content-serving" class="headerlink" title="7 Static content serving"></a>7 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id20">Static content serving</a></h2><p>CherryPy 可以提供您的静态内容，例如图像，JavaScript 和 CSS 资源等。</p>
+<article class="w3-light-grey w3-card">
+<p class="w3-pale-red">笔记</p>
+<p>
+CherryPy 使用 <code>mimetypes</code> 模块来确定服务特定资源的最佳内容类型。如果选择无效，则可以如下设置更多的媒体类型：
+
+</p><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> mimetypes
+mimetypes<span class="token punctuation">.</span>types_map<span class="token punctuation">[</span><span class="token string">'.csv'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'text/csv'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p></p>
+</article>
+
+<h3 id="7-1-Serving-a-single-file"><a href="#7-1-Serving-a-single-file" class="headerlink" title="7.1 Serving a single file"></a>7.1 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id21">Serving a single file</a></h3><p>您可以按以下方式提供单个文件：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/style.css]
+tools.staticfile.on = True
+tools.staticfile.filename = "/home/site/style.css"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>CherryPy 将自动响应 URL，例如 <code>http://hostname/style.css</code>。</p>
+<h3 id="7-2-Serving-a-whole-directory"><a href="#7-2-Serving-a-whole-directory" class="headerlink" title="7.2 Serving a whole directory"></a>7.2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id22">Serving a whole directory</a></h3><p>服务整个目录类似于单个文件：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/static]
+tools.staticdir.on = True
+tools.staticdir.dir = "/home/site/static"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>假设您在 <code>static/js/my.js</code> 中有一个文件，CherryPy 将自动响应 URL，例如 <code>http://hostname/static/js/my.js</code>。</p>
+<article class="w3-light-grey w3-card">
+<p class="w3-pale-yellow">注意</p>
+<p>
+CherryPy 始终需要将要服务的文件或目录的绝对路径。如果要配置多个静态部分，但它们位于同一根目录中，则可以使用以下快捷方式：
+</p>
+
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/]
+tools.staticdir.root = "/home/site"
+
+[/static]
+tools.staticdir.on = True
+tools.staticdir.dir = "static"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</article>
+
+
+<h3 id="7-3-指定-index-文件"><a href="#7-3-指定-index-文件" class="headerlink" title="7.3 指定 index 文件"></a>7.3 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id23">指定 <code>index</code> 文件</a></h3><p>默认情况下，指示未找到路径“/”的静态目录的根，CherryPy 将响应 404 错误。要指定索引文件，可以使用以下命令：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/static]
+tools.staticdir.on = True
+tools.staticdir.dir = "/home/site/static"
+tools.staticdir.index = "index.html"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>假设您在 <code>static/index.html</code> 上有一个文件，CherryPy 将通过返回其内容自动响应 URL，例如 <code>http://hostname/static/</code>。</p>
+<h3 id="7-4-允许下载文件"><a href="#7-4-允许下载文件" class="headerlink" title="7.4 允许下载文件"></a>7.4 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id24">允许下载文件</a></h3><p>使用 <code>"application/x-download"</code> 响应内容类型，您可以告诉浏览器应该将资源下载到用户的计算机上而不是显示。</p>
+<p>例如，您可以编写一个页面处理程序，如下所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> cherrypy<span class="token punctuation">.</span>lib<span class="token punctuation">.</span>static <span class="token keyword">import</span> serve_file
+
+<span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+<span class="token keyword">def</span> <span class="token function">download</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> filepath<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> serve_file<span class="token punctuation">(</span>filepath<span class="token punctuation">,</span> <span class="token string">"application/x-download"</span><span class="token punctuation">,</span> <span class="token string">"attachment"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>假设文件路径是您计算机上的有效路径，那么浏览器会将响应视为可下载的内容。</p>
+<article class="w3-light-grey w3-card">
+<p class="w3-pale-red">警告</p>
+<p>
+上面的页面处理程序本身就有安全风险，因为可以访问服务器的任何文件（如果运行服务器的用户对其具有权限）。
+</p>
+</article>
+
+<h2 id="8-Dealing-with-JSON"><a href="#8-Dealing-with-JSON" class="headerlink" title="8 Dealing with JSON"></a>8 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id25">Dealing with JSON</a></h2><p>CherryPy 具有对请求和/或响应的 JSON 编码和解码的内置支持。</p>
+<h3 id="8-1-Decoding-request"><a href="#8-1-Decoding-request" class="headerlink" title="8.1 Decoding request"></a>8.1 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id26">Decoding request</a></h3><p>要使用 JSON 自动解码请求的内容，请执行以下操作：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Root</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+    <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>tools<span class="token punctuation">.</span>json_in</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        data <span class="token operator">=</span> cherrypy<span class="token punctuation">.</span>request<span class="token punctuation">.</span>json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>附加到请求的 <code>json</code> 属性包含解码后的内容。</p>
+<h3 id="8-2-Encoding-response"><a href="#8-2-Encoding-response" class="headerlink" title="8.2 Encoding response"></a>8.2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id27">Encoding response</a></h3><p>要使用 JSON 自动编码响应的内容，请执行以下操作：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+<span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>tools<span class="token punctuation">.</span>json_out</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token string">'value'</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>CherryPy 将使用 JSON 对您的页面处理程序返回的所有内容进行编码。并非所有类型的对象都可以本地编码。</p>
+<h2 id="9-Authentication"><a href="#9-Authentication" class="headerlink" title="9 Authentication"></a>9 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id28">Authentication</a></h2><p>CherryPy 支持以下两种非常简单的基于 HTTP 的身份验证机制，在 <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7616.html">RFC 7616</a> 和 <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7617.html">RFC 7617</a>（已淘汰 <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2617.html">RFC 2617</a>）中进行了描述：Basic 和 Digest。众所周知，它们会触发浏览器的弹出窗口，询问用户其名称和密码。</p>
+<h3 id="9-1-Basic"><a href="#9-1-Basic" class="headerlink" title="9.1 Basic"></a>9.1 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id29">Basic</a></h3><p>基本身份验证是最简单的身份验证形式，但是由于用户的凭据已嵌入到请求中，因此它不是安全的形式。除非您在 SSL 上或封闭的网络中运行，否则我们建议不要使用它。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> cherrypy<span class="token punctuation">.</span>lib <span class="token keyword">import</span> auth_basic
+
+USERS <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'jon'</span><span class="token punctuation">:</span> <span class="token string">'secret'</span><span class="token punctuation">}</span>
+
+<span class="token keyword">def</span> <span class="token function">validate_password</span><span class="token punctuation">(</span>realm<span class="token punctuation">,</span> username<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> username <span class="token keyword">in</span> USERS <span class="token keyword">and</span> USERS<span class="token punctuation">[</span>username<span class="token punctuation">]</span> <span class="token operator">==</span> password<span class="token punctuation">:</span>
+       <span class="token keyword">return</span> <span class="token boolean">True</span>
+    <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+conf <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token string">'/protected/area'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+       <span class="token string">'tools.auth_basic.on'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+       <span class="token string">'tools.auth_basic.realm'</span><span class="token punctuation">:</span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
+       <span class="token string">'tools.auth_basic.checkpassword'</span><span class="token punctuation">:</span> validate_password<span class="token punctuation">,</span>
+       <span class="token string">'tools.auth_basic.accept_charset'</span><span class="token punctuation">:</span> <span class="token string">'UTF-8'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>myapp<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> conf<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>简而言之，您必须提供一个由 CherryPy 调用的函数，该函数传递从请求中解码的用户名和密码。</p>
+<p>该函数可以从其必须具有的任何源中读取其数据：文件，数据库，内存等。</p>
+<h3 id="9-2-Digest"><a href="#9-2-Digest" class="headerlink" title="9.2 Digest"></a>9.2 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id30">Digest</a></h3><p>摘要式身份验证的不同之处在于，凭据不是由请求携带的，因此它比基本身份验证更为安全。</p>
+<p>CherryPy 的摘要支持具有与上述基本支持类似的界面。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> cherrypy<span class="token punctuation">.</span>lib <span class="token keyword">import</span> auth_digest
+
+USERS <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'jon'</span><span class="token punctuation">:</span> <span class="token string">'secret'</span><span class="token punctuation">}</span>
+
+conf <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token string">'/protected/area'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'tools.auth_digest.on'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.auth_digest.realm'</span><span class="token punctuation">:</span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.auth_digest.get_ha1'</span><span class="token punctuation">:</span> auth_digest<span class="token punctuation">.</span>get_ha1_dict_plain<span class="token punctuation">(</span>USERS<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.auth_digest.key'</span><span class="token punctuation">:</span> <span class="token string">'a565c27146791cfb'</span><span class="token punctuation">,</span>
+        <span class="token string">'tools.auth_digest.accept_charset'</span><span class="token punctuation">:</span> <span class="token string">'UTF-8'</span><span class="token punctuation">,</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>myapp<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> conf<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="9-3-SO-PEERCRED"><a href="#9-3-SO-PEERCRED" class="headerlink" title="9.3 SO_PEERCRED"></a>9.3 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id31">SO_PEERCRED</a></h3><p>UNIX 文件和抽象套接字还具有低级身份验证。这是启用它的方式：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[global]
+server.peercreds: True
+server.peercreds_resolve: True
+server.socket_file: /var/run/cherrypy.sock<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>server.peercreds</code> 允许查找连接的进程 ID，用户 ID 和组ID。它们可以作为 WSGI 环境变量进行访问：</p>
+<ul>
+<li>X_REMOTE_PID</li>
+<li>X_REMOTE_UID</li>
+<li>X_REMOTE_GID</li>
+</ul>
+<p><code>server.peercreds_resolve</code> 将其解析为用户名和组名。它们可以作为 WSGI 环境变量进行访问：</p>
+<ul>
+<li>X_REMOTE_USER and REMOTE_USER</li>
+<li>X_REMOTE_GROUP</li>
+</ul>
+<h2 id="10-Favicon"><a href="#10-Favicon" class="headerlink" title="10 Favicon"></a>10 <a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#id32">Favicon</a></h2><p>CherryPy 使用静态文件工具将其自己的甜红色 cherrypy 作为默认图标提供服务。您可以按以下方式提供自己的网站图标：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cherrypy
+
+<span class="token keyword">class</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">:</span>
+   <span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+   <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       <span class="token keyword">return</span> <span class="token string">"Hello World!"</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>HelloWorld<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">'/favicon.ico'</span><span class="token punctuation">:</span>
+            <span class="token punctuation">{</span>
+                <span class="token string">'tools.staticfile.on'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+                <span class="token string">'tools.staticfile.filename'</span><span class="token punctuation">:</span> <span class="token string">'/path/to/myfavicon.ico'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>有关更多详细信息，请参阅<a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/basics.html#staticontent">静态服务</a>部分。</p>
+<p>您还可以使用文件进行配置：</p>
+<article>
+    <link rel="stylesheet" href="https://xinetzone.github.io/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://xinetzone.github.io/xinet-css/tabs.css">
+    <div class="tab-set w3-light-grey">
+        <input checked="True" id="tab-set--0-input--1" name="tab-set--0" type="radio">
+        <label for="tab-set--0-input--1">conf</label>
+        <div class="tab-content w3-padding">
+            <pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">[/favicon.ico]
+tools.staticfile.on: True
+tools.staticfile.filename: "/path/to/myfavicon.ico"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+        </div>
+        <input id="tab-set--0-input--2" name="tab-set--0" type="radio">
+        <label for="tab-set--0-input--2">Python</label>
+        <div class="tab-content w3-padding">
+            <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cherrypy
+
+<span class="token keyword">class</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">:</span>
+<span class="token decorator annotation punctuation">@cherrypy<span class="token punctuation">.</span>expose</span>
+<span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Hello World!"</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>HelloWorld<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token string">"app.conf"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+        
+    </div>
+    <hr/>
+
+    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/dao/about" rel="external nofollow noreferrer">xinetzone</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xinetzone.github.io/dao/post/zh-CN/a20e10870e52.html">https://xinetzone.github.io/dao/post/zh-CN/a20e10870e52.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特别声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/dao/about" target="_blank">xinetzone</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+    <div class="tag_share" style="display: block;">
+        <div class="post-meta__tag-list" style="display: inline-block;">
+    
+        <div class="article-tag">
+            
+                <a href="/dao/tags/CherryPy/">
+                    <span class="chip bg-color">CherryPy</span>
+                </a>
+            
+        </div>
+    
+</div>
+<div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+    <link rel="stylesheet" type="text/css" href="/dao/libs/share/css/share.min.css">
+<div id="article-share">
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/dao/libs/share/js/social-share.min.js"></script>
+    
+
+    
+</div>
+
+</div>
+    </div>
+    
+        <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/dao/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/dao/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+    
+</div>
+    </div>
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/dao/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'dao',
+        owner: 'xinetzone',
+        admin: ["xinetzone"],
+        id: '2021-03-12T09-11-05',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/20d953f1f0b1.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/1.jpg" class="responsive-img" alt="CherryPy 高级教程">
+                        
+                        <span class="card-title">CherryPy 高级教程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/CherryPy/">
+                        <span class="chip bg-color">CherryPy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一页&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/dao/post/zh-CN/9a6e76240070.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/dao/medias/featureimages/7.jpg" class="responsive-img" alt="CherryPy：极简主义的 Python Web 框架">
+                        
+                        <span class="card-title">CherryPy：极简主义的 Python Web 框架</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/dao/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/dao/tags/CherryPy/">
+                        <span class="chip bg-color">CherryPy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+    <!-- 是否加载使用自带的 prismjs. -->
+    <link rel="stylesheet" href="/dao/libs/prism/prism.css">
+    
+
+    
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/dao/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/dao/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+      integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script type="module">
+    import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.mjs";
+    let options = {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        leqno: true
+    }
+    renderMathInElement(document.querySelector("body"), options)
+</script>
+
+    </div>
+    <link rel="stylesheet" href="/dao/libs/tocbot/tocbot.css">
+
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+
+<div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+    <div class="toc-widget card" style="background-color: white;">
+        <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+        <div id="toc-content"></div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+    <div id="floating-toc-btn" class="hide-on-med-and-down">
+        <a class="btn-floating btn-large bg-color">
+            <i class="fas fa-list-ul"></i>
+        </a>
+    </div>
+
+
+<script src="/dao/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    
+            
+            /* 修复文章卡片 div 的宽度. */
+            let fixPostCardWidth = function (srcId, targetId) {
+                let srcDiv = $('#' + srcId);
+                if (srcDiv.length === 0) {
+                    return;
+                }
+
+                let w = srcDiv.width();
+                if (w >= 450) {
+                    w = w + 21;
+                } else if (w >= 350 && w < 450) {
+                    w = w + 18;
+                } else if (w >= 300 && w < 350) {
+                    w = w + 16;
+                } else {
+                    w = w + 14;
+                }
+                $('#' + targetId).width(w);
+            };
+
+            // 切换TOC目录展开收缩的相关操作.
+            const expandedClass = 'expanded';
+            let $tocAside = $('#toc-aside');
+            let $mainContent = $('#main-content');
+            $('#floating-toc-btn .btn-floating').click(function () {
+                if ($tocAside.hasClass(expandedClass)) {
+                    $tocAside.removeClass(expandedClass).hide();
+                    $mainContent.removeClass('l9');
+                } else {
+                    $tocAside.addClass(expandedClass).show();
+                    $mainContent.addClass('l9');
+                }
+                fixPostCardWidth('artDetail', 'prenext-posts');
+            });
+            
+        });
+</script>
+</div>
+
+    
+</main>
+
+
+    <footer class="page-footer bg-color">
+    
+        <style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+    
+</style>
+<div class="wyya">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" 
+        integrity="sha512-CIYsJUa3pr1eoXlZFroEI0mq0UIMUqNouNinjpCkSWo3Bx5NRlQ0OuC6DtEB/bDqUWnzXc1gs2X/g52l36N5iw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js" 
+        integrity="sha512-RWosNnDNw8FxHibJqdFRySIswOUgYhFxnmYO3fp+BgCU7gfo4z0oS7mYFBvaa8qu+axY39BmQOrhW3Tp70XbaQ==" crossorigin="anonymous">
+    </script>
+    <!-- require MetingJS -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    <div class="">
+        
+        <div class="row">
+            <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                       server="netease"
+                       type="playlist"
+                       id="503838841"
+                       fixed='true'
+                       autoplay='false'
+                       theme='#42b983'
+                       loop='all'
+                       order='random'
+                       preload='auto'
+                       volume='0.7'
+                       list-folded='true'>
+            </meting-js>
+        </div>
+    </div>
+</div>
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/dao/about" target="_blank">xinetzone</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/xinetzone/matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">119.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "7";
+                    var startDate = "1";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xinetzone" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:q735613050@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=735613050" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 735613050" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/xinet" class="tooltipped" data-tooltip="领英联系我: xinet" data-position="top" data-delay="50">
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+
+    <a href="/dao/rss2.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/dao/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+    <script src="/dao/libs/materialize/materialize.min.js"></script>
+    <script src="/dao/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/dao/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/dao/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/dao/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/dao/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/dao/libs/others/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<!--腾讯兔小巢-->
+
+
+
+
+
+
+
+
+<script src="/dao/libs/instantpage/instantpage.js" type="module"></script>
+
+</body>
+
+</html>
