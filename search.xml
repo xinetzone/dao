@@ -4,34 +4,9 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/dao/post/en-US/cbff7e8b98f2.html"/>
-      <url>/dao/post/en-US/cbff7e8b98f2.html</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 教程 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>数学符号</title>
-      <link href="/dao/post/zh-CN/73c63a5eb2ce.html"/>
-      <url>/dao/post/zh-CN/73c63a5eb2ce.html</url>
+      <link href="/dao/post/zh-CN/cb01d57be6f4.html"/>
+      <url>/dao/post/zh-CN/cb01d57be6f4.html</url>
       
         <content type="html"><![CDATA[<h1 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h1><ul><li>$x$：标量</li><li>$\mathbf{x}$：向量</li><li>$\mathbf{X}$：矩阵</li><li>$\mathsf{X}$：张量</li><li>$\mathbf{I}$：单位矩阵</li><li>$x_i$, $[\mathbf{x}]_i$：向量$\mathbf{x}$第$i$个元素</li><li>$x_{ij}$, $[\mathbf{X}]_{ij}$：矩阵$\mathbf{X}$第$i$行第$j$列的元素</li></ul><div class="w3-pale-green">向量、矩阵使用 <code>\mathbf</code>，张量使用 <code>\mathsf</code>。</div><h1 id="集合论"><a href="#集合论" class="headerlink" title="集合论"></a>集合论</h1><ul><li>$\mathcal{X}$: 集合</li><li>$\mathbb{Z}$: 整数集合</li><li>$\mathbb{R}$ 实数集合</li><li>$\mathbb{R}^n$: $n$维实数向量</li><li>$\mathbb{R}^{a\times b}$: 包含$a$行和$b$列的实数矩阵</li><li>$\mathcal{A}\cup\mathcal{B}$: 集合$\mathcal{A}$和$\mathcal{B}$的并集（<code>\cup</code>）</li><li>$\mathcal{A}\cap\mathcal{B}$：集合$\mathcal{A}$和$\mathcal{B}$的交集（<code>\cap</code>）</li><li>$\mathcal{A}\setminus\mathcal{B}$：集合$\mathcal{B}$与集合$\mathcal{A}$相减（<code>\setminus</code>）</li></ul><div class="w3-pale-green">集合使用 <code>\mathbb</code>，集合族使用 <code>\mathcal</code>。</div><h1 id="函数和运算符"><a href="#函数和运算符" class="headerlink" title="函数和运算符"></a>函数和运算符</h1><ul><li>$f(\cdot)$：函数</li><li>$\log(\cdot)$：自然对数</li><li>$\exp(\cdot)$: 指数函数</li><li>$\mathbf{1}_\mathcal{X}$: 指示函数</li><li>$\mathbf{(\cdot)}^\top$: 向量或矩阵的转置</li><li>$\mathbf{X}^{-1}$: 矩阵的逆</li><li>$\odot$: 按元素相乘</li><li>$[\cdot, \cdot]$：连结</li><li>$\lvert \mathcal{X} \rvert$：集合的基数</li><li>$|\cdot|_p$: ：$L_p$ 正则</li><li>$|\cdot|$: $L_2$ 正则</li><li>$\langle \mathbf{x}, \mathbf{y} \rangle$：向量$\mathbf{x}$和$\mathbf{y}$的点积</li><li>$\sum$: 连加</li><li>$\prod$: 连乘</li><li>$\stackrel{\mathrm{def}}{=}$：定义</li><li>$\ast$: 例如，$a^{\ast}$</li></ul><h1 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h1><ul><li>$\frac{dy}{dx}$：$y$关于$x$的导数</li><li>$\frac{\partial y}{\partial x}$：$y$关于$x$的偏导数</li><li>$\nabla_{\mathbf{x}} y$：$y$关于$\mathbf{x}$的梯度</li><li>$\int_a^b f(x) ;dx$: $f$在$a$到$b$区间上关于$x$的定积分</li><li>$\int f(x) ;dx$: $f$关于$x$的不定积分</li></ul><h1 id="概率与信息论"><a href="#概率与信息论" class="headerlink" title="概率与信息论"></a>概率与信息论</h1><ul><li>$P(\cdot)$：概率分布</li><li>$z \sim P$: 随机变量$z$具有概率分布$P$</li><li>$P(X \mid Y)$：$X\mid Y$的条件概率</li><li>$p(x)$: 概率密度函数</li><li>$\mathbb{E}_{x} [f(x)]$: 函数$f$对$x$的数学期望</li><li>$X \perp Y$: 随机变量$X$和$Y$是独立的</li><li>$X \perp Y \mid Z$: 随机变量$X$和$Y$在给定随机变量$Z$的条件下是独立的</li><li>$\mathrm{Var}(X)$: 随机变量$X$的方差</li><li>$\sigma_X$: 随机变量$X$的标准差</li><li>$\mathrm{Cov}(X, Y)$: 随机变量$X$和$Y$的协方差</li><li>$\rho(X, Y)$: 随机变量$X$和$Y$的相关性</li><li>$H(X)$: 随机变量$X$的熵</li><li>$D_{\mathrm{KL}}(P|Q)$: $P$和$Q$的KL-散度</li></ul><h1 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h1><ul><li>$\mathcal{O}$：大O标记</li></ul>]]></content>
       
@@ -46,6 +21,31 @@
         <tags>
             
             <tag> 数学符号 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/dao/post/en-US/fd5936c6b915.html"/>
+      <url>/dao/post/en-US/fd5936c6b915.html</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
             
         </tags>
       
