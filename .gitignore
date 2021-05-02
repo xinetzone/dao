@@ -107,3 +107,5 @@ public/
 db.json
 
 themes/
+
+package-lock.json
