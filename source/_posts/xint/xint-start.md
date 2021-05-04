@@ -1,10 +1,9 @@
 ---
+layout: xint
 title: 统一 MXNet，PyTorch，TensorFlow 接口
-lang: zh-CN
+date: 2021-05-04 10:44:11
 tags: [深度学习, Python]
 categories: xint
-abbrlink: cb8e14f
-date: 2021-04-07 22:15:36
 ---
 
 为了提供一个统一的接口，我在 GitHub 上维护了一个通用 API：[atom](https://github.com/xinetzone/atom)。可以使用 `pip` 安装。本仓库借鉴了 [d2l](https://zh-v2.d2l.ai/) 和 [简单粗暴 TensorFlow 2](https://tf.wiki/zh_hans/)。
@@ -53,7 +52,7 @@ date: 2021-04-07 22:15:36
 ```python
 n = 10000
 a = np.ones(n)
-b = np.ones(n)
+b = np.zeros(n)
 ```
 
 你可以分别查看各自环境的数据：
