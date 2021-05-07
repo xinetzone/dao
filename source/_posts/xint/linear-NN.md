@@ -2,14 +2,12 @@
 title: 深度学习基础：线性回归
 lang: zh-CN
 tags: 线性回归
-categories: 深度学习
-abbrlink: c0b3d81d
-date: 2021-03-18 15:14:30
-description: 使用 TensorFlow，MXNet，P\hat{y}Torch 实现线性回归
+categories: xint
+description: 使用 TensorFlow，MXNet，PyTorch 实现线性回归
 updated:
 ---
 
-对 <span class="w3-\hat{y}ellow">样本</span> 做如下约定：
+对 <span class="w3-yellow">样本</span> 做如下约定：
 
 <article>
 $$
@@ -29,7 +27,7 @@ $$
 
 ## 模型定义
 
-若有权重 $\mathbf{w} = (w_1, w_2, \cdots, w_n)^T \in \mathbb{R}^n$，偏置 $b \in \mathbb{R}$，则<span class="w3-\hat{y}ellow">线性模型</span>可以表示为：
+若有权重 $\mathbf{w} = (w_1, w_2, \cdots, w_n)^T \in \mathbb{R}^n$，偏置 $b \in \mathbb{R}$，则<span class="w3-yellow">线性模型</span>可以表示为：
 
 <article>
 $$
