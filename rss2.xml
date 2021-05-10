@@ -9,14 +9,14 @@
     <atom:link href="https://xinetzone.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>利用 AI 开发一切有意思的东西</description>
-    <pubDate>Fri, 07 May 2021 16:02:32 GMT</pubDate>
+    <pubDate>Mon, 10 May 2021 14:37:24 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>深度学习基础：线性回归</title>
-      <link>https://xinetzone.github.io/xint/zh-CN/e12591eb9d76.html</link>
-      <guid>https://xinetzone.github.io/xint/zh-CN/e12591eb9d76.html</guid>
-      <pubDate>Fri, 07 May 2021 16:02:32 GMT</pubDate>
+      <link>https://xinetzone.github.io/xint/zh-CN/f98e703c94b9.html</link>
+      <guid>https://xinetzone.github.io/xint/zh-CN/f98e703c94b9.html</guid>
+      <pubDate>Mon, 10 May 2021 14:37:24 GMT</pubDate>
       
       <description>使用 TensorFlow，MXNet，PyTorch 实现线性回归</description>
       
@@ -31,15 +31,15 @@
       <category domain="https://xinetzone.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">线性回归</category>
       
       
-      <comments>https://xinetzone.github.io/xint/zh-CN/e12591eb9d76.html#disqus_thread</comments>
+      <comments>https://xinetzone.github.io/xint/zh-CN/f98e703c94b9.html#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Hello World</title>
-      <link>https://xinetzone.github.io/post/en-US/89a40920fbf4.html</link>
-      <guid>https://xinetzone.github.io/post/en-US/89a40920fbf4.html</guid>
-      <pubDate>Fri, 07 May 2021 16:02:32 GMT</pubDate>
+      <link>https://xinetzone.github.io/post/en-US/e784f857f20a.html</link>
+      <guid>https://xinetzone.github.io/post/en-US/e784f857f20a.html</guid>
+      <pubDate>Mon, 10 May 2021 14:37:24 GMT</pubDate>
       
         
         
@@ -57,15 +57,15 @@
       <category domain="https://xinetzone.github.io/tags/hexo/">hexo</category>
       
       
-      <comments>https://xinetzone.github.io/post/en-US/89a40920fbf4.html#disqus_thread</comments>
+      <comments>https://xinetzone.github.io/post/en-US/e784f857f20a.html#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>数学符号</title>
-      <link>https://xinetzone.github.io/post/zh-CN/484dacbc2c0a.html</link>
-      <guid>https://xinetzone.github.io/post/zh-CN/484dacbc2c0a.html</guid>
-      <pubDate>Fri, 07 May 2021 16:02:32 GMT</pubDate>
+      <link>https://xinetzone.github.io/post/zh-CN/d424fffaae74.html</link>
+      <guid>https://xinetzone.github.io/post/zh-CN/d424fffaae74.html</guid>
+      <pubDate>Mon, 10 May 2021 14:37:24 GMT</pubDate>
       
         
         
@@ -87,7 +87,7 @@
       <category domain="https://xinetzone.github.io/tags/%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7/">数学符号</category>
       
       
-      <comments>https://xinetzone.github.io/post/zh-CN/484dacbc2c0a.html#disqus_thread</comments>
+      <comments>https://xinetzone.github.io/post/zh-CN/d424fffaae74.html#disqus_thread</comments>
       
     </item>
     
