@@ -7,6 +7,10 @@ layout: chaos
 
 - [本博客项目模板说明](zh-CN/d2030769b2b9.html)
 
+## 深度学习
+
+- [动手学深度学习在线课程](https://courses.d2l.ai/zh-v2/)
+
 ## 优质资源
 
 - [Beautiful, personalized, interactive developer hubs.](https://readme.com/)
@@ -18,6 +22,10 @@ layout: chaos
 - [为人而生的配置文件格式：Toml](https://toml.io/cn/)
 - [plotly](https://plotly.com/)
 - [mixup: BEYOND EMPIRICAL RISK MINIMIZATION](https://zhuanlan.zhihu.com/p/130561215)
+
+### PyTorch
+
+- [TORCHMETRICS DOCUMENTATION](https://torchmetrics.readthedocs.io/en/latest/)：Pytorch 度量工具
 
 ### Arm
 
