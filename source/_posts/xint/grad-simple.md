@@ -369,3 +369,34 @@ x = np.arange(4.0).reshape(4, 1)
     ```
     </div>
 </div>
+
+## 通用微分函数
+
+令 $f: \mathbb{R}^n \rightarrow \mathbb{R}$，$\mathbf{x} = [x_1, x_2, \ldots, x_n]^\top$，有
+
+<div>
+$$
+\nabla_{\mathbf{x}} f(\mathbf{x}) = \bigg[\frac{\partial f(\mathbf{x})}{\partial x_1}, \frac{\partial f(\mathbf{x})}{\partial x_2}, \ldots, \frac{\partial f(\mathbf{x})}{\partial x_n}\bigg]^\top
+$$
+</div>
+
+若有 $\mathbf{y} = [y_1, y_2, \ldots, y_m]^\top$，$x \in \mathbb{R}$，则：
+
+<div>
+$$
+\frac{\partial \mathbf{y}}{\partial x} = \bigg[\frac{\partial y_1}{\partial x}, \frac{\partial y_2}{\partial x}, \ldots, \frac{\partial y_m}{\partial x}\bigg]^\top
+$$
+</div>
+
+还有，
+
+<div>
+$$
+\frac{\partial \mathbf{y}}{\partial \mathbf{x}} = \bigg[\frac{\partial y_1}{\partial \mathbf{x}}, \frac{\partial y_2}{\partial \mathbf{x}}, \ldots, \frac{\partial y_m}{\partial \mathbf{x}}\bigg]^\top = \begin{bmatrix} \frac{\partial y_1}{\partial x_1} & \frac{\partial y_1}{\partial x_2} &\cdots &\frac{\partial y_1}{\partial x_n} \\
+\frac{\partial y_2}{\partial x_1} & \frac{\partial y_2}{\partial x_2} & \cdots & \frac{\partial y_2}{\partial x_n}\\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial y_m}{\partial x_1} & \frac{\partial y_m}{\partial x_2} & \cdots & \frac{\partial y_m}{\partial x_n}
+\end{bmatrix}
+$$
+</div>
+
