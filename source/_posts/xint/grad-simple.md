@@ -12,6 +12,7 @@ categories: xint
 
 <div>
 $$
+$$
 \mathbf{Ax} = \begin{bmatrix}
    \mathbf{a}_1^T \mathbf{x} \\
    \mathbf{a}_2^T \mathbf{x} \\
