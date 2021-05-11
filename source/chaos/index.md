@@ -59,3 +59,14 @@ layout: chaos
 - [From a novice to one of the youngest Kaggle Competition Master and landing in a Fortune 500!](https://medium.com/analytics-vidhya/from-a-novice-to-the-youngest-kaggle-competition-master-and-landing-in-a-fortune-500-cc8acf49de)
 - [How I got ~98% prediction accuracy with Kaggles Titanic Competition](https://towardsdatascience.com/how-i-got-98-prediction-accuracy-with-kaggles-titanic-competition-ad24afed01fc)
 - [使用 jsDelivr 免费加速 GitHub Pages 博客的静态资源](https://zhuanlan.zhihu.com/p/137795279)
+- [3*3卷积+1*3卷积+3*1卷积=白给的精度提升 | ICCV 2019](https://zhuanlan.zhihu.com/p/93966695)
+- [SPConv|精度更高、速度更快的“即插即用”卷积](https://zhuanlan.zhihu.com/p/157342686)
+- [基于深度学习的图像检索最新综述：全面调研](https://zhuanlan.zhihu.com/p/348222902)
+- [基于深度学习的基于内容的图像检索技术：十年调研（2011-2020）](https://zhuanlan.zhihu.com/p/338845142)
+- [你的NMS该换了！Confluence：实现更准、更强的目标检测](https://zhuanlan.zhihu.com/p/336681585)
+- [klearn 官方文档中文版](https://sklearn123.com/)
+
+## 情绪与成长
+
+- [做情绪的主人，不要做情绪的敌人](https://www.bilibili.com/video/BV1Zb411C7bg/?spm_id_from=333.788.recommend_more_video.1)|[续](https://www.bilibili.com/video/BV1Zb411C7bg?p=2)|[知乎](https://zhuanlan.zhihu.com/p/56379220)
+- [TED 精选：关于自我提升的三篇精彩演讲](https://zhuanlan.zhihu.com/p/105893701)
