@@ -22,6 +22,7 @@ layout: chaos
 - [为人而生的配置文件格式：Toml](https://toml.io/cn/)
 - [plotly](https://plotly.com/)
 - [mixup: BEYOND EMPIRICAL RISK MINIMIZATION](https://zhuanlan.zhihu.com/p/130561215)
+- [Python Tips](https://book.pythontips.com/en/latest/index.html)
 
 ### PyTorch
 
