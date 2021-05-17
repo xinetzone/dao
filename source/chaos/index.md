@@ -11,6 +11,12 @@ layout: chaos
 
 - [动手学深度学习在线课程](https://courses.d2l.ai/zh-v2/)
 
+## 使用 Python 搭建 web
+
+- [用Python开发你的第一款聊天软件](https://zhuanlan.zhihu.com/p/39828091)
+- [Python实现简单的Web服务器](https://zhuanlan.zhihu.com/p/21323273)
+- [HTTP](https://www.kancloud.cn/kancloud/tealeaf-http/43837)|[Introduction to HTTP](https://launchschool.com/books/http)
+
 ## 优质资源
 
 - [Beautiful, personalized, interactive developer hubs.](https://readme.com/)
