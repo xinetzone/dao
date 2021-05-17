@@ -1,12 +1,10 @@
 ---
 title: Dash 教程
 lang: zh-CN
-tags: Dash
+tags: dash
 categories: 教程
 abbrlink: a7b795ee
 date: 2021-03-20 18:35:10
-description:
-updated:
 ---
 
 Dash 是用于构建 Web 分析应用程序的高效 Python 框架。Dash 建立在 Flask，Plotly.js 和 React.js 之上，是使用纯 Python 使用高度自定义用户界面构建数据可视化应用程序的理想选择。它特别适合使用 Python 处理数据的任何人。
