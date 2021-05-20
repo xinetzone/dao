@@ -177,7 +177,7 @@ page_1_layout = html.Div([
 @app.callback(Output('page-1-content', 'children'),
               [Input('page-1-dropdown', 'value')])
 def page_1_dropdown(value):
-    return 'You have selected "{}"'.format(value)
+    return f'You have selected "{value}"'
 
 
 page_2_layout = html.Div([
@@ -197,7 +197,7 @@ page_2_layout = html.Div([
 @app.callback(Output('page-2-content', 'children'),
               [Input('page-2-radios', 'value')])
 def page_2_radios(value):
-    return 'You have selected "{}"'.format(value)
+    return f'You have selected "{value}"'
 
 
 # Update the index
@@ -230,7 +230,7 @@ Dash 将验证应用于回调，它将执行检查，例如验证回调参数的
 
 对于完全验证，回调中的所有组件都必须出现在应用程序的初始布局中，如果它们没有出现，你将看到一个错误。然而，在更复杂的 Dash 应用中，需要动态修改布局(如多页应用)，并非回调中出现的每个组件都包含在初始布局中。
 
-你可以设置`app.validation_layout`为一个`"complete"`布局，包含你将在任何页面 `/` 部分中使用的所有组件。`app.validation_layout` 必须是一个 Dash 组件，而不是一个函数。然后将 `app.layout` 设置为索引布局。在以前的Dash版本中，你可以使用一个技巧来实现相同的结果，检查烧瓶。布局函数中的`Has_request_context`—仍然可以工作，但不再推荐。
+ Dash 1.12 你可以设置`app.validation_layout`为一个`"complete"`布局，包含你将在任何页面 `/` 部分中使用的所有组件。`app.validation_layout` 必须是一个 Dash 组件，而不是一个函数。然后将 `app.layout` 设置为索引布局。在以前的 Dash 版本中，你可以使用一个技巧来实现相同的结果，检查布局函数中的`flask.has_request_context`—仍然可以工作，但不再推荐。
 
 ```python
 app = create_app()
@@ -301,9 +301,9 @@ def display_page(pathname):
               State('input-1-state', 'value'),
               State('input-2-state', 'value'))
 def update_output(n_clicks, input1, input2):
-    return ('The Button has been pressed {} times,'
-            'Input 1 is "{}",'
-            'and Input 2 is "{}"').format(n_clicks, input1, input2)
+    return (f'The Button has been pressed {n_clicks} times,'
+            f'Input 1 is "{input1}",'
+            f'and Input 2 is "{input2}"')
 
 
 # Page 2 callbacks
@@ -311,6 +311,230 @@ def update_output(n_clicks, input1, input2):
               Input('page-2-dropdown', 'value'))
 def display_value(value):
     print('display_value')
+    return f'You have selected "{value}"'
+```
+
+### 结构化多页面应用程序
+
+下面是如何构建一个多页面应用程序，每个应用程序都包含在一个单独的文件中。文件结构：
+
+```python
+- app.py
+- index.py
+- apps
+   |-- __init__.py
+   |-- app1.py
+   |-- app2.py
+```
+
+`app.py`
+
+```python
+import dash
+
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
+server = app.server
+```
+
+`apps/app1.py`
+
+```python
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+
+from app import app
+
+layout = html.Div([
+    html.H3('App 1'),
+    dcc.Dropdown(
+        id='app-1-dropdown',
+        options=[
+            {'label': f'App 1 - {i}', 'value': i} 
+            for i in ['NYC', 'MTL', 'LA']
+        ]
+    ),
+    html.Div(id='app-1-display-value'),
+    dcc.Link('Go to App 2', href='/apps/app2')
+])
+
+
+@app.callback(
+    Output('app-1-display-value', 'children'),
+    Input('app-1-dropdown', 'value'))
+def display_value(value):
+    return f'You have selected "{value}"'
+```
+
+`apps/app2.py`
+
+```python
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output, State
+
+from app import app
+
+layout = html.Div([
+    html.H2('App 2'),
+    dcc.Input(id='input-1-state', type='text', value='Montreal'),
+    dcc.Input(id='input-2-state', type='text', value='Canada'),
+    html.Button(id='submit-button', n_clicks=0, children='Submit'),
+    html.Div(id='output-state'),
+    html.Br(),
+    dcc.Link('Navigate to "/"', href='/'),
+    html.Br(),
+    dcc.Link('Navigate to "/apps/app1"', href='/apps/app1'),
+])
+
+
+@app.callback(Output('output-state', 'children'),
+              Input('submit-button', 'n_clicks'),
+              State('input-1-state', 'value'),
+              State('input-2-state', 'value'))
+def update_output(n_clicks, input1, input2):
+    return (f'The Button has been pressed {n_clicks} times,'
+            f'Input 1 is "{input1}",'
+            f'and Input 2 is "{input2}"')
+```
+
+`index.py`
+
+`index.py` 在不同的 url 上加载不同的应用，就像这样：
+
+```python
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+
+from app import app
+from apps import app1, app2
+
+
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content')
+])
+
+
+@app.callback(Output('page-content', 'children'),
+              Input('url', 'pathname'))
+def display_page(pathname):
+    if pathname == '/apps/app1':
+        return app1.layout
+    elif pathname == '/apps/app2':
+        return app2.layout
+    else:
+        return '404'
+
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+或者，你可能更喜欢一个平面的项目布局，将回调和布局分开到不同的文件中：
+
+```shell
+- app.py
+- index.py
+- callbacks.py
+- layouts.py
+```
+
+`app.py`
+
+```python
+import dash
+
+app = dash.Dash(__name__, suppress_callback_exceptions=True)
+server = app.server
+```
+
+`callbacks.py`
+
+```python
+from dash.dependencies import Input, Output
+
+from app import app
+
+@app.callback(
+    Output('app-1-display-value', 'children'),
+    Input('app-1-dropdown', 'value'))
+def display_value(value):
+    return 'You have selected "{}"'.format(value)
+
+@app.callback(
+    Output('app-2-display-value', 'children'),
+    Input('app-2-dropdown', 'value'))
+def display_value(value):
     return 'You have selected "{}"'.format(value)
 ```
 
+`layouts.py`
+
+```python
+import dash_core_components as dcc
+import dash_html_components as html
+
+layout1 = html.Div([
+    html.H3('App 1'),
+    dcc.Dropdown(
+        id='app-1-dropdown',
+        options=[
+            {'label': 'App 1 - {}'.format(i), 'value': i} for i in [
+                'NYC', 'MTL', 'LA'
+            ]
+        ]
+    ),
+    html.Div(id='app-1-display-value'),
+    dcc.Link('Go to App 2', href='/apps/app2')
+])
+
+layout2 = html.Div([
+    html.H3('App 2'),
+    dcc.Dropdown(
+        id='app-2-dropdown',
+        options=[
+            {'label': 'App 2 - {}'.format(i), 'value': i} for i in [
+                'NYC', 'MTL', 'LA'
+            ]
+        ]
+    ),
+    html.Div(id='app-2-display-value'),
+    dcc.Link('Go to App 1', href='/apps/app1')
+])
+```
+
+`index.py`
+
+```python
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+
+from app import app
+from layouts import layout1, layout2
+import callbacks
+
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content')
+])
+
+@app.callback(Output('page-content', 'children'),
+              Input('url', 'pathname'))
+def display_page(pathname):
+    if pathname == '/apps/app1':
+         return layout1
+    elif pathname == '/apps/app2':
+         return layout2
+    else:
+        return '404'
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+值得注意的是，在这两个项目结构中，Dash 实例是在单独的 `app.py` 中定义的，而运行应用的入口点是 `index.py`。这种分离是为了避免循环导入：包含回调定义的文件需要访问 Dash 应用程序实例，但是如果是从 `index.py` 导入的，`index.py` 的初始加载最终会要求自己已经导入，这是不能满足的。
+
+## 
