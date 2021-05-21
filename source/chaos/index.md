@@ -44,6 +44,14 @@ layout: chaos
 - [龙芯](http://www.loongson.cn/index.html)
 - [鸿蒙系统](https://www.harmonyos.com/cn/home)
 
+## 前端开发
+
+- [飞冰 - 让前端开发简单而友好](https://www.bookstack.cn/books/alibaba-ice)|[Iceworks: 从 GUI 开发工具到集成研发工作台](https://zhuanlan.zhihu.com/p/94102675)
+
+## vscode
+
+- [使用vscode快速搭建单片机开发环境](https://zhuanlan.zhihu.com/p/146866772)
+
 ## 他山之石
 
 - [从PyTorch到PyTorch Lightning —简要介绍](https://cloud.tencent.com/developer/article/1593703)
