@@ -5,7 +5,7 @@ date: 2021-05-20 16:53:25
 tags: jupyter-book
 ---
 
-Jupiter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。
+Jupyter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。
 
 以下是木星之书的一些特点：
 
@@ -158,3 +158,49 @@ execute:
 - `execute`：包含控制[执行和缓存](https://jupyterbook.org/content/execute.html)的配置选项集合。`execute_notebooks: "off"` 告诉 Jupyter Book 不要执行任何它在构建书时发现的计算内容。默认情况下，Jupyter Book 会执行并缓存所有的图书内容。
 
 更多关于 `_config.yml`：你可以用 `_config.yml` 文件做更多的事情。例如，您可以[添加源存储库按钮](https://jupyterbook.org/basics/repository.html#source-repository-button)或添加[交互式数据可视化](https://jupyterbook.org/interactive/interactive.html)。获取`_config.yml`的完整字段列表，请参见[配置参考](https://jupyterbook.org/customize/config.html)。
+
+#### Book 的目录（`_toc.yml`）
+
+Jupyter Book 使用你的目录来定义你的书的结构。例如，你的章节，分章节等等。
+
+这是一个包含一组页面的 YAML 文件，每个页面都链接到书中的一个文件。下面是上面显示的两个内容文件的示例。
+
+```ymal
+# In _toc.yml
+- file: landing-page
+- file: page1
+```
+
+`_toc.yml` 中的每一项都指向单个文件。链接应该是相对于你的书的文件夹，没有扩展名。你可以将 TOC 文件的最顶层想象成书籍的章节(不包括登录页)。每一章的标题将从你文件的标题中推断出来。
+
+第一个文件指定图书的登录页(在本例中，它是一个 markdown 文件)。登录页（landing page）是书籍内容层次结构中最高的页面。第二个文件指定图书的内容页(在本例中，它是一个 Jupyter Notebook)。
+
+您可以使用 `_toc.yml` 文件 指定更复杂的图书配置。例如，您可以指定部件、节和控制自定义标题。有关书的目录文件的更多信息，请参见[结构化书的页面](https://jupyterbook.org/customize/toc.html)。
+
+#### Book content
+
+一组文本文件构成了你的书的内容。这些文件可以是几种类型中的一种，例如 markdown (`.md`)、Jupyter notebook (`.ipynb`)或 reStructuredText (`.rst`)文件(请参阅[内容源文件的类型](https://jupyterbook.org/file-types/index.html)以获得完整列表)。
+
+在上面的例子中，列出了两个文件:一个 markdown 文件和一个 Jupyter Notebook。我们将在下一节中介绍它们。
+
+### 创建你的书的源文件
+
+现在我们理解了书的结构，让我们创建一个示例书来学习。
+
+### 快速生成示例书
+
+Jupyter Book 附带了一本轻量级的示例书来帮助你理解一本书的结构。运行以下命令创建一个示例书：
+
+```shell
+jupyter-book create mynewbook/
+```
+
+这将生成一个迷你的 Jupyter Book，你可以在本地构建和探索。它会为您做出一些决定，您可以在`_config.yml`中探索这本书的配置及其在`_toc.yml`中的结构化。把这本书当作灵感，或者作为你工作的起点。
+
+### 研究你的书的内容文件
+
+首先，请注意至少有两种不同类型的内容文件：markdown 文件(以 `.md` 结尾)和 Jupyter Notebooks 文件(以 `.ipynb` 结尾)。
+
+我们将在下面逐一讨论。
+
+#### Markdown files (`.md`)
