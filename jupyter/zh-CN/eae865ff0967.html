@@ -12,12 +12,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <meta name="description" content="Jupiter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。 以下是木星之书的一些特点：  在 Markdown 中编写出版质量的内容：你可以使用 Jupyter Markdown，也可以使用带有发布功能的 Markdown 的扩展版本。这包括对富文本语法的支持，如引用和交叉引用、数学和等式，以及图像。 把内容写在 Jupyter Notebook 上：这允许您在书">
+    <meta name="description" content="Jupyter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。 以下是木星之书的一些特点：  在 Markdown 中编写出版质量的内容：你可以使用 Jupyter Markdown，也可以使用带有发布功能的 Markdown 的扩展版本。这包括对富文本语法的支持，如引用和交叉引用、数学和等式，以及图像。 把内容写在 Jupyter Notebook 上：这允许您在书">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Books with Jupyter">
 <meta property="og:url" content="https://xinetzone.github.io/jupyter/zh-CN/eae865ff0967.html">
 <meta property="og:site_name" content="上善若水">
-<meta property="og:description" content="Jupiter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。 以下是木星之书的一些特点：  在 Markdown 中编写出版质量的内容：你可以使用 Jupyter Markdown，也可以使用带有发布功能的 Markdown 的扩展版本。这包括对富文本语法的支持，如引用和交叉引用、数学和等式，以及图像。 把内容写在 Jupyter Notebook 上：这允许您在书">
+<meta property="og:description" content="Jupyter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。 以下是木星之书的一些特点：  在 Markdown 中编写出版质量的内容：你可以使用 Jupyter Markdown，也可以使用带有发布功能的 Markdown 的扩展版本。这包括对富文本语法的支持，如引用和交叉引用、数学和等式，以及图像。 把内容写在 Jupyter Notebook 上：这允许您在书">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-20T08:53:25.000Z">
 <meta property="article:modified_time" content="2021-05-20T08:53:25.000Z">
@@ -526,14 +526,14 @@
         
         <div class="info-break-policy">
             <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-            1.4k
+            2k
         </div>
         
 
         
         <div class="info-break-policy">
             <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-            5 分
+            7 分
         </div>
         
 
@@ -590,7 +590,7 @@
 
         <div class="card-content article-card-content">
     <div id="articleContent">
-        <p>Jupiter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。</p>
+        <p>Jupyter Book 是一个开源项目，用于从计算中构建漂亮的、具有出版质量的书籍和文档。</p>
 <p>以下是木星之书的一些特点：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://jupyterbook.org/file-types/markdown.html">在 Markdown 中编写出版质量的内容</a>：你可以使用 Jupyter Markdown，也可以使用带有<a target="_blank" rel="noopener" href="https://jupyterbook.org/content/myst.html">发布功能</a>的 Markdown 的扩展版本。这包括对富文本语法的支持，如<a target="_blank" rel="noopener" href="https://jupyterbook.org/content/citations.html">引用和交叉引用</a>、<a target="_blank" rel="noopener" href="https://jupyterbook.org/content/math.html">数学和等式</a>，以及<a target="_blank" rel="noopener" href="https://jupyterbook.org/content/figures.html">图像</a>。</li>
@@ -702,7 +702,25 @@ execute:
 <li><code>execute</code>：包含控制<a target="_blank" rel="noopener" href="https://jupyterbook.org/content/execute.html">执行和缓存</a>的配置选项集合。<code>execute_notebooks: "off"</code> 告诉 Jupyter Book 不要执行任何它在构建书时发现的计算内容。默认情况下，Jupyter Book 会执行并缓存所有的图书内容。</li>
 </ul>
 <p>更多关于 <code>_config.yml</code>：你可以用 <code>_config.yml</code> 文件做更多的事情。例如，您可以<a target="_blank" rel="noopener" href="https://jupyterbook.org/basics/repository.html#source-repository-button">添加源存储库按钮</a>或添加<a target="_blank" rel="noopener" href="https://jupyterbook.org/interactive/interactive.html">交互式数据可视化</a>。获取<code>_config.yml</code>的完整字段列表，请参见<a target="_blank" rel="noopener" href="https://jupyterbook.org/customize/config.html">配置参考</a>。</p>
+<h4 id="Book-的目录（-toc-yml）"><a href="#Book-的目录（-toc-yml）" class="headerlink" title="Book 的目录（_toc.yml）"></a>Book 的目录（<code>_toc.yml</code>）</h4><p>Jupyter Book 使用你的目录来定义你的书的结构。例如，你的章节，分章节等等。</p>
+<p>这是一个包含一组页面的 YAML 文件，每个页面都链接到书中的一个文件。下面是上面显示的两个内容文件的示例。</p>
+<pre class="line-numbers language-ymal" data-language="ymal"><code class="language-ymal"># In _toc.yml
+- file: landing-page
+- file: page1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
+<p><code>_toc.yml</code> 中的每一项都指向单个文件。链接应该是相对于你的书的文件夹，没有扩展名。你可以将 TOC 文件的最顶层想象成书籍的章节(不包括登录页)。每一章的标题将从你文件的标题中推断出来。</p>
+<p>第一个文件指定图书的登录页(在本例中，它是一个 markdown 文件)。登录页（landing page）是书籍内容层次结构中最高的页面。第二个文件指定图书的内容页(在本例中，它是一个 Jupyter Notebook)。</p>
+<p>您可以使用 <code>_toc.yml</code> 文件 指定更复杂的图书配置。例如，您可以指定部件、节和控制自定义标题。有关书的目录文件的更多信息，请参见<a target="_blank" rel="noopener" href="https://jupyterbook.org/customize/toc.html">结构化书的页面</a>。</p>
+<h4 id="Book-content"><a href="#Book-content" class="headerlink" title="Book content"></a>Book content</h4><p>一组文本文件构成了你的书的内容。这些文件可以是几种类型中的一种，例如 markdown (<code>.md</code>)、Jupyter notebook (<code>.ipynb</code>)或 reStructuredText (<code>.rst</code>)文件(请参阅<a target="_blank" rel="noopener" href="https://jupyterbook.org/file-types/index.html">内容源文件的类型</a>以获得完整列表)。</p>
+<p>在上面的例子中，列出了两个文件:一个 markdown 文件和一个 Jupyter Notebook。我们将在下一节中介绍它们。</p>
+<h3 id="创建你的书的源文件"><a href="#创建你的书的源文件" class="headerlink" title="创建你的书的源文件"></a>创建你的书的源文件</h3><p>现在我们理解了书的结构，让我们创建一个示例书来学习。</p>
+<h3 id="快速生成示例书"><a href="#快速生成示例书" class="headerlink" title="快速生成示例书"></a>快速生成示例书</h3><p>Jupyter Book 附带了一本轻量级的示例书来帮助你理解一本书的结构。运行以下命令创建一个示例书：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jupyter-book create mynewbook/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这将生成一个迷你的 Jupyter Book，你可以在本地构建和探索。它会为您做出一些决定，您可以在<code>_config.yml</code>中探索这本书的配置及其在<code>_toc.yml</code>中的结构化。把这本书当作灵感，或者作为你工作的起点。</p>
+<h3 id="研究你的书的内容文件"><a href="#研究你的书的内容文件" class="headerlink" title="研究你的书的内容文件"></a>研究你的书的内容文件</h3><p>首先，请注意至少有两种不同类型的内容文件：markdown 文件(以 <code>.md</code> 结尾)和 Jupyter Notebooks 文件(以 <code>.ipynb</code> 结尾)。</p>
+<p>我们将在下面逐一讨论。</p>
+<h4 id="Markdown-files-md"><a href="#Markdown-files-md" class="headerlink" title="Markdown files (.md)"></a>Markdown files (<code>.md</code>)</h4>
         
     </div>
     <hr/>
@@ -967,7 +985,7 @@ execute:
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
             <div class="card">
-                <a href="/dao/post/zh-CN/596c6a6da524.html">
+                <a href="/dao/post/zh-CN/1d417521efdb.html">
                     <div class="card-image">
                         
                         
@@ -984,7 +1002,7 @@ execute:
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-21
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
                         </span>
                         <span class="publish-author">
                             
@@ -1363,7 +1381,7 @@ execute:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">129.5k</span>&nbsp;字
+                class="white-color">130.1k</span>&nbsp;字
             
             
             
