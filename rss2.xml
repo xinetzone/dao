@@ -9,14 +9,14 @@
     <atom:link href="https://xinetzone.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>利用 AI 开发一切有意思的东西</description>
-    <pubDate>Tue, 06 Jul 2021 10:33:47 GMT</pubDate>
+    <pubDate>Tue, 06 Jul 2021 11:32:07 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>深度学习基础：线性回归</title>
-      <link>https://xinetzone.github.io/xint/zh-CN/ea639f720102.html</link>
-      <guid>https://xinetzone.github.io/xint/zh-CN/ea639f720102.html</guid>
-      <pubDate>Tue, 06 Jul 2021 10:33:47 GMT</pubDate>
+      <link>https://xinetzone.github.io/xint/zh-CN/edb99be617e5.html</link>
+      <guid>https://xinetzone.github.io/xint/zh-CN/edb99be617e5.html</guid>
+      <pubDate>Tue, 06 Jul 2021 11:32:07 GMT</pubDate>
       
       <description>使用 TensorFlow，MXNet，PyTorch 实现线性回归</description>
       
@@ -31,41 +31,15 @@
       <category domain="https://xinetzone.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">线性回归</category>
       
       
-      <comments>https://xinetzone.github.io/xint/zh-CN/ea639f720102.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://xinetzone.github.io/post/en-US/3b02a80496b0.html</link>
-      <guid>https://xinetzone.github.io/post/en-US/3b02a80496b0.html</guid>
-      <pubDate>Tue, 06 Jul 2021 10:33:47 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://xinetzone.github.io/categories/%E6%95%99%E7%A8%8B/">教程</category>
-      
-      
-      <category domain="https://xinetzone.github.io/tags/hexo/">hexo</category>
-      
-      
-      <comments>https://xinetzone.github.io/post/en-US/3b02a80496b0.html#disqus_thread</comments>
+      <comments>https://xinetzone.github.io/xint/zh-CN/edb99be617e5.html#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>数学符号</title>
-      <link>https://xinetzone.github.io/post/zh-CN/0e98d9c538ce.html</link>
-      <guid>https://xinetzone.github.io/post/zh-CN/0e98d9c538ce.html</guid>
-      <pubDate>Tue, 06 Jul 2021 10:33:47 GMT</pubDate>
+      <link>https://xinetzone.github.io/post/zh-CN/8e49885d4fa6.html</link>
+      <guid>https://xinetzone.github.io/post/zh-CN/8e49885d4fa6.html</guid>
+      <pubDate>Tue, 06 Jul 2021 11:32:07 GMT</pubDate>
       
         
         
@@ -87,7 +61,33 @@
       <category domain="https://xinetzone.github.io/tags/%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7/">数学符号</category>
       
       
-      <comments>https://xinetzone.github.io/post/zh-CN/0e98d9c538ce.html#disqus_thread</comments>
+      <comments>https://xinetzone.github.io/post/zh-CN/8e49885d4fa6.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://xinetzone.github.io/post/en-US/64fd5cd0cd45.html</link>
+      <guid>https://xinetzone.github.io/post/en-US/64fd5cd0cd45.html</guid>
+      <pubDate>Tue, 06 Jul 2021 11:32:07 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://xinetzone.github.io/categories/%E6%95%99%E7%A8%8B/">教程</category>
+      
+      
+      <category domain="https://xinetzone.github.io/tags/hexo/">hexo</category>
+      
+      
+      <comments>https://xinetzone.github.io/post/en-US/64fd5cd0cd45.html#disqus_thread</comments>
       
     </item>
     
