@@ -991,7 +991,7 @@ if __name__ == '__main__':
 ```
 </details>
 
-### Update Graphs on Hover
+### 更新悬停图形
 
 <details><summary>当我们将鼠标悬停在散点图中的点上时，让我们通过更新时间序列来更新上一章中的世界指标示例。</summary>
 
@@ -1001,6 +1001,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import plotly.express as px
+from dash.dependencies import Input, Output
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -1012,11 +1013,11 @@ available_indicators = df['Indicator Name'].unique()
 
 app.layout = html.Div([
     html.Div([
-
         html.Div([
             dcc.Dropdown(
                 id='crossfilter-xaxis-column',
-                options=[{'label': i, 'value': i} for i in available_indicators],
+                options=[{'label': i, 'value': i}
+                         for i in available_indicators],
                 value='Fertility rate, total (births per woman)'
             ),
             dcc.RadioItems(
@@ -1026,12 +1027,13 @@ app.layout = html.Div([
                 labelStyle={'display': 'inline-block'}
             )
         ],
-        style={'width': '49%', 'display': 'inline-block'}),
+            style={'width': '49%', 'display': 'inline-block'}),
 
         html.Div([
             dcc.Dropdown(
                 id='crossfilter-yaxis-column',
-                options=[{'label': i, 'value': i} for i in available_indicators],
+                options=[{'label': i, 'value': i}
+                         for i in available_indicators],
                 value='Life expectancy at birth, total (years)'
             ),
             dcc.RadioItems(
@@ -1070,29 +1072,35 @@ app.layout = html.Div([
 
 
 @app.callback(
-    dash.dependencies.Output('crossfilter-indicator-scatter', 'figure'),
-    [dash.dependencies.Input('crossfilter-xaxis-column', 'value'),
-     dash.dependencies.Input('crossfilter-yaxis-column', 'value'),
-     dash.dependencies.Input('crossfilter-xaxis-type', 'value'),
-     dash.dependencies.Input('crossfilter-yaxis-type', 'value'),
-     dash.dependencies.Input('crossfilter-year--slider', 'value')])
+    Output('crossfilter-indicator-scatter', 'figure'),
+    [Input('crossfilter-xaxis-column', 'value'),
+     Input('crossfilter-yaxis-column', 'value'),
+     Input('crossfilter-xaxis-type', 'value'),
+     Input('crossfilter-yaxis-type', 'value'),
+     Input('crossfilter-year--slider', 'value')])
 def update_graph(xaxis_column_name, yaxis_column_name,
                  xaxis_type, yaxis_type,
                  year_value):
     dff = df[df['Year'] == year_value]
 
     fig = px.scatter(x=dff[dff['Indicator Name'] == xaxis_column_name]['Value'],
-            y=dff[dff['Indicator Name'] == yaxis_column_name]['Value'],
-            hover_name=dff[dff['Indicator Name'] == yaxis_column_name]['Country Name']
-            )
+                     y=dff[dff['Indicator Name'] ==
+                           yaxis_column_name]['Value'],
+                     hover_name=dff[dff['Indicator Name'] ==
+                                    yaxis_column_name]['Country Name']
+                     )
 
-    fig.update_traces(customdata=dff[dff['Indicator Name'] == yaxis_column_name]['Country Name'])
+    fig.update_traces(
+        customdata=dff[dff['Indicator Name'] == yaxis_column_name]['Country Name'])
 
-    fig.update_xaxes(title=xaxis_column_name, type='linear' if xaxis_type == 'Linear' else 'log')
+    fig.update_xaxes(title=xaxis_column_name,
+                     type='linear' if xaxis_type == 'Linear' else 'log')
 
-    fig.update_yaxes(title=yaxis_column_name, type='linear' if yaxis_type == 'Linear' else 'log')
+    fig.update_yaxes(title=yaxis_column_name,
+                     type='linear' if yaxis_type == 'Linear' else 'log')
 
-    fig.update_layout(margin={'l': 40, 'b': 40, 't': 10, 'r': 0}, hovermode='closest')
+    fig.update_layout(
+        margin={'l': 40, 'b': 40, 't': 10, 'r': 0}, hovermode='closest')
 
     return fig
 
@@ -1117,10 +1125,10 @@ def create_time_series(dff, axis_type, title):
 
 
 @app.callback(
-    dash.dependencies.Output('x-time-series', 'figure'),
-    [dash.dependencies.Input('crossfilter-indicator-scatter', 'hoverData'),
-     dash.dependencies.Input('crossfilter-xaxis-column', 'value'),
-     dash.dependencies.Input('crossfilter-xaxis-type', 'value')])
+    Output('x-time-series', 'figure'),
+    [Input('crossfilter-indicator-scatter', 'hoverData'),
+     Input('crossfilter-xaxis-column', 'value'),
+     Input('crossfilter-xaxis-type', 'value')])
 def update_y_timeseries(hoverData, xaxis_column_name, axis_type):
     country_name = hoverData['points'][0]['customdata']
     dff = df[df['Country Name'] == country_name]
@@ -1130,10 +1138,10 @@ def update_y_timeseries(hoverData, xaxis_column_name, axis_type):
 
 
 @app.callback(
-    dash.dependencies.Output('y-time-series', 'figure'),
-    [dash.dependencies.Input('crossfilter-indicator-scatter', 'hoverData'),
-     dash.dependencies.Input('crossfilter-yaxis-column', 'value'),
-     dash.dependencies.Input('crossfilter-yaxis-type', 'value')])
+    Output('y-time-series', 'figure'),
+    [Input('crossfilter-indicator-scatter', 'hoverData'),
+     Input('crossfilter-yaxis-column', 'value'),
+     Input('crossfilter-yaxis-type', 'value')])
 def update_x_timeseries(hoverData, yaxis_column_name, axis_type):
     dff = df[df['Country Name'] == hoverData['points'][0]['customdata']]
     dff = dff[dff['Indicator Name'] == yaxis_column_name]
@@ -1147,7 +1155,7 @@ if __name__ == '__main__':
 
 尝试将鼠标悬停在左侧散点图中的点上。请注意，右侧的折线图是如何根据您悬停的点进行更新的。
 
-### Generic Crossfilter Recipe
+### 通用交叉过滤食谱
 
 <details><summary>这是对六列数据集进行交叉过滤的更通用的示例。每个散点图的选择都会过滤基础数据集。</summary>
 
@@ -1239,9 +1247,9 @@ if __name__ == '__main__':
 
 尝试单击并拖动任何图以过滤不同区域。在每次选择时，将使用每个图的最新选定区域触发三个图形回调。根据所选点过滤熊猫数据帧，并以突出显示所选点的方式重新绘制图形，并将所选区域绘制为虚线矩形。
 
->顺便说一句，如果您发现自己过滤和可视化高维数据集，则应考虑检查平行坐标图表类型。
+>顺便说一句，如果您发现自己过滤和可视化高维数据集，则应考虑检查[并行坐标图表类型](https://plotly.com/python/parallel-coordinates-plot/)。
 
-### Current Limitations
+### 当前的局限性
 
 目前，图形交互存在一些限制。
 
@@ -1348,7 +1356,7 @@ def update_output_1(value):
 
 下面的三个示例说明了这些方法。
 
-#### 示例1-在具有隐藏 Div 的浏览器中存储数据
+#### 示例1 在具有隐藏 Div 的浏览器中存储数据
 
 要在用户浏览器的会话中保存数据，请执行以下操作：
 
@@ -1400,7 +1408,7 @@ def update_table(jsonified_cleaned_data):
 ```
 </details>
 
-#### 示例2- Computing Aggregations Upfront
+#### 示例2 前期聚合计算
 
 如果数据很大，则通过网络发送计算的数据可能会很昂贵。在某些情况下，序列化此数据和 JSON 可能也很昂贵。
 
@@ -1459,7 +1467,7 @@ def update_graph_3(jsonified_cleaned_data):
 ```
 </details>
 
-#### 示例3- Caching and Signaling
+#### 示例3 缓存和信号
 
 这个例子：
 
@@ -1626,7 +1634,7 @@ if __name__ == '__main__':
 ```
 </details>
 
-#### 示例4-服务器上基于用户的会话数据
+#### 示例4 服务器上基于用户的会话数据
 
 前面的示例在文件系统上缓存了计算，并且所有用户都可以访问这些计算。
 
@@ -1708,7 +1716,6 @@ def get_dataframe(session_id):
 
 def serve_layout():
     session_id = str(uuid.uuid4())
-
     return html.Div([
         html.Div(session_id, id='session-id', style={'display': 'none'}),
         html.Button('Get data', id='get-data-button'),
