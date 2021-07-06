@@ -895,37 +895,37 @@ wsgiapp <span class="token operator">=</span> cherrypy<span class="token punctua
 
 <h2 id="Reverse-proxying"><a href="#Reverse-proxying" class="headerlink" title="Reverse-proxying"></a>Reverse-proxying</h2><p>nginx 是一种快速，现代化的 HTTP 服务器，占地面积小。作为对诸如 CherryPy 之类的应用程序服务器的反向代理，它是一种流行的选择。</p>
 <p>本节将不介绍 nginx 提供的全部功能。相反，它只会为您提供一个基本的配置，可以作为一个很好的起点。</p>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token keyword">upstream</span> apps <span class="token punctuation">{</span>
-   <span class="token keyword">server</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8080</span><span class="token punctuation">;</span>
-   <span class="token keyword">server</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8081</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">upstream</span> apps</span> <span class="token punctuation">{</span>
+   <span class="token directive"><span class="token keyword">server</span> 127.0.0.1:8080</span><span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">server</span> 127.0.0.1:8081</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">gzip_http_version</span> <span class="token number">1.0</span><span class="token punctuation">;</span>
-<span class="token keyword">gzip_proxied</span>      any<span class="token punctuation">;</span>
-<span class="token keyword">gzip_min_length</span>   <span class="token number">500</span><span class="token punctuation">;</span>
-<span class="token keyword">gzip_disable</span>      <span class="token string">"MSIE [1-6]\."</span><span class="token punctuation">;</span>
-<span class="token keyword">gzip_types</span>        text<span class="token operator">/</span>plain text<span class="token operator">/</span>xml text<span class="token operator">/</span>css
-                  text<span class="token operator">/</span>javascript
-                  application<span class="token operator">/</span>javascript<span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">gzip_http_version</span> 1.0</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">gzip_proxied</span>      any</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">gzip_min_length</span>   <span class="token number">500</span></span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">gzip_disable</span>      <span class="token string">"MSIE [1-6]\."</span></span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">gzip_types</span>        text/plain text/xml text/css
+                  text/javascript
+                  application/javascript</span><span class="token punctuation">;</span>
 
-<span class="token keyword">server</span> <span class="token punctuation">{</span>
-   <span class="token keyword">listen</span> <span class="token number">80</span><span class="token punctuation">;</span>
-   <span class="token keyword">server_name</span>  www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
+   <span class="token directive"><span class="token keyword">listen</span> <span class="token number">80</span></span><span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">server_name</span>  www.example.com</span><span class="token punctuation">;</span>
 
-   <span class="token keyword">access_log</span>  <span class="token operator">/</span>app<span class="token operator">/</span>logs<span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<span class="token punctuation">.</span>log combined<span class="token punctuation">;</span>
-   <span class="token keyword">error_log</span>  <span class="token operator">/</span>app<span class="token operator">/</span>logs<span class="token operator">/</span>www<span class="token punctuation">.</span>example<span class="token punctuation">.</span>com<span class="token punctuation">.</span>log<span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">access_log</span>  /app/logs/www.example.com.log combined</span><span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">error_log</span>  /app/logs/www.example.com.log</span><span class="token punctuation">;</span>
 
-   <span class="token keyword">location</span> <span class="token operator">^</span><span class="token operator">~</span> <span class="token operator">/</span>static<span class="token operator">/</span>  <span class="token punctuation">{</span>
-      <span class="token keyword">root</span> <span class="token operator">/</span>app<span class="token operator">/</span>static<span class="token operator">/</span><span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">location</span> ^~ /static/</span>  <span class="token punctuation">{</span>
+      <span class="token directive"><span class="token keyword">root</span> /app/static/</span><span class="token punctuation">;</span>
    <span class="token punctuation">}</span>
 
-   <span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">{</span>
-      <span class="token keyword">proxy_pass</span>         <span class="token keyword">http</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>apps<span class="token punctuation">;</span>
-      <span class="token keyword">proxy_redirect</span>     off<span class="token punctuation">;</span>
-      <span class="token keyword">proxy_set_header</span>   Host <span class="token variable">$host</span><span class="token punctuation">;</span>
-      <span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Real<span class="token operator">-</span>IP <span class="token variable">$remote_addr</span><span class="token punctuation">;</span>
-      <span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>For <span class="token variable">$proxy_add_x_forwarded_for</span><span class="token punctuation">;</span>
-      <span class="token keyword">proxy_set_header</span>   X<span class="token operator">-</span>Forwarded<span class="token operator">-</span>Host <span class="token variable">$server_name</span><span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
+      <span class="token directive"><span class="token keyword">proxy_pass</span>         http://apps</span><span class="token punctuation">;</span>
+      <span class="token directive"><span class="token keyword">proxy_redirect</span>     <span class="token boolean">off</span></span><span class="token punctuation">;</span>
+      <span class="token directive"><span class="token keyword">proxy_set_header</span>   Host <span class="token variable">$host</span></span><span class="token punctuation">;</span>
+      <span class="token directive"><span class="token keyword">proxy_set_header</span>   X-Real-IP <span class="token variable">$remote_addr</span></span><span class="token punctuation">;</span>
+      <span class="token directive"><span class="token keyword">proxy_set_header</span>   X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span></span><span class="token punctuation">;</span>
+      <span class="token directive"><span class="token keyword">proxy_set_header</span>   X-Forwarded-Host <span class="token variable">$server_name</span></span><span class="token punctuation">;</span>
    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -935,9 +935,9 @@ $ sudo service nginx start<span aria-hidden="true" class="line-numbers-rows"><sp
 
 <p>希望这足以将达到 nginx 前端的请求转发到您的 CherryPy 应用程序。<code>upstream</code> 块定义了 CherryPy 实例的地址。</p>
 <p>它表明您可以在两个应用程序服务器之间进行负载平衡。请参阅 nginx 文档以了解如何实现。</p>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token keyword">upstream</span> apps <span class="token punctuation">{</span>
-   <span class="token keyword">server</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8080</span><span class="token punctuation">;</span>
-   <span class="token keyword">server</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span><span class="token punctuation">:</span><span class="token number">8081</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">upstream</span> apps</span> <span class="token punctuation">{</span>
+   <span class="token directive"><span class="token keyword">server</span> 127.0.0.1:8080</span><span class="token punctuation">;</span>
+   <span class="token directive"><span class="token keyword">server</span> 127.0.0.1:8081</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>稍后，此块用于定义反向代理部分。</p>

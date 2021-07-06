@@ -15,7 +15,7 @@
     <meta name="description" content="Dash 是用于构建 Web 分析应用程序的高效 Python 框架。Dash 建立在 Flask，Plotly.js 和 React.js 之上，是使用纯 Python 使用高度自定义用户界面构建数据可视化应用程序的理想选择。它特别适合使用 Python 处理数据的任何人。 通过几个简单的模式，Dash 提取了构建基于 Web 的交互式应用程序所需的所有技术和协议。Dash 应用程序在 Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dash 教程">
-<meta property="og:url" content="https://xinetzone.github.io/post/zh-CN/6ee87d64e6ca.html">
+<meta property="og:url" content="https://xinetzone.github.io/dash/zh-CN/6ee87d64e6ca.html">
 <meta property="og:site_name" content="上善若水">
 <meta property="og:description" content="Dash 是用于构建 Web 分析应用程序的高效 Python 框架。Dash 建立在 Flask，Plotly.js 和 React.js 之上，是使用纯 Python 使用高度自定义用户界面构建数据可视化应用程序的理想选择。它特别适合使用 Python 处理数据的任何人。 通过几个简单的模式，Dash 提取了构建基于 Web 的交互式应用程序所需的所有技术和协议。Dash 应用程序在 Web">
 <meta property="og:locale" content="zh_CN">
@@ -601,7 +601,7 @@
     <div id="articleContent">
         <p>Dash 是用于构建 Web 分析应用程序的高效 Python 框架。Dash 建立在 Flask，Plotly.js 和 React.js 之上，是使用纯 Python 使用高度自定义用户界面构建数据可视化应用程序的理想选择。它特别适合使用 Python 处理数据的任何人。</p>
 <p>通过几个简单的模式，Dash 提取了构建基于 Web 的交互式应用程序所需的所有技术和协议。Dash 应用程序在 Web 浏览器中呈现。您可以将应用程序部署到服务器，然后通过 URL 共享它们。由于 Dash 应用程序是在 Web 浏览器中查看的，因此 Dash 本质上是跨平台且可移动部署的。</p>
-<h2 id="Dash-Layout"><a href="#Dash-Layout" class="headerlink" title="Dash Layout"></a>Dash Layout</h2><p>Dash 应用程序由两部分组成。第一部分是应用程序的“<code>layout</code>”，它描述了应用程序的外观。第二部分描述了应用程序的交互性，并将在下一章中介绍。</p>
+<h2 id="Dash-布局"><a href="#Dash-布局" class="headerlink" title="Dash 布局"></a>Dash 布局</h2><p>Dash 应用程序由两部分组成。第一部分是应用程序的“<code>layout</code>”，它描述了应用程序的外观。第二部分描述了应用程序的交互性，并将在下一章中介绍。</p>
 <p>Dash 为应用程序的所有可视组件提供了 Python 类。我们在 <code>dash_core_components</code> 和 <code>dash_html_components</code> 库中维护了一组组件，但是您也可以使用 JavaScript 和 React.js <a target="_blank" rel="noopener" href="https://github.com/plotly/dash-component-boilerplate">构建自己的组件</a>。</p>
 <p>看一个例子：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># Run this app with `python app.py` and</span>
@@ -943,7 +943,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <li><a target="_blank" rel="noopener" href="https://dash.plotly.com/dash-html-components"><code>dash_html_components</code> 画廊</a></li>
 </ul>
 <p>Dash 教程的下一部分将介绍如何使这些应用程序具有交互性。</p>
-<h2 id="Basic-Dash-Callbacks"><a href="#Basic-Dash-Callbacks" class="headerlink" title="Basic Dash Callbacks"></a>Basic Dash Callbacks</h2><p>在上一章中，我们了解到<code>app.layout</code>描述了应用程序的外观，并且是组件的分层树。<code>dash_html_components</code>库提供了所有 HTML 标记的类，关键字参数描述了 HTML 属性，例如样式，<code>className</code>和 <code>id</code>。<code>dash_core_components</code> 库生成更高级别的组件，如控件和图形。本章介绍如何使用回调函数制作 Dash 应用程序：每当输入组件的属性发生更改时 Dash 会自动调用的 Python 函数。</p>
+<h2 id="Dash-基础回调"><a href="#Dash-基础回调" class="headerlink" title="Dash 基础回调"></a>Dash 基础回调</h2><p>在上一章中，我们了解到<code>app.layout</code>描述了应用程序的外观，并且是组件的分层树。<code>dash_html_components</code>库提供了所有 HTML 标记的类，关键字参数描述了 HTML 属性，例如 <code>style</code>，<code>className</code> 和 <code>id</code>。<code>dash_core_components</code> 库生成更高级别的组件，如控件和图形。本章介绍如何使用回调函数制作 Dash 应用程序：每当输入组件的属性发生更改时 Dash 会自动调用的 Python 函数。</p>
 <p>为了获得最佳的用户交互和图表加载性能，生产Dash应用程序应考虑 Dash Enterprise 的&nbsp;<a target="_blank" rel="noopener" href="https://plotly.com/dash/job-queue">Job Queue</a>,&nbsp;<a target="_blank" rel="noopener" href="https://plotly.com/dash/big-data-for-python">HPC</a>,&nbsp;<a target="_blank" rel="noopener" href="https://plotly.com/dash/big-data-for-python">Datashader</a>, 和&nbsp;<a target="_blank" rel="noopener" href="https://plotly.com/dash/kubernetes">horizontal scaling</a> 功能。</p>
 <p>让我们从一个交互式 Dash 应用程序的简单示例开始。</p>
 <h3 id="简单的交互式-Dash-App"><a href="#简单的交互式-Dash-App" class="headerlink" title="简单的交互式 Dash App"></a>简单的交互式 Dash App</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> dash
@@ -984,7 +984,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <ol type="a">
 <li>通过编写此装饰器，我们告诉 Dash 每当 "input" 组件（文本框）的值更改时为我们调用此函数，以便更新页面上 "output" 组件的子级（HTML div）。</li>
 <li>您可以为<code>@app.callback</code>装饰器包装的函数使用任何名称。约定是该名称描述了回调输出。</li>
-<li>您可以为函数参数使用任何名称，但是必须像在常规 Python 函数中一样在回调函数中使用与定义时相同的名称。参数是位置性的：首先以与装饰器中相同的顺序给出 `Input` 项，然后给出任何 `State` 项。</li>
+<li>您可以为函数参数使用任何名称，但是必须像在常规 Python 函数中一样在回调函数中使用与定义时相同的名称。参数是位置性的：首先以与装饰器中相同的顺序给出 <code>Input</code> 项，然后给出任何 <code>State</code> 项。</li>
 <li>当引用它作为<code>@app.callback</code>装饰器的输入或输出时，必须使用与给<code>app.layout</code>中的 Dash 组件相同的 ID。</li>
 <li><code>@app.callback</code>装饰器需要直接位于回调函数声明的上方。如果装饰器和函数定义之间有空白行，则回调注册将不会成功。</li>
 <li>如果您对装饰器语法的含义感到好奇，可以阅读此 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/739654/how-to-make-a-chain-of-function-decorators/1594484#1594484">StackOverflow 答案</a>，并通过阅读 <a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0318/#current-syntax">PEP 318-函数和方法的装饰器</a> 来了解有关装饰器的更多信息。</li>
@@ -996,12 +996,12 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <li>每当输入属性更改时，回调装饰器包装的函数将自动被调用。Dash 为函数提供输入属性的新值作为输入参数，Dash 使用函数返回的值更新输出组件的属性。</li>
 <li><code>component_id</code> 和 <code>component_property</code> 关键字是可选的（每个对象只有两个参数）。为了清楚起见，它们包含在此示例中，但是为了简洁和易读起见，在本文档的其余部分中将省略它们。</li>
 <li>不要混淆<code>dash.dependencies.Input</code>对象和<code>dash_core_components.Input</code>对象。前者仅用于这些回调中，而后者是实际组件。</li>
-<li>注意，我们如何不为<code>layout</code>中的<code>my-output</code>组件的<code>children</code>属性设置值。Dash 应用程序启动时，它将自动使用输入组件的初始值调用所有回调，以填充输出组件的初始状态。在此示例中，如果您指定了类似 <code>html.Div(id='my-output', children='Hello world')</code> 的名称，则在应用启动时它将被覆盖。</li>
+<li>注意，我们没有在布局中为 <code>my-output</code> 组件的 <code>children</code> 属性设置值。Dash 应用程序启动时，它将自动使用输入组件的初始值调用所有回调，以填充输出组件的初始状态。在此示例中，如果您指定了类似 <code>html.Div(id='my-output', children='Hello world')</code> 的名称，则在应用启动时它将被覆盖。</li>
 </ol>
 <p>这有点像使用 Microsoft Excel 进行编程：每当输入单元格发生更改时，依赖于该单元格的所有单元格都会自动更新。这称为“反应式编程”（”Reactive Programming”）。</p>
 <p>还记得每个组件是如何通过其一组关键字参数进行完整描述的吗？这些属性现在很重要。借助 Dash 交互性，我们可以通过回调函数动态更新这些属性中的任何一个。通常，我们将更新组件的<code>children</code>以显示新文本，或者更新<code>dcc.Graph</code>组件的<code>figure</code>以显示新数据，但是我们还可以更新组件的<code>style</code>，甚至更新<code>dcc.Dropdown</code>组件可用的<code>options</code>！</p>
 <p>让我们看一下另一个示例，其中<code>dcc.Slider</code>更新了<code>dcc.Graph</code>。</p>
-<h3 id="Dash-App-Layout-With-Figure-and-Slider"><a href="#Dash-App-Layout-With-Figure-and-Slider" class="headerlink" title="Dash App Layout With Figure and Slider"></a>Dash App Layout With Figure and Slider</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> dash
+<h3 id="使用-Figure-和-Slider-布局-Dash-应用"><a href="#使用-Figure-和-Slider-布局-Dash-应用" class="headerlink" title="使用 Figure 和 Slider 布局 Dash 应用"></a>使用 Figure 和 Slider 布局 Dash 应用</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> dash
 <span class="token keyword">import</span> dash_core_components <span class="token keyword">as</span> dcc
 <span class="token keyword">import</span> dash_html_components <span class="token keyword">as</span> html
 <span class="token keyword">from</span> dash<span class="token punctuation">.</span>dependencies <span class="token keyword">import</span> Input<span class="token punctuation">,</span> Output
@@ -1055,7 +1055,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <li>回调不会修改原始数据，它只是通过 <code>pandas</code> 过滤器进行过滤来创建数据帧的副本。这很重要：您的回调函数绝不要在变量范围之外进行变量的更改。如果您的回调修改了全局状态，则一个用户的会话可能会影响下一个用户的会话，并且当应用程序部署在多个进程或线程上时，这些修改将不会在各个会话之间共享。</li>
 <li>我们正在使用<code>layout.transition</code>打开<code>transitions</code>，以了解数据集如何随时间演变：<code>transitions</code>允许图表从一个状态平滑地更新到下一个状态，就好像它是动态的一样。</li>
 </ol>
-<h3 id="Dash-App-With-Multiple-Inputs"><a href="#Dash-App-With-Multiple-Inputs" class="headerlink" title="Dash App With Multiple Inputs"></a>Dash App With Multiple Inputs</h3><p>在 Dash 中，任何<code>"Output"</code>可以具有多个<code>"Input"</code>组件。这是一个简单的示例，它将五个 Inputs（2个<code>Dropdown</code>组件，2个<code>RadioItems</code>组件和1个<code>Slider</code>组件的<code>value</code>属性）绑定到1个 Output 组件（<code>Graph</code>组件的<code>figure</code>属性）。请注意<code>app.callback</code>如何在第二个参数的列表内列出所有五个<code>dash.dependencies.Input</code>。</p>
+<h3 id="多输入的-Dash-应用"><a href="#多输入的-Dash-应用" class="headerlink" title="多输入的 Dash 应用"></a>多输入的 Dash 应用</h3><p>在 Dash 中，任何<code>"Output"</code>可以具有多个<code>"Input"</code>组件。这是一个简单的示例，它将五个 Inputs（2个<code>Dropdown</code>组件，2个<code>RadioItems</code>组件和1个<code>Slider</code>组件的<code>value</code>属性）绑定到1个 Output 组件（<code>Graph</code>组件的<code>figure</code>属性）。请注意<code>app.callback</code>如何在第二个参数的列表内列出所有五个<code>dash.dependencies.Input</code>。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> dash
 <span class="token keyword">import</span> dash_core_components <span class="token keyword">as</span> dcc
 <span class="token keyword">import</span> dash_html_components <span class="token keyword">as</span> html
@@ -1147,11 +1147,11 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
     app<span class="token punctuation">.</span>run_server<span class="token punctuation">(</span>debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>在此示例中，只要<code>Dropdown</code>，<code>Slider</code>或<code>RadioItems</code>组件的<code>value</code>属性发生更改，就会调用<code>update_grap</code>h函数。</p>
+<p>在此示例中，只要<code>Dropdown</code>，<code>Slider</code>或<code>RadioItems</code>组件的<code>value</code>属性发生更改，就会调用 <code>update_graph</code> 函数。</p>
 <p>按指定顺序，<code>update_graph</code>函数的输入参数是每个<code>Input</code>属性的新值或当前值。</p>
 <p>即使一次仅更改一个<code>Input</code>（用户只能在给定的时刻更改单个<code>Dropdown</code>的值），Dash 仍会收集所有指定<code>Input</code>属性的当前状态并将其传递给您的函数。您的回调函数始终保证传递给应用程序代表状态。</p>
 <p>让我们扩展示例以包括多个输出。</p>
-<h3 id="Dash-App-With-Multiple-Outputs"><a href="#Dash-App-With-Multiple-Outputs" class="headerlink" title="Dash App With Multiple Outputs"></a>Dash App With Multiple Outputs</h3><p>到目前为止，我们编写的所有回调仅更新单个<code>Output</code>属性。我们也可以一次更新几个：将要更新的所有属性作为列表放置在装饰器中，并从回调中返回那么多项。如果两个输出依赖于相同的计算密集型中间结果（例如慢速数据库查询），则特别好。</p>
+<h3 id="多输出的-Dash-应用"><a href="#多输出的-Dash-应用" class="headerlink" title="多输出的 Dash 应用"></a>多输出的 Dash 应用</h3><p>到目前为止，我们编写的所有回调仅更新单个<code>Output</code>属性。我们也可以一次更新几个：将要更新的所有属性作为列表放置在装饰器中，并从回调中返回那么多项。如果两个输出依赖于相同的计算密集型中间结果（例如慢速数据库查询），则特别好。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> dash
 <span class="token keyword">import</span> dash_core_components <span class="token keyword">as</span> dcc
 <span class="token keyword">import</span> dash_html_components <span class="token keyword">as</span> html
@@ -1196,7 +1196,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <li>如果输出依赖于某些而非全部相同的输入，则将它们分开可以避免不必要的更新。</li>
 <li>如果它们具有相同的输入，但使用这些输入进行独立的计算，则将回调分开设置可以使它们并行运行。</li>
 </ul>
-<h3 id="Dash-App-With-Chained-Callbacks"><a href="#Dash-App-With-Chained-Callbacks" class="headerlink" title="Dash App With Chained Callbacks"></a>Dash App With Chained Callbacks</h3><p>您也可以将输出和输入链接在一起：一个回调函数的输出可以是另一个回调函数的输入。</p>
+<h3 id="链式回调的-Dash-应用"><a href="#链式回调的-Dash-应用" class="headerlink" title="链式回调的 Dash 应用"></a>链式回调的 Dash 应用</h3><p>您也可以将输出和输入链接在一起：一个回调函数的输出可以是另一个回调函数的输入。</p>
 <p>此模式可用于创建动态 UI，其中一个输入组件将更新下一个输入组件的可用选项。这是一个简单的例子。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf-8 -*-</span>
 <span class="token keyword">import</span> dash
@@ -1259,7 +1259,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <p>第一个回调根据第一个<code>RadioItems</code>组件中的选定值更新第二个<code>RadioItems</code>组件中的可用选项。</p>
 <p>当<code>options</code>属性更改时，第二个回调将设置一个初始值：它将其设置为该<code>options</code>数组中的第一个值。</p>
 <p>最后的回调显示每个组件的选定<code>value</code>。如果更改国家<code>RadioItems</code>组件的<code>value</code>，则 Dash 将等待，直到更新了城市组件的值，然后才调用最后的回调。这样可以防止以<code>"America"</code>和<code>"Montréal"</code>之类的不一致状态调用您的回调。</p>
-<h3 id="Dash-App-With-State"><a href="#Dash-App-With-State" class="headerlink" title="Dash App With State"></a>Dash App With State</h3><p>在某些情况下，您的应用程序中可能会有“表单”类型的模式。在这种情况下，您可能希望读取输入组件的值，但是仅当用户完成了以表格形式输入其所有信息时才可以。</p>
+<h3 id="Dash-应用的-State"><a href="#Dash-应用的-State" class="headerlink" title="Dash 应用的 State"></a>Dash 应用的 State</h3><p>在某些情况下，您的应用程序中可能会有“表单”类型的模式。在这种情况下，您可能希望读取输入组件的值，但是仅当用户完成了以表格形式输入其所有信息时才可以。</p>
 <p>将回调直接附加到输入值可以看起来像这样：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf-8 -*-</span>
 <span class="token keyword">import</span> dash
@@ -1330,7 +1330,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <p>在此示例中，在<code>dcc.Input</code>框中更改文本不会触发回调，但单击按钮将起作用。<code>dcc.Input</code>值的当前值仍会传递到回调中，即使它们不会触发回调函数本身。</p>
 <p>请注意，我们通过侦听<code>html.Button</code>组件的<code>n_clicks</code>属性来触发回调。<code>n_clicks</code>是一个属性，每次单击该组件时该属性都会增强。它在<code>dash_html_components</code>库中的每个组件中都可用。</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>我们已经介绍了 Dash 中回调的基础。Dash 应用程序是基于一组简单但功能强大的原则构建的：声明性 UI，可通过反应性（reactive）和功能性（functional ）Python 回调进行自定义。声明性组件的每个元素属性都可以通过回调进行更新，并且该属性的子集（例如<code>dcc.Dropdown</code>的<code>value</code>属性）可以由用户在界面中进行编辑。</p>
-<h2 id="Interactive-Visualizations"><a href="#Interactive-Visualizations" class="headerlink" title="Interactive Visualizations"></a>Interactive Visualizations</h2><p><code>dash_core_components</code>库包含一个名为<code>Graph</code>的组件。</p>
+<h2 id="交互式可视化"><a href="#交互式可视化" class="headerlink" title="交互式可视化"></a>交互式可视化</h2><p><code>dash_core_components</code>库包含一个名为<code>Graph</code>的组件。</p>
 <p><code>Graph</code>使用开源 <a target="_blank" rel="noopener" href="https://github.com/plotly/plotly.js">plotly.js</a> JavaScript 图形库呈现交互式数据可视化。Plotly.js 支持超过 35 种图表类型，并以矢量质量 SVG 和高性能 WebGL 呈现图表。</p>
 <p><code>dash_core_components.Graph</code>组件中的 <code>figure</code> 参数与 Plotly 的开源 Python 图形库 <code>plotly.py</code> 使用的图形参数相同。请查看 <a target="_blank" rel="noopener" href="https://plotly.com/python">plotly.py 文档和画廊</a> 以了解更多信息。</p>
 <p>Dash 组件通过一组属性声明性地描述。所有这些属性都可以通过回调函数进行更新，但是这些属性的子集只能通过用户交互来更新，例如，当您单击<code>dcc.Dropdown</code>组件中的某个选项时，该组件的<code>value</code>属性将发生更改。</p>
@@ -1703,7 +1703,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
 <li>当前无法自定义悬停交互或选择框的样式。这个问题正在 <a target="_blank" rel="noopener" href="https://github.com/plotly/plotly.js/issues/1847">https://github.com/plotly/plotly.js/issues/1847</a> 中处理。</li>
 </ul>
 <p>这些交互式绘图功能可以做很多事情。如果需要帮助来探索用例，请在 <a target="_blank" rel="noopener" href="https://community.plotly.com/c/dash">Dash 社区论坛</a>中打开一个线程。</p>
-<h2 id="Sharing-Data-Between-Callbacks"><a href="#Sharing-Data-Between-Callbacks" class="headerlink" title="Sharing Data Between Callbacks"></a>Sharing Data Between Callbacks</h2><p><a target="_blank" rel="noopener" href="https://dash.plotly.com/basic-callbacks">Dash Callbacks入门指南</a> 中解释的 Dash 核心原则之一是，<strong>Dash Callback 绝不能修改超出其作用域的变量</strong>。修改任何<code>global</code>变量是不安全的。本章说明了原因，并提供了一些用于在回调之间共享状态的替代模式。</p>
+<h2 id="在回调之间共享数据"><a href="#在回调之间共享数据" class="headerlink" title="在回调之间共享数据"></a>在回调之间共享数据</h2><p><a target="_blank" rel="noopener" href="https://dash.plotly.com/basic-callbacks">Dash Callbacks入门指南</a> 中解释的 Dash 核心原则之一是，<strong>Dash Callback 绝不能修改超出其作用域的变量</strong>。修改任何<code>global</code>变量是不安全的。本章说明了原因，并提供了一些用于在回调之间共享状态的替代模式。</p>
 <h3 id="为什么要共享状态？"><a href="#为什么要共享状态？" class="headerlink" title="为什么要共享状态？"></a>为什么要共享状态？</h3><p>在某些应用中，您可能会有多个回调，这些回调依赖于昂贵的数据处理任务，例如进行 SQL 查询，运行模拟或下载数据。</p>
 <p>您可以让一个回调运行该任务，然后将结果共享给其余的回调，而不是让每个回调都运行相同的昂贵任务。</p>
 <p>现在，您可以为一个回调提供<a target="_blank" rel="noopener" href="https://dash.plotly.com/basic-callbacks">多个输出</a>，这种需求已得到一定程度的缓解。这样，该昂贵的任务可以一次完成，并立即在所有输出中使用。但是在某些情况下，这还是不理想的，例如，如果有简单的后续任务可以修改结果，例如单位转换。我们只需要将结果从华氏温度更改为摄氏温度，就不必重复大型数据库查询！</p>
@@ -2217,7 +2217,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://xinetzone.github.io/dao/post/zh-CN/6ee87d64e6ca.html">https://xinetzone.github.io/dao/post/zh-CN/6ee87d64e6ca.html</a>
+                    <a href="https://xinetzone.github.io/dao/dash/zh-CN/6ee87d64e6ca.html">https://xinetzone.github.io/dao/dash/zh-CN/6ee87d64e6ca.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -2456,7 +2456,7 @@ app<span class="token punctuation">.</span>layout <span class="token operator">=
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一页</div>
             <div class="card">
-                <a href="/dao/post/zh-CN/af03ad259480.html">
+                <a href="/dao/dash/zh-CN/af03ad259480.html">
                     <div class="card-image">
                         
                         

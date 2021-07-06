@@ -776,12 +776,12 @@ STOPPING --&gt; STOPPED --&gt; EXITING -&gt; X
     cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>Root<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这是我们得到的：</p>
-<pre class="line-numbers language-log" data-language="log"><code class="language-log">[27/Apr/2014:13:08:06] ENGINE Listening for SIGHUP.
-[27/Apr/2014:13:08:06] ENGINE Listening for SIGTERM.
-[27/Apr/2014:13:08:06] ENGINE Listening for SIGUSR1.
-[27/Apr/2014:13:08:06] ENGINE Bus STARTING
-[27/Apr/2014:13:08:06] ENGINE Started monitor thread 'Autoreloader'.
-[27/Apr/2014:13:08:06] ENGINE Bus STARTED<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-log" data-language="log"><code class="language-log"><span class="token punctuation">[</span><span class="token date number">27/Apr/2014</span><span class="token operator">:</span><span class="token time number">13:08:06</span><span class="token punctuation">]</span> ENGINE Listening for SIGHUP<span class="token punctuation">.</span>
+<span class="token punctuation">[</span><span class="token date number">27/Apr/2014</span><span class="token operator">:</span><span class="token time number">13:08:06</span><span class="token punctuation">]</span> ENGINE Listening for SIGTERM<span class="token punctuation">.</span>
+<span class="token punctuation">[</span><span class="token date number">27/Apr/2014</span><span class="token operator">:</span><span class="token time number">13:08:06</span><span class="token punctuation">]</span> ENGINE Listening for SIGUSR1<span class="token punctuation">.</span>
+<span class="token punctuation">[</span><span class="token date number">27/Apr/2014</span><span class="token operator">:</span><span class="token time number">13:08:06</span><span class="token punctuation">]</span> ENGINE Bus STARTING
+<span class="token punctuation">[</span><span class="token date number">27/Apr/2014</span><span class="token operator">:</span><span class="token time number">13:08:06</span><span class="token punctuation">]</span> ENGINE Started monitor thread <span class="token string">'Autoreloader'</span><span class="token punctuation">.</span>
+<span class="token punctuation">[</span><span class="token date number">27/Apr/2014</span><span class="token operator">:</span><span class="token time number">13:08:06</span><span class="token punctuation">]</span> ENGINE Bus STARTED<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如您所见，服务器未启动。消失了：</p>
 <pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">[27/Apr/2014:13:04:08] ENGINE Serving on http://127.0.0.1:8080<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
