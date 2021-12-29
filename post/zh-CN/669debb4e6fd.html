@@ -692,13 +692,13 @@ $ git config --global user.email 邮箱<span aria-hidden="true" class="line-numb
 <li>惊叹号（<code>!</code>）取反要忽略指定模式以外的文件或目录。</li>
 </ul>
 <p>当您通过 <code>git status</code> 查看文件的状态为均已经暂存时，您便可以使用 <code>git commit -m "提交的信息"</code> 命令将所有通过 git add 暂存的文件内容在数据库中创建一个持久的快照，然后将当前分支上的分支指针（即 HEAD）移到其之上。提交时记录的是放在暂存区域的快照，并以 SHA-1 校验码进行标识方便之后的版本转换。更多命令可以由下图解读：</p>
-<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid">graph LR
-A(History) --git reset -- files--&gt; B(Staged)
-B --git checkout -- files--&gt; C(Working Directory)
-B --git commit -m --&gt; A
-C --git add files--&gt; B
-C --git commit -a -m --&gt; A
-A --git checkout HEAD -- files--&gt; C<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> LR
+A<span class="token text string">(History)</span> <span class="token arrow operator">--</span>git reset <span class="token inter-arrow-label"><span class="token arrow-head arrow operator">--</span> <span class="token label property">files</span><span class="token arrow operator">--&gt;</span></span> B<span class="token text string">(Staged)</span>
+B <span class="token arrow operator">--</span>git checkout <span class="token inter-arrow-label"><span class="token arrow-head arrow operator">--</span> <span class="token label property">files</span><span class="token arrow operator">--&gt;</span></span> C<span class="token text string">(Working Directory)</span>
+B <span class="token arrow operator">--</span>git commit -m <span class="token arrow operator">--&gt;</span> A
+C <span class="token inter-arrow-label"><span class="token arrow-head arrow operator">--</span><span class="token label property">git add files</span><span class="token arrow operator">--&gt;</span></span> B
+C <span class="token arrow operator">--</span>git commit -a -m <span class="token arrow operator">--&gt;</span> A
+A <span class="token arrow operator">--</span>git checkout HEAD <span class="token inter-arrow-label"><span class="token arrow-head arrow operator">--</span> <span class="token label property">files</span><span class="token arrow operator">--&gt;</span></span> C<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如果您已经做了多次提交，那么 Git 会将您的提交的顺序进行记录，通过 <code>git log</code> 命令可以查看您的提交历史。（更多关于 <code>git log</code> 的用法请参阅 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">https://git-scm.com/book/zh/v2/Git-基础-查看提交历史</a>）。而您的每次提交均被 Git 以 SHA-1 码记录，这样一来，您便可以依据其将工作目录恢复到某个过去的时间节点。假如，您已经回到工作目录过去的某个时间节点，而您又想回到未来（相对于当前时间节点），那么，您可以借助 <code>git reflog</code> 来查找“未来”的时间节点，然后使用 <code>git checkout ID</code> 进行穿梭（ID 指的是 SHA-1 码）。工作目录的时间节点的状态是由 HEAD 进行指示的，故而，您也可以使用 <code>git reset --hard commit_id</code> 不断的切换 HEAD 达到穿梭时间的效果。</p>
 <p>有时候您提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行 <code>git commit -a -m</code> 提交命令尝试重新提交（其中 <code>-a</code> 表示 <code>--amend</code>）。</p>
