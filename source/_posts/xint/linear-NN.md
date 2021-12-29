@@ -72,7 +72,7 @@ $$
 <article>
 $$
 \tag{7}
-\mathbf{w}^{\ast}, b^{\ast} = \argmax_{\mathbf{w}^{\ast}, b^{\ast}} L(\mathbf{w}, b)
+\mathbf{w}^{\ast}, b^{\ast} = \argmin_{\mathbf{w}^{\ast}, b^{\ast}} L(\mathbf{w}, b)
 $$
 </article>
 
