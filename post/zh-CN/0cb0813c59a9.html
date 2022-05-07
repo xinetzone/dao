@@ -59,7 +59,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -725,18 +725,18 @@ categories: 教程 #文章文类
 tags: [hexo, github] #文章标签，多于一项时用这种格式
 ---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="修改-config-yml-匹配个人需求"><a href="#修改-config-yml-匹配个人需求" class="headerlink" title="修改 _config.yml 匹配个人需求"></a>修改 <code>_config.yml</code> 匹配个人需求</h2><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># Site
-title: 刘新伟的技术博客专栏 # 标题
-subtitle: # 子标题
-description: # 站点描述，给搜索引擎看的
-keywords: # 关键字
-author: 刘新伟
-language: zh-CN
-timezone: Asia/Shanghai # 时区<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="修改-config-yml-匹配个人需求"><a href="#修改-config-yml-匹配个人需求" class="headerlink" title="修改 _config.yml 匹配个人需求"></a>修改 <code>_config.yml</code> 匹配个人需求</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Site</span>
+<span class="token key atrule">title</span><span class="token punctuation">:</span> 刘新伟的技术博客专栏 <span class="token comment"># 标题</span>
+<span class="token key atrule">subtitle</span><span class="token punctuation">:</span> <span class="token comment"># 子标题</span>
+<span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token comment"># 站点描述，给搜索引擎看的</span>
+<span class="token key atrule">keywords</span><span class="token punctuation">:</span> <span class="token comment"># 关键字</span>
+<span class="token key atrule">author</span><span class="token punctuation">:</span> 刘新伟
+<span class="token key atrule">language</span><span class="token punctuation">:</span> zh<span class="token punctuation">-</span>CN
+<span class="token key atrule">timezone</span><span class="token punctuation">:</span> Asia/Shanghai <span class="token comment"># 时区</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其中，<code>description</code> 主要用于 SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code> 参数用于主题显示文章的作者。</p>
 <p>为了博客可以支持图片的上传需要修改 <code>_config.yml</code>：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">post_asset_folder: true # true 支持图片本地上传<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">post_asset_folder</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># true 支持图片本地上传</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>如果你的 Hexo 项目中只有少量图片，那最简单的方法就是将它们放在 <code>/docs/source/images</code> 文件夹中。然后通过类似于 <code>![](/images/image.jpg)</code>的方法访问它们，详细内容参考<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders.html">资源文件夹</a>。</p>
 <p>通过常规的 markdown 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。随着 Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源。</p>
@@ -1421,7 +1421,7 @@ timezone: Asia/Shanghai # 时区<span aria-hidden="true" class="line-numbers-row
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -1522,7 +1522,7 @@ timezone: Asia/Shanghai # 时区<span aria-hidden="true" class="line-numbers-row
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 

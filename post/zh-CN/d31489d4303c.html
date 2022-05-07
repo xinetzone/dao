@@ -48,7 +48,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -650,7 +650,7 @@ description: "你来到了没有知识的荒原 :("
 ---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="“关于”页面增加简历（可选）"><a href="#“关于”页面增加简历（可选）" class="headerlink" title="“关于”页面增加简历（可选）"></a>“关于”页面增加简历（可选）</h3><p>修改 <code>/book/themes/matery/layout/about.ejs</code>，找到 <code>&lt;div class="card"&gt;</code> 标签，然后找到它对应的 <code>&lt;/div&gt;</code> 标签，接在后面新增一个 card，语句如下：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"card"</span><span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"card-content"</span><span class="token operator">&gt;</span>
         <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"card-content article-card-content"</span><span class="token operator">&gt;</span>
             <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"title center-align"</span> data<span class="token operator">-</span>aos<span class="token operator">=</span><span class="token string">"zoom-in-up"</span><span class="token operator">&gt;</span>
@@ -668,28 +668,28 @@ description: "你来到了没有知识的荒原 :("
 $ npm install live2d-widget-model-shizuku<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>在 <code>/book/_config.yml</code> 最后添加：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">live2d:
-  enable: true # 默认为 false
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  tagMode: false
-  log: false
-  model:
-    use: live2d-widget-model-shizuku
-  display:
-    position: left
-    width: 200
-    height: 400
-  mobile:
-    show: true # 默认 false
-  react:
-    opacity: 0.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">live2d</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># 默认为 false</span>
+  <span class="token key atrule">scriptFrom</span><span class="token punctuation">:</span> local
+  <span class="token key atrule">pluginRootPath</span><span class="token punctuation">:</span> live2dw/
+  <span class="token key atrule">pluginJsPath</span><span class="token punctuation">:</span> lib/
+  <span class="token key atrule">pluginModelPath</span><span class="token punctuation">:</span> assets/
+  <span class="token key atrule">tagMode</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">log</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">model</span><span class="token punctuation">:</span>
+    <span class="token key atrule">use</span><span class="token punctuation">:</span> live2d<span class="token punctuation">-</span>widget<span class="token punctuation">-</span>model<span class="token punctuation">-</span>shizuku
+  <span class="token key atrule">display</span><span class="token punctuation">:</span>
+    <span class="token key atrule">position</span><span class="token punctuation">:</span> left
+    <span class="token key atrule">width</span><span class="token punctuation">:</span> <span class="token number">200</span>
+    <span class="token key atrule">height</span><span class="token punctuation">:</span> <span class="token number">400</span>
+  <span class="token key atrule">mobile</span><span class="token punctuation">:</span>
+    <span class="token key atrule">show</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># 默认 false</span>
+  <span class="token key atrule">react</span><span class="token punctuation">:</span>
+    <span class="token key atrule">opacity</span><span class="token punctuation">:</span> <span class="token number">0.7</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="图片添加水印"><a href="#图片添加水印" class="headerlink" title="图片添加水印"></a>图片添加水印</h3><p>为了防止别人抄袭你文章，可以把所有的图片都加上水印，方法很简单。</p>
 <p>首先新建一个 <code>/book/watermark.py</code>，代码如下：</p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py"><span class="token comment"># -*- coding: utf-8 -*-</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf-8 -*-</span>
 <span class="token keyword">import</span> sys
 <span class="token keyword">import</span> glob
 <span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
@@ -750,18 +750,18 @@ $ git push origin hexo<span aria-hidden="true" class="line-numbers-rows"><span><
 <p>最后还需要将 origin/hexo 设置为 Github 默认仓库。</p>
 <p>最终的效果展示可以 <span class="github-emoji"><span>📖</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a href="https://xinetzone.github.io/dao">https://xinetzone.github.io/dao</a>。</p>
 <h2 id="部署到-GitHub-时图片显示问题"><a href="#部署到-GitHub-时图片显示问题" class="headerlink" title="部署到 GitHub 时图片显示问题"></a>部署到 GitHub 时图片显示问题</h2><p>一般情况，hexo3 对于图片的显示可能会出现问题，解决方法是卸载 <code>hexo-render-marked-lazy</code>。如果还有问题，那么可能是链接出现问题，解决策略是将默认是链接方式改为永久性链接，<span class="github-emoji"><span>📖</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/book/permalinks.html">永久链接（Permalinks）</a> 以及 <a target="_blank" rel="noopener" href="https://post.zz173.com/detail/hexo-abbrlink-2.0.4.html">abbrlink更新2.0.4说明</a>。<code>/book/_config.yml</code> 要做两处修改：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">permalink: :lang/:abbrlink.html # :lang/:title/（多语言） 或者 :year/:month/:day/:title/
-abbrlink:
-  alg: crc32  # 算法：crc16(default) and crc32
-  rep: hex    # 进制：dec(default) and hex
-permalink_defaults:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">permalink</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>lang/<span class="token punctuation">:</span>abbrlink.html <span class="token comment"># :lang/:title/（多语言） 或者 :year/:month/:day/:title/</span>
+<span class="token key atrule">abbrlink</span><span class="token punctuation">:</span>
+  <span class="token key atrule">alg</span><span class="token punctuation">:</span> crc32  <span class="token comment"># 算法：crc16(default) and crc32</span>
+  <span class="token key atrule">rep</span><span class="token punctuation">:</span> hex    <span class="token comment"># 进制：dec(default) and hex</span>
+permalink_defaults<span class="token punctuation">:</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>与</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># Writing
-new_post_name: :lang/:title.md # File name of new posts，支持多语言<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Writing</span>
+<span class="token key atrule">new_post_name</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>lang/<span class="token punctuation">:</span>title.md <span class="token comment"># File name of new posts，支持多语言</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="修改首页页脚显示"><a href="#修改首页页脚显示" class="headerlink" title="修改首页页脚显示"></a>修改首页页脚显示</h2><p>下面是我修改的部分代码：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span>footer <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"page-footer bg-color"</span><span class="token operator">&gt;</span>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>footer <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"page-footer bg-color"</span><span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"container row center-align"</span><span class="token operator">&gt;</span>
         <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"col s12 m8 l8 copy-right"</span><span class="token operator">&gt;</span>
             本站由<span class="token operator">&amp;</span>copy<span class="token punctuation">;</span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://xinetzone.github.io/"</span> target<span class="token operator">=</span><span class="token string">"_blank"</span><span class="token operator">&gt;</span>xinetzone<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>基于
@@ -798,14 +798,14 @@ new_post_name: :lang/:title.md # File name of new posts，支持多语言<span a
 
 <p>具体的布局方式，可以参考：<a target="_blank" rel="noopener" href="http://www.materializecss.cn/grid.html">materializecss: 网格</a>。</p>
 <h2 id="修改社交链接"><a href="#修改社交链接" class="headerlink" title="修改社交链接"></a>修改社交链接</h2><p>对于 Github 只需要修改其对应文件的 <code>/book/../thems/layout/_partial/social-link.ejs</code> 为：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>theme<span class="token punctuation">.</span>socialLink<span class="token punctuation">.</span>github<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>theme<span class="token punctuation">.</span>socialLink<span class="token punctuation">.</span>github<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://github.com/&lt;%= theme.socialLink.github %&gt;"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"tooltipped"</span> target<span class="token operator">=</span><span class="token string">"_blank"</span> data<span class="token operator">-</span>tooltip<span class="token operator">=</span><span class="token string">"访问我的GitHub"</span> data<span class="token operator">-</span>position<span class="token operator">=</span><span class="token string">"top"</span> data<span class="token operator">-</span>delay<span class="token operator">=</span><span class="token string">"50"</span><span class="token operator">&gt;</span>
         <span class="token operator">&lt;</span>i <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fa fa-github"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>i<span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
 <span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token punctuation">}</span> <span class="token operator">%</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>可以添加领英：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>theme<span class="token punctuation">.</span>socialLink<span class="token punctuation">.</span>Linkedin<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">%</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>theme<span class="token punctuation">.</span>socialLink<span class="token punctuation">.</span>Linkedin<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">%</span><span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://www.linkedin.com/in/&lt;%= theme.socialLink.Linkedin %&gt;"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"tooltipped"</span> data<span class="token operator">-</span>tooltip<span class="token operator">=</span><span class="token string">"领英联系我: &lt;%= theme.socialLink.Linkedin %&gt;"</span> data<span class="token operator">-</span>position<span class="token operator">=</span><span class="token string">"top"</span> data<span class="token operator">-</span>delay<span class="token operator">=</span><span class="token string">"50"</span><span class="token operator">&gt;</span>
         <span class="token operator">&lt;</span>i <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"fa fa-linkedin"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>i<span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
@@ -840,9 +840,9 @@ categories: # 文章分类，本主题的分类表示宏观上大的分类，只
 <p>系统会自动给你在 <code>/book/source</code> 文件夹下创建一个 <code>book</code> 文件夹，以及 <code>book</code> 文件夹中的 <code>index.md</code>，这样你访问的 <code>book</code> 对应的链接就是 <code>http://xxx.xxx/book</code>。</p>
 <p>然后在主题配置文件的 <code>menu</code> 菜单栏添加一个 <code>Yourdiy : /yourdiy</code>，注意冒号后面要有空格，以及前面的空格要和 <code>menu</code> 中默认的保持整齐。然后在 <code>languages</code> 文件夹中，找到 <code>zh-CN.yml</code>，在 <code>index</code> 中添加 <code>yourdiy: '中文意思'</code> 就可以显示中文了。</p>
 <p>比如在 <code>zh-CN.yml</code> 中添加：<code>book: 书籍</code>，在 <code>menu</code> 菜单栏中添加：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">书籍:
-    url: /book
-    icon: fa-book<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">书籍</span><span class="token punctuation">:</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> /book
+    <span class="token key atrule">icon</span><span class="token punctuation">:</span> fa<span class="token punctuation">-</span>book<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>如果您觉得麻烦，可以直接 fork 我已经配置好的博客模板 <a target="_blank" rel="noopener" href="https://github.com/xinetzone/xinetzone.github.io">xinetzone-matery</a> 并按照 README 进行操作即可。</p>
 
@@ -1513,7 +1513,7 @@ categories: # 文章分类，本主题的分类表示宏观上大的分类，只
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -1614,7 +1614,7 @@ categories: # 文章分类，本主题的分类表示宏观上大的分类，只
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 

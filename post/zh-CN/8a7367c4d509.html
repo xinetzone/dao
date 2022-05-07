@@ -49,7 +49,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -702,7 +702,7 @@ usernames <span class="token operator">=</span> <span class="token string">","</
 <p><img src="/dao/post/zh-CN/8a7367c4d509/cgi-hi1.png"></p>
 <h2 id="GET-和-POST-方法"><a href="#GET-和-POST-方法" class="headerlink" title="GET 和 POST 方法"></a>GET 和 POST 方法</h2><p>浏览器客户端通过两种方法向服务器传递信息，这两种方法就是 GET 方法和 POST 方法。</p>
 <h3 id="使用-GET-方法传输数据"><a href="#使用-GET-方法传输数据" class="headerlink" title="使用 GET 方法传输数据"></a>使用 GET 方法传输数据</h3><p>GET 方法发送编码后的用户信息到服务端，数据信息包含在请求页面的 URL上，以”<code>?</code>“号分割, 如下所示：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">http://www.test.com/cgi-bin/hello.py?key1=value1&amp;key2=value2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">http://www.test.com/cgi-bin/hello.py?key1=value1&amp;key2=value2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>有关 GET 请求的其他一些信息：</p>
 <ul>
@@ -714,7 +714,7 @@ usernames <span class="token operator">=</span> <span class="token string">","</
 <li>GET 请求只应当用于取回数据</li>
 </ul>
 <h4 id="简单的-URL-实例：GET-方法"><a href="#简单的-URL-实例：GET-方法" class="headerlink" title="简单的 URL 实例：GET 方法"></a>简单的 URL 实例：GET 方法</h4><p>以下是一个简单的 URL，使用 GET 方法向 <code>hello_get.py</code> 程序发送两个参数：</p>
-<pre class="line-numbers language-py" data-language="py"><code class="language-py">http<span class="token punctuation">:</span><span class="token operator">//</span>localhost<span class="token punctuation">:</span><span class="token number">8001</span><span class="token operator">/</span>cgi<span class="token operator">-</span><span class="token builtin">bin</span><span class="token operator">/</span>hello_get<span class="token punctuation">.</span>py?name<span class="token operator">=</span>上善若水<span class="token operator">&amp;</span>url<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">//</span>xinetzone<span class="token punctuation">.</span>github<span class="token punctuation">.</span>io<span class="token operator">/</span>dao<span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">http<span class="token punctuation">:</span><span class="token operator">//</span>localhost<span class="token punctuation">:</span><span class="token number">8001</span><span class="token operator">/</span>cgi<span class="token operator">-</span><span class="token builtin">bin</span><span class="token operator">/</span>hello_get<span class="token punctuation">.</span>py?name<span class="token operator">=</span>上善若水<span class="token operator">&amp;</span>url<span class="token operator">=</span>https<span class="token punctuation">:</span><span class="token operator">//</span>xinetzone<span class="token punctuation">.</span>github<span class="token punctuation">.</span>io<span class="token operator">/</span>dao<span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>以下为 <code>hello_get.py</code> 的代码：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cgi
@@ -767,7 +767,7 @@ site_url <span class="token operator">=</span> form<span class="token punctuatio
 <p>点击提交按钮将会自动跳转到 <a target="_blank" rel="noopener" href="http://localhost:8001/cgi-bin/hello_get.py?name=%E4%B8%8A%E5%96%84%E8%8B%A5%E6%B0%B4&amp;url=https://xinetzone.github.io/dao/">http://localhost:8001/cgi-bin/hello_get.py?name=上善若水&amp;url=https://xinetzone.github.io/dao/</a></p>
 <h3 id="使用-POST-方法传递数据"><a href="#使用-POST-方法传递数据" class="headerlink" title="使用 POST 方法传递数据"></a>使用 POST 方法传递数据</h3><p>使用 POST 方法向服务器传递数据是更安全可靠的，像一些敏感信息如用户密码等需要使用 POST 传输数据。</p>
 <p>以下同样是 <code>hello_get.py</code> ，它也可以处理浏览器提交的 POST 表单数据，以下为表单通过 POST 方法（<code>method="post"</code>）向服务器脚本 <code>hello_get.py</code> 提交数据：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-CN<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -789,7 +789,7 @@ site_url <span class="token operator">=</span> form<span class="token punctuatio
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="通过-CGI-程序传递-checkbox-数据"><a href="#通过-CGI-程序传递-checkbox-数据" class="headerlink" title="通过 CGI 程序传递 checkbox 数据"></a>通过 CGI 程序传递 checkbox 数据</h3><p><code>checkbox</code> 用于提交一个或者多个选项数据，HTML 代码如下：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-CN<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -1498,7 +1498,7 @@ form <span class="token operator">=</span> cgi<span class="token punctuation">.<
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -1599,7 +1599,7 @@ form <span class="token operator">=</span> cgi<span class="token punctuation">.<
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 

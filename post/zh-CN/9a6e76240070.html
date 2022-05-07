@@ -48,7 +48,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -814,7 +814,7 @@ cherrypy<span class="token punctuation">.</span>quickstart<span class="token pun
 <ol>
 <li>我们借助 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/string.html"><code>string</code></a>.<code>Template</code> 创建一个基础的 HTML 模板 <code>base.html</code>：</li>
 </ol>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${lang}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -907,7 +907,7 @@ html <span class="token operator">=</span> Html<span class="token punctuation">(
 html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-CN<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -948,7 +948,7 @@ httpd<span class="token punctuation">.</span>update<span class="token punctuatio
 cherrypy<span class="token punctuation">.</span>quickstart<span class="token punctuation">(</span>httpd<span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h3><p>创建 HTML 模板：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${lang}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -1056,7 +1056,7 @@ httpd<span class="token punctuation">.</span>quickstart<span class="token punctu
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>模板 HTML 则为：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${lang}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -1234,7 +1234,7 @@ tools.response_headers.headers = [('Content-Type', 'text/plain')]<span aria-hidd
 <ol start="2">
 <li>我们添加了一个有关元素的简单规则，该元素将显示生成的字符串。默认情况下，我们不显示它。将以下 HTML 代码保存到名为 <code>index.html</code> 的文件中。</li>
 </ol>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -1244,7 +1244,7 @@ tools.response_headers.headers = [('Content-Type', 'text/plain')]<span aria-hidd
         <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
             <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#generate-string"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/generator"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token string">"length"</span><span class="token operator">:</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='length']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                $<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/generator"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token string-property property">"length"</span><span class="token operator">:</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"input[name='length']"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
                     <span class="token punctuation">.</span><span class="token function">done</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                         <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#the-string"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                         <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#the-string input"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1254,9 +1254,9 @@ tools.response_headers.headers = [('Content-Type', 'text/plain')]<span aria-hidd
 
             <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#replace-string"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                    type<span class="token operator">:</span> <span class="token string">"PUT"</span><span class="token punctuation">,</span>
-                    url<span class="token operator">:</span> <span class="token string">"/generator"</span><span class="token punctuation">,</span>
-                    data<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string">"another_string"</span><span class="token operator">:</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#the-string input"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+                    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"PUT"</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">"/generator"</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string-property property">"another_string"</span><span class="token operator">:</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#the-string input"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>
                     <span class="token punctuation">.</span><span class="token function">done</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                         <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Replaced!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1266,8 +1266,8 @@ tools.response_headers.headers = [('Content-Type', 'text/plain')]<span aria-hidd
 
             <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#delete-string"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                    type<span class="token operator">:</span> <span class="token string">"DELETE"</span><span class="token punctuation">,</span>
-                    url<span class="token operator">:</span> <span class="token string">"/generator"</span>
+                    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"DELETE"</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">"/generator"</span>
                 <span class="token punctuation">}</span><span class="token punctuation">)</span>
                     <span class="token punctuation">.</span><span class="token function">done</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                         <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#the-string"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1471,7 +1471,7 @@ DB_STRING <span class="token operator">=</span> <span class="token string">"my.d
 <p>本教程演示了如何与 <code>React.js</code> 集成，<code>React.js</code> 是 Facebook 在 2013 年发布的 SPA Java 语言库。请参考 <code>React.js</code> 文档以了解更多信息。</p>
 <p>为了演示它，让我们使用上节教程中的代码。但是，我们将替换 HTML 和 JavaScript 代码。</p>
 <p>首先，让我们看看我们的 HTML 代码是如何变化的：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
@@ -1489,22 +1489,22 @@ DB_STRING <span class="token operator">=</span> <span class="token string">"my.d
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>基本上，我们删除了使用 jQuery 的整个 JavaScript 代码。取而代之的是，我们加载 <code>React.js</code> 库以及一个名为 <code>gen.js</code> 的新本地 JavaScript 模块，该模块位于 <code>public/js</code> 目录中：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> StringGeneratorBox <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> StringGeneratorBox <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   <span class="token function-variable function">handleGenerate</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> length <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        url<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
-        dataType<span class="token operator">:</span> <span class="token string">'text'</span><span class="token punctuation">,</span>
-        type<span class="token operator">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
-        data<span class="token operator">:</span> <span class="token punctuation">{</span>
-          <span class="token string">"length"</span><span class="token operator">:</span> length
+        <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
+        <span class="token literal-property property">dataType</span><span class="token operator">:</span> <span class="token string">'text'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string-property property">"length"</span><span class="token operator">:</span> length
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
           <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            length<span class="token operator">:</span> length<span class="token punctuation">,</span>
-            string<span class="token operator">:</span> data<span class="token punctuation">,</span>
-            mode<span class="token operator">:</span> <span class="token string">"edit"</span>
+            <span class="token literal-property property">length</span><span class="token operator">:</span> length<span class="token punctuation">,</span>
+            <span class="token literal-property property">string</span><span class="token operator">:</span> data<span class="token punctuation">,</span>
+            <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"edit"</span>
           <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">xhr<span class="token punctuation">,</span> status<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1519,16 +1519,16 @@ DB_STRING <span class="token operator">=</span> <span class="token string">"my.d
     <span class="token keyword">var</span> new_string <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>string<span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        url<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
-        type<span class="token operator">:</span> <span class="token string">'PUT'</span><span class="token punctuation">,</span>
-        data<span class="token operator">:</span> <span class="token punctuation">{</span>
-          <span class="token string">"another_string"</span><span class="token operator">:</span> new_string
+        <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'PUT'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string-property property">"another_string"</span><span class="token operator">:</span> new_string
         <span class="token punctuation">}</span><span class="token punctuation">,</span>
         <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
           <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            length<span class="token operator">:</span> new_string<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
-            string<span class="token operator">:</span> new_string<span class="token punctuation">,</span>
-            mode<span class="token operator">:</span> <span class="token string">"edit"</span>
+            <span class="token literal-property property">length</span><span class="token operator">:</span> new_string<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+            <span class="token literal-property property">string</span><span class="token operator">:</span> new_string<span class="token punctuation">,</span>
+            <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"edit"</span>
           <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">xhr<span class="token punctuation">,</span> status<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1542,13 +1542,13 @@ DB_STRING <span class="token operator">=</span> <span class="token string">"my.d
   <span class="token function-variable function">handleDelete</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        url<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
-        type<span class="token operator">:</span> <span class="token string">'DELETE'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'DELETE'</span><span class="token punctuation">,</span>
         <span class="token function-variable function">success</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
           <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            length<span class="token operator">:</span> <span class="token string">"8"</span><span class="token punctuation">,</span>
-            string<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-            mode<span class="token operator">:</span> <span class="token string">"create"</span>
+            <span class="token literal-property property">length</span><span class="token operator">:</span> <span class="token string">"8"</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">string</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"create"</span>
           <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">xhr<span class="token punctuation">,</span> status<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1561,23 +1561,23 @@ DB_STRING <span class="token operator">=</span> <span class="token string">"my.d
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function-variable function">handleLengthChange</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">length</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-      length<span class="token operator">:</span> length<span class="token punctuation">,</span>
-      string<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-      mode<span class="token operator">:</span> <span class="token string">"create"</span>
+      <span class="token literal-property property">length</span><span class="token operator">:</span> length<span class="token punctuation">,</span>
+      <span class="token literal-property property">string</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"create"</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function-variable function">handleStringChange</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">new_string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-      length<span class="token operator">:</span> new_string<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
-      string<span class="token operator">:</span> new_string<span class="token punctuation">,</span>
-      mode<span class="token operator">:</span> <span class="token string">"edit"</span>
+      <span class="token literal-property property">length</span><span class="token operator">:</span> new_string<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+      <span class="token literal-property property">string</span><span class="token operator">:</span> new_string<span class="token punctuation">,</span>
+      <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"edit"</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function-variable function">getInitialState</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      length<span class="token operator">:</span> <span class="token string">"8"</span><span class="token punctuation">,</span>
-      string<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-      mode<span class="token operator">:</span> <span class="token string">"create"</span>
+      <span class="token literal-property property">length</span><span class="token operator">:</span> <span class="token string">"8"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">string</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">"create"</span>
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1720,11 +1720,11 @@ React<span class="token punctuation">.</span><span class="token function">render
         self<span class="token punctuation">.</span>assertStatus<span class="token punctuation">(</span><span class="token string">'200 OK'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>启动测试：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ pytest -v test_tut12.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ pytest -v test_tut12.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>现在，我们有了一种巧妙的方法来进行应用程序测试。</p>
 <h3 id="增加代码覆盖率"><a href="#增加代码覆盖率" class="headerlink" title="增加代码覆盖率"></a><a target="_blank" rel="noopener" href="https://docs.cherrypy.org/en/latest/tutorials.html#id20">增加代码覆盖率</a></h3><p>要获得代码覆盖率，只需运行：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pytest --cov<span class="token operator">=</span>tut12 --cov-report term-missing test_tut12.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pytest --cov<span class="token operator">=</span>tut12 --cov-report term-missing test_tut12.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>要为 <code>pytest</code> <a target="_blank" rel="noopener" href="https://pytest-cov.rtfd.io/">添加覆盖支持</a>，您需要通过 <code>pip install pytest-cov</code> 进行安装。</p>
 <p>这告诉我们缺少一行。当然是因为仅在直接启动 Python 程序时才执行该操作。我们可以简单地在 <code>tut12.py</code> 中更改以下几行：</p>
@@ -2388,7 +2388,7 @@ React<span class="token punctuation">.</span><span class="token function">render
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -2489,7 +2489,7 @@ React<span class="token punctuation">.</span><span class="token function">render
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 

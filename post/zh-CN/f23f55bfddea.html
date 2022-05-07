@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -642,7 +642,7 @@
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"print 'add(1.2, 3.0)', result is"</span><span class="token punctuation">,</span> add<span class="token punctuation">(</span><span class="token number">1.2</span><span class="token punctuation">,</span> <span class="token number">3.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>输出结果并没有报错：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js">print <span class="token string">'add(1.2, 3.0)'</span><span class="token punctuation">,</span> result is <span class="token number">4.2</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">print <span class="token string">'add(1.2, 3.0)'</span><span class="token punctuation">,</span> result is <span class="token number">4.2</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="1-1-使用-inspect-检查-python-对象的类型"><a href="#1-1-使用-inspect-检查-python-对象的类型" class="headerlink" title="1.1 使用 inspect 检查 python 对象的类型"></a>1.1 使用 <code>inspect</code> 检查 python 对象的类型</h3><p>如果您想要让 Python 对类型进行检查，可以借助模块 <code>inspect</code>。比如：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1、类型检查</span>
@@ -659,14 +659,14 @@ sig <span class="token operator">=</span> signature<span class="token punctuatio
 sig<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出结果：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token operator">&lt;</span><span class="token function">Signature</span> <span class="token punctuation">(</span>x<span class="token operator">:</span> int<span class="token punctuation">,</span> y<span class="token operator">:</span> int <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> int<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token function">Signature</span> <span class="token punctuation">(</span>x<span class="token operator">:</span> int<span class="token punctuation">,</span> <span class="token literal-property property">y</span><span class="token operator">:</span> int <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> int<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>接着，可以直接获取函数的信息：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">params <span class="token operator">=</span> sig<span class="token punctuation">.</span>parameters  <span class="token comment"># 获取函数的参数信息</span>
 params<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>输出结果：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">mappingproxy</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'x'</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Parameter <span class="token string">"x: int"</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> <span class="token string">'y'</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Parameter <span class="token string">"y: int = 2"</span><span class="token operator">&gt;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">mappingproxy</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string-property property">'x'</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Parameter <span class="token string">"x: int"</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> <span class="token string-property property">'y'</span><span class="token operator">:</span> <span class="token operator">&lt;</span>Parameter <span class="token string">"y: int = 2"</span><span class="token operator">&gt;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>Parameter</code> 是 <code>inspect</code> 下的一个类，可以把它看做是一个有序字典，里面存放了函数的参数和参数类型，遍历 <code>params.values()</code> 的 annotation 属性会得到参数的注解类型：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> v <span class="token keyword">in</span> params<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -714,7 +714,7 @@ fish <span class="token operator">=</span> goods<span class="token punctuation">
 fish<span class="token punctuation">.</span>__annotations__<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出结果是（<code>Any</code> 代表 Python 很难表达的形式或者类型）：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token operator">:</span> str<span class="token punctuation">,</span> <span class="token string">'price'</span><span class="token operator">:</span> float<span class="token punctuation">,</span> <span class="token string">'return'</span><span class="token operator">:</span> typing<span class="token punctuation">.</span>Any<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">{</span><span class="token string-property property">'name'</span><span class="token operator">:</span> str<span class="token punctuation">,</span> <span class="token string-property property">'price'</span><span class="token operator">:</span> float<span class="token punctuation">,</span> <span class="token string-property property">'return'</span><span class="token operator">:</span> typing<span class="token punctuation">.</span>Any<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>可以看出，<code>__annotations__</code> 属性与 1.1 中的 <code>params.values()[k].annotations</code> 很相似。</p>
 <p>这样，可以改写其类型检查函数为：</p>
@@ -799,7 +799,7 @@ fish<span class="token punctuation">.</span>__annotations__<span aria-hidden="tr
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'</span><span class="token interpolation"><span class="token punctuation">{</span>书籍<span class="token punctuation">}</span></span><span class="token string">，花费的成本</span><span class="token interpolation"><span class="token punctuation">{</span>书籍<span class="token punctuation">.</span>花费成本<span class="token punctuation">}</span></span><span class="token string">元'</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>输出结果：</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">清单</span><span class="token punctuation">(</span>名称<span class="token operator">=</span><span class="token string">'书籍'</span><span class="token punctuation">,</span> 单价<span class="token operator">=</span><span class="token number">10.0</span><span class="token punctuation">,</span> 数量<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">)</span>，花费的成本<span class="token number">70.0</span>元<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">清单</span><span class="token punctuation">(</span>名称<span class="token operator">=</span><span class="token string">'书籍'</span><span class="token punctuation">,</span> 单价<span class="token operator">=</span><span class="token number">10.0</span><span class="token punctuation">,</span> 数量<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">)</span>，花费的成本<span class="token number">70.0</span>元<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>上面的代码模拟了出售商品的清单，整个代码看起来都很清爽。</p>
 
@@ -1470,7 +1470,7 @@ fish<span class="token punctuation">.</span>__annotations__<span aria-hidden="tr
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -1571,7 +1571,7 @@ fish<span class="token punctuation">.</span>__annotations__<span aria-hidden="tr
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 

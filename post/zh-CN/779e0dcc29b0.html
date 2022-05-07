@@ -43,7 +43,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -630,7 +630,7 @@ event_loop <span class="token operator">=</span> asyncio<span class="token punct
     event_loop<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>第一步是获取对事件循环的引用。可以使用默认的循环类型，或者可以实例化特定的循环类。在此示例中，使用默认循环。<code>run_until_complete()</code> 方法使用协程对象启动循环，并在协程退出返回时停止循环。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python asyncio_coroutine.py
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ python asyncio_coroutine.py
 starting coroutine
 entering event loop
 <span class="token keyword">in</span> coroutine
@@ -691,7 +691,7 @@ event_loop <span class="token operator">=</span> asyncio<span class="token punct
     
 asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python asyncio_coroutine_return.py
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ python asyncio_coroutine_return.py
 
 <span class="token keyword">in</span> coroutine
 it returned: 'result<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -727,7 +727,7 @@ it returned: 'result<span aria-hidden="true" class="line-numbers-rows"><span></s
 asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>使用 <code>await</code> 关键字而不是将新的协程添加到循环中，因为控制流已经在由循环管理的协程内部，因此不必告诉循环来管理新的协程。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python3 asyncio_coroutine_chain.py
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ python3 asyncio_coroutine_chain.py
 <span class="token keyword">in</span> outer
 waiting <span class="token keyword">for</span> <span class="token for-or-select variable">result1</span>
 <span class="token keyword">in</span> phase1
@@ -1389,7 +1389,7 @@ waiting <span class="token keyword">for</span> <span class="token for-or-select 
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -1490,7 +1490,7 @@ waiting <span class="token keyword">for</span> <span class="token for-or-select 
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 

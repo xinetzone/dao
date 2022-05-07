@@ -43,7 +43,7 @@
     <link rel="stylesheet" type="text/css" href="/dao/css/xin-prism.css">
     <link rel="stylesheet" type="text/css" href="/dao/css/my.css">
     <script src="/dao/libs/jquery/jquery.min.js"></script>
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/dao/rss2.xml" title="上善若水" type="application/rss+xml">
 </head>
@@ -605,18 +605,18 @@
 <li>在 GitHub 创建一个空白仓库，比如：<a target="_blank" rel="noopener" href="https://github.com/xinetzone/xin">xinetzone/xin</a>（本教程，就以此为例介绍）。接着，将其克隆到本地。</li>
 <li>在 <a target="_blank" rel="noopener" href="https://github.com/xinetzone/xin">xinetzone/xin</a> 下初始化 Hexo 环境：</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo init book<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo init book<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ol start="4">
 <li>接着便可以预览网站（虽然会因为缺少主题而报一些警告，但不影响预览）：</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ol start="5">
 <li>在 <code>themes</code> 下创建自己的主题文件夹，比如：<code>themes/xin</code>，最后，还要修改网址配置文件 <code>_config.yml</code> 内的 <code>theme</code> 设定为 <code>xin</code>。</li>
 </ol>
 <h3 id="主题创建"><a href="#主题创建" class="headerlink" title="主题创建"></a>主题创建</h3><p>创建 Hexo 主题非常容易，您只要在 <code>themes</code> 文件夹内，新增一个任意名称的文件夹（比如 <code>xin</code>），并修改网站配置文件 <code>_config.yml</code> 内的 <code>theme</code> 设定，即可切换主题。一个主题可能会有以下的结构：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">.</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">.</span>
 ├── _config.yml
 ├── languages
 ├── layout
@@ -628,7 +628,7 @@
 <li><code>languages</code>：语言文件夹。请参见 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/internationalization">国际化 (i18n)</a>。</li>
 <li><code>layout</code>：布局文件夹。用于存放主题的模板文件，决定了网站内容的呈现方式，Hexo 内建&nbsp;<a target="_blank" rel="noopener" href="https://github.com/node-swig/swig-templates">Swig</a>&nbsp;模板引擎，您可以另外安装插件来获得&nbsp;<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-ejs">EJS</a>、<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-haml">Haml</a>、<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-renderer-jade">Jade</a>&nbsp;或&nbsp;<a target="_blank" rel="noopener" href="https://github.com/maxknee/hexo-render-pug">Pug</a>&nbsp;支持，Hexo 根据模板文件的扩展名来决定所使用的模板引擎，例如：</li>
 </ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">layout.ejs   - 使用 EJS
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">layout.ejs   - 使用 EJS
 layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>您可参考&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/templates">模板</a>&nbsp;以获得更多信息。</p>
@@ -688,7 +688,7 @@ layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><sp
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>生成：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>index<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -703,7 +703,7 @@ layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><sp
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>生成：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>My Site<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>My Site<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>您可以在局部模板中指定局部变量并使用。</p>
@@ -711,11 +711,11 @@ layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><sp
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%=</span><span class="token language-javascript"> title </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><output>index.ejs</output></p>
-<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'partial/header'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>title<span class="token operator">:</span> <span class="token string">'Hello World'</span><span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'partial/header'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Hello World'</span><span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>生成：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hello World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hello World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Home page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>如果您的主题太过于复杂，或是需要生成的文件量太过于庞大，可能会大幅降低性能，除了简化主题外，您可以考虑 Hexo 2.7 新增的局部缓存（Fragment Caching） 功能。本功能借鉴于 <a target="_blank" rel="noopener" href="http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching">Ruby on Rails</a>，它储存局部内容，下次便能直接使用缓存内容，可以减少文件夹查询并使生成速度更快。</p>
@@ -731,7 +731,7 @@ layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><sp
 <p><code>fragment_cache()</code> 将会缓存第一次的渲染结果，并在之后直接输出缓存的结果。因此只有在不同页面的渲染结果都相同时才应使用局部缓存。比如，在配置中启用了 <code>relative_link</code> 后不应该使用局部缓存，因为相对链接在每个页面可能不同。</p>
 </blockquote>
 <h3 id="Hexo-网站初步介绍"><a href="#Hexo-网站初步介绍" class="headerlink" title="Hexo 网站初步介绍"></a>Hexo 网站初步介绍</h3><p>我们先了解 Hexo 网站的架构：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token builtin class-name">.</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">.</span>
 ├── _config.yml
 ├── package.json
 ├── scaffolds
@@ -830,140 +830,140 @@ layout.swig  - 使用 Swig<span aria-hidden="true" class="line-numbers-rows"><sp
 </div>
 
 <p>例如：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># 比如，一个页面的永久链接是 http://example.com/foo/bar/index.html
-pretty_urls:
-  trailing_index: false
-# 此时页面的永久链接会变为 http://example.com/foo/bar/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 比如，一个页面的永久链接是 http://example.com/foo/bar/index.html</span>
+<span class="token key atrule">pretty_urls</span><span class="token punctuation">:</span>
+  <span class="token key atrule">trailing_index</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token comment"># 此时页面的永久链接会变为 http://example.com/foo/bar/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>更多的配置信息请移步 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">Hexo 配置</a>。</p>
 <h2 id="重构-landscape-主题"><a href="#重构-landscape-主题" class="headerlink" title="重构 landscape 主题"></a>重构 landscape 主题</h2><p>为了探讨如何从零开始构建 Hexo 博客，对 landscape 主题进行重构，具体见 <a target="_blank" rel="noopener" href="https://github.com/xinetzone/xin/tags">xin/tags</a> v0.1 。接下来便以 v0.1 为基础重写 Hexo 主题。</p>
 <p>为了 Hexo 可以正常使用，需要添加 Hexo 部署功能：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">npm</span> i hexo-deployer-git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> i hexo-deployer-git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>接着修改网站的配置文件 <code>_config.yml</code>：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Hexo Configuration</span>
+<span class="token comment">## Docs: https://hexo.io/docs/configuration.html</span>
+<span class="token comment">## Source: https://github.com/hexojs/hexo/</span>
 
-# Site
-title: 道法自然
-subtitle: 主宰自我
-description: "利用 AI 开发一切有意思的东西"
-author: xinetzone
-language: zh-CN
-timezone: "Asia/Shanghai"
+<span class="token comment"># Site</span>
+<span class="token key atrule">title</span><span class="token punctuation">:</span> 道法自然
+<span class="token key atrule">subtitle</span><span class="token punctuation">:</span> 主宰自我
+<span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">"利用 AI 开发一切有意思的东西"</span>
+<span class="token key atrule">author</span><span class="token punctuation">:</span> xinetzone
+<span class="token key atrule">language</span><span class="token punctuation">:</span> zh<span class="token punctuation">-</span>CN
+<span class="token key atrule">timezone</span><span class="token punctuation">:</span> <span class="token string">"Asia/Shanghai"</span>
 
-# URL
-## Set your site url here. For example, if you use GitHub Page, 
-## set url as 'https://username.github.io/project'
-url: https://xinetzone.github.io/xin
-permalink: /:year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+<span class="token comment"># URL</span>
+<span class="token comment">## Set your site url here. For example, if you use GitHub Page, </span>
+<span class="token comment">## set url as 'https://username.github.io/project'</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//xinetzone.github.io/xin
+<span class="token key atrule">permalink</span><span class="token punctuation">:</span> /<span class="token punctuation">:</span>year/<span class="token punctuation">:</span>month/<span class="token punctuation">:</span>day/<span class="token punctuation">:</span>title/
+<span class="token key atrule">permalink_defaults</span><span class="token punctuation">:</span>
+<span class="token key atrule">pretty_urls</span><span class="token punctuation">:</span>
+  <span class="token key atrule">trailing_index</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># Set to false to remove trailing 'index.html' from permalinks</span>
+  <span class="token key atrule">trailing_html</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># Set to false to remove trailing '.html' from permalinks</span>
 
-# Directory
-source_dir: source
-public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
-code_dir: downloads/code
-i18n_dir: :lang
-skip_render:
+<span class="token comment"># Directory</span>
+<span class="token key atrule">source_dir</span><span class="token punctuation">:</span> source
+<span class="token key atrule">public_dir</span><span class="token punctuation">:</span> public
+<span class="token key atrule">tag_dir</span><span class="token punctuation">:</span> tags
+<span class="token key atrule">archive_dir</span><span class="token punctuation">:</span> archives
+<span class="token key atrule">category_dir</span><span class="token punctuation">:</span> categories
+<span class="token key atrule">code_dir</span><span class="token punctuation">:</span> downloads/code
+<span class="token key atrule">i18n_dir</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>lang
+<span class="token key atrule">skip_render</span><span class="token punctuation">:</span>
 
-# Writing
-new_post_name: :title.md # File name of new posts
-default_layout: post
-titlecase: false # Transform title into titlecase
-external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
-  exclude: ""
-filename_case: 0
-render_drafts: false
-post_asset_folder: false
-relative_link: false
-future: true
-highlight:
-  enable: false
-  line_number: true
-  auto_detect: false
-  tab_replace: ""
-  wrap: true
-  hljs: false
-prismjs:
-  enable: true
-  preprocess: true
-  line_number: true
-  tab_replace: ""
+<span class="token comment"># Writing</span>
+<span class="token key atrule">new_post_name</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>title.md <span class="token comment"># File name of new posts</span>
+<span class="token key atrule">default_layout</span><span class="token punctuation">:</span> post
+<span class="token key atrule">titlecase</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># Transform title into titlecase</span>
+<span class="token key atrule">external_link</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># Open external links in new tab</span>
+  <span class="token key atrule">field</span><span class="token punctuation">:</span> site <span class="token comment"># Apply to the whole site</span>
+  <span class="token key atrule">exclude</span><span class="token punctuation">:</span> <span class="token string">""</span>
+<span class="token key atrule">filename_case</span><span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token key atrule">render_drafts</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">post_asset_folder</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">relative_link</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">future</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token key atrule">highlight</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">auto_detect</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token key atrule">wrap</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">hljs</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">prismjs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">preprocess</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">""</span>
 
-# Home page setting
-# path: Root path for your blogs index page. (default = '')
-# per_page: Posts displayed per page. (0 = disable pagination)
-# order_by: Posts order. (Order by date descending by default)
-index_generator:
-  path: ""
-  per_page: 12
-  order_by: -date
+<span class="token comment"># Home page setting</span>
+<span class="token comment"># path: Root path for your blogs index page. (default = '')</span>
+<span class="token comment"># per_page: Posts displayed per page. (0 = disable pagination)</span>
+<span class="token comment"># order_by: Posts order. (Order by date descending by default)</span>
+<span class="token key atrule">index_generator</span><span class="token punctuation">:</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token key atrule">per_page</span><span class="token punctuation">:</span> <span class="token number">12</span>
+  <span class="token key atrule">order_by</span><span class="token punctuation">:</span> <span class="token punctuation">-</span>date
 
-# Category &amp; Tag
-default_category: uncategorized
-category_map:
-tag_map:
+<span class="token comment"># Category &amp; Tag</span>
+<span class="token key atrule">default_category</span><span class="token punctuation">:</span> uncategorized
+<span class="token key atrule">category_map</span><span class="token punctuation">:</span>
+<span class="token key atrule">tag_map</span><span class="token punctuation">:</span>
 
-# Metadata elements
-## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
-meta_generator: true
+<span class="token comment"># Metadata elements</span>
+<span class="token comment">## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta</span>
+<span class="token key atrule">meta_generator</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
 
-# Date / Time format
-## Hexo uses Moment.js to parse and display date
-## You can customize the date format as defined in
-## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
-time_format: HH:mm:ss
-## updated_option supports 'mtime', 'date', 'empty'
-updated_option: "mtime"
+<span class="token comment"># Date / Time format</span>
+<span class="token comment">## Hexo uses Moment.js to parse and display date</span>
+<span class="token comment">## You can customize the date format as defined in</span>
+<span class="token comment">## http://momentjs.com/docs/#/displaying/format/</span>
+<span class="token key atrule">date_format</span><span class="token punctuation">:</span> YYYY<span class="token punctuation">-</span>MM<span class="token punctuation">-</span>DD
+<span class="token key atrule">time_format</span><span class="token punctuation">:</span> HH<span class="token punctuation">:</span>mm<span class="token punctuation">:</span>ss
+<span class="token comment">## updated_option supports 'mtime', 'date', 'empty'</span>
+<span class="token key atrule">updated_option</span><span class="token punctuation">:</span> <span class="token string">"mtime"</span>
 
-# Pagination
-## Set per_page to 0 to disable pagination
-per_page: 12
-pagination_dir: page
+<span class="token comment"># Pagination</span>
+<span class="token comment">## Set per_page to 0 to disable pagination</span>
+<span class="token key atrule">per_page</span><span class="token punctuation">:</span> <span class="token number">12</span>
+<span class="token key atrule">pagination_dir</span><span class="token punctuation">:</span> page
 
-# Include / Exclude file(s)
-## include:/exclude: options only apply to the 'source/' folder
-include:
-exclude:
-ignore:
+<span class="token comment"># Include / Exclude file(s)</span>
+<span class="token comment">## include:/exclude: options only apply to the 'source/' folder</span>
+<span class="token key atrule">include</span><span class="token punctuation">:</span>
+<span class="token key atrule">exclude</span><span class="token punctuation">:</span>
+<span class="token key atrule">ignore</span><span class="token punctuation">:</span>
 
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: xin
+<span class="token comment"># Extensions</span>
+<span class="token comment">## Plugins: https://hexo.io/plugins/</span>
+<span class="token comment">## Themes: https://hexo.io/themes/</span>
+<span class="token key atrule">theme</span><span class="token punctuation">:</span> xin
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: 'git'
-  repo: git@github.com:xinetzone/xin.git
-  branch: gh-pages<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># Deployment</span>
+<span class="token comment">## Docs: https://hexo.io/docs/one-command-deployment</span>
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">'git'</span>
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>xinetzone/xin.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> gh<span class="token punctuation">-</span>pages<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>为了支持 rss/rss2 需要安装：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">npm</span> <span class="token function">install</span> hexo-generator-feed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-generator-feed<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>并在网站配置文件 <code>_config.yml</code> 下添加如下内容：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># 添加 RSS 订阅支持
-## https://github.com/hexojs/hexo-generator-feed
-## npm install hexo-generator-feed
-feed:
-  # Generate both atom and rss2 feeds
-  type:
-    - rss2
-    - atom
-  path:
-    - rss2.xml
-    - atom.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 添加 RSS 订阅支持</span>
+<span class="token comment">## https://github.com/hexojs/hexo-generator-feed</span>
+<span class="token comment">## npm install hexo-generator-feed</span>
+<span class="token key atrule">feed</span><span class="token punctuation">:</span>
+  <span class="token comment"># Generate both atom and rss2 feeds</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> rss2
+    <span class="token punctuation">-</span> atom
+  <span class="token key atrule">path</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> rss2.xml
+    <span class="token punctuation">-</span> atom.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="重构-partial-head-ejs"><a href="#重构-partial-head-ejs" class="headerlink" title="重构 _partial/head.ejs"></a>重构 <code>_partial/head.ejs</code></h3><p>对于一个网站，<code>&lt;head&gt;</code> 很重要，为此，我们首要重构 <code>_partial/head.ejs</code>。首先编写一些处理标题相关的代码：</p>
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs">// _partial/head.ejs
@@ -995,7 +995,7 @@ feed:
     <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">partial</span><span class="token punctuation">(</span><span class="token string">'google-analytics'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1, shrink-to-fit=no<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%=</span><span class="token language-javascript"> pageTitle </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
-    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">open_graph</span><span class="token punctuation">(</span><span class="token punctuation">{</span>twitter_id<span class="token operator">:</span> theme<span class="token punctuation">.</span>twitter<span class="token punctuation">,</span> fb_admins<span class="token operator">:</span> theme<span class="token punctuation">.</span>fb_admins<span class="token punctuation">,</span> fb_app_id<span class="token operator">:</span> theme<span class="token punctuation">.</span>fb_app_id<span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+    <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">open_graph</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">twitter_id</span><span class="token operator">:</span> theme<span class="token punctuation">.</span>twitter<span class="token punctuation">,</span> <span class="token literal-property property">fb_admins</span><span class="token operator">:</span> theme<span class="token punctuation">.</span>fb_admins<span class="token punctuation">,</span> <span class="token literal-property property">fb_app_id</span><span class="token operator">:</span> theme<span class="token punctuation">.</span>fb_app_id<span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
     <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>feed<span class="token punctuation">)</span> <span class="token punctuation">{</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
         <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
     <span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%</span><span class="token language-javascript"> <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>theme<span class="token punctuation">.</span>rss<span class="token punctuation">)</span> <span class="token punctuation">{</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
@@ -1017,7 +1017,7 @@ feed:
 <pre class="line-numbers language-ejs" data-language="ejs"><code class="language-ejs"><span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token string">'atom.xml'</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>alternate<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/atom.xml<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Hexo<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>application/atom+xml<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
-<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token string">'rss.xml'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token string">'RSS Feed'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'rss'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">feed_tag</span><span class="token punctuation">(</span><span class="token string">'rss.xml'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'RSS Feed'</span><span class="token punctuation">,</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'rss'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>alternate<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/atom.xml<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>RSS Feed<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>application/rss+xml<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
 /* Defaults to hexo-generator-feed's config if no argument */
@@ -1032,10 +1032,10 @@ feed:
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/screen.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
-<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">{</span> href<span class="token operator">:</span> <span class="token string">'style.css'</span><span class="token punctuation">,</span> integrity<span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">href</span><span class="token operator">:</span> <span class="token string">'style.css'</span><span class="token punctuation">,</span> <span class="token literal-property property">integrity</span><span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>foo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 
-<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> href<span class="token operator">:</span> <span class="token string">'style.css'</span><span class="token punctuation">,</span> integrity<span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> href<span class="token operator">:</span> <span class="token string">'screen.css'</span><span class="token punctuation">,</span> integrity<span class="token operator">:</span> <span class="token string">'bar'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+<span class="token ejs language-ejs"><span class="token delimiter punctuation">&lt;%-</span><span class="token language-javascript"> <span class="token function">css</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token literal-property property">href</span><span class="token operator">:</span> <span class="token string">'style.css'</span><span class="token punctuation">,</span> <span class="token literal-property property">integrity</span><span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">href</span><span class="token operator">:</span> <span class="token string">'screen.css'</span><span class="token punctuation">,</span> <span class="token literal-property property">integrity</span><span class="token operator">:</span> <span class="token string">'bar'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/style.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>foo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 // <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/screen.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -1111,48 +1111,48 @@ feed:
 </tr>
 </tbody></table>
 <h3 id="关于资源文件夹"><a href="#关于资源文件夹" class="headerlink" title="关于资源文件夹"></a>关于资源文件夹</h3><p>如果我们的文章里面有图片，我们可以在 source 文件夹下建立一个统一的 images 文件夹来存放图片，但是如果有的文章有很多的资源文件如图片，我们可以通过设置该配置为 <code>true</code>，这样在<code>source</code>文件夹下创建文件的同时也会创建一个同名文件夹来存放相应的资源。</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">post_asset_folder: true # 是否启动资源文件夹
-marked: # 保证资源的链接正确
-  prependRoot: true
-  postAsset: true
-  gfm: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">post_asset_folder</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># 是否启动资源文件夹</span>
+<span class="token key atrule">marked</span><span class="token punctuation">:</span> <span class="token comment"># 保证资源的链接正确</span>
+  <span class="token key atrule">prependRoot</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">postAsset</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">gfm</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="设定多语言支持"><a href="#设定多语言支持" class="headerlink" title="设定多语言支持"></a>设定多语言支持</h3><p>为了添加多语言支持，需要修改网站配置文件 <code>_config.yml</code>：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># URL
-## Set your site url here. For example, if you use GitHub Page,
-## set url as 'https://username.github.io/project'
-url: https://xinetzone.github.io/xin
-permalink: :lang/:year/:month/:day/:title/
-permalink_defaults:
-  lang: en-US # 设定默认<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># URL</span>
+<span class="token comment">## Set your site url here. For example, if you use GitHub Page,</span>
+<span class="token comment">## set url as 'https://username.github.io/project'</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//xinetzone.github.io/xin
+<span class="token key atrule">permalink</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>lang/<span class="token punctuation">:</span>year/<span class="token punctuation">:</span>month/<span class="token punctuation">:</span>day/<span class="token punctuation">:</span>title/
+<span class="token key atrule">permalink_defaults</span><span class="token punctuation">:</span>
+  <span class="token key atrule">lang</span><span class="token punctuation">:</span> en<span class="token punctuation">-</span>US <span class="token comment"># 设定默认</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>为了令网址具有唯一性，可以在配置文件 <code>_config.yml</code> 中加入如下内容并配置：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">## npm install hexo-abbrlink
-### https://github.com/rozbo/hexo-abbrlink
-# abbrlink config
-abbrlink:
-  alg: crc32      #support crc16(default) and crc32
-  rep: hex        #support dec(default) and hex
-  drafts: false   #(true)Process draft,(false)Do not process draft. false(default) 
-  # Generate categories from directory-tree
-  # depth: the max_depth of directory-tree you want to generate, should &gt; 0
-  auto_category:
-     enable: true  #true(default)
-     depth:        #3(default)
-     over_write: false 
-  auto_title: false #enable auto title, it can auto fill the title by path
-  auto_date: false #enable auto date, it can auto fill the date by time today
-  force: false #enable force mode,in this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had abbrlink.
-permalink: :layout/:lang/:abbrlink.html # :year/:month/:day/:title/
-permalink_defaults:
-  lang: en-US # 设定默认<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment">## npm install hexo-abbrlink</span>
+<span class="token comment">### https://github.com/rozbo/hexo-abbrlink</span>
+<span class="token comment"># abbrlink config</span>
+<span class="token key atrule">abbrlink</span><span class="token punctuation">:</span>
+  <span class="token key atrule">alg</span><span class="token punctuation">:</span> crc32      <span class="token comment">#support crc16(default) and crc32</span>
+  <span class="token key atrule">rep</span><span class="token punctuation">:</span> hex        <span class="token comment">#support dec(default) and hex</span>
+  <span class="token key atrule">drafts</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>   <span class="token comment">#(true)Process draft,(false)Do not process draft. false(default) </span>
+  <span class="token comment"># Generate categories from directory-tree</span>
+  <span class="token comment"># depth: the max_depth of directory-tree you want to generate, should &gt; 0</span>
+  <span class="token key atrule">auto_category</span><span class="token punctuation">:</span>
+     <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>  <span class="token comment">#true(default)</span>
+     <span class="token key atrule">depth</span><span class="token punctuation">:</span>        <span class="token comment">#3(default)</span>
+     <span class="token key atrule">over_write</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> 
+  <span class="token key atrule">auto_title</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment">#enable auto title, it can auto fill the title by path</span>
+  <span class="token key atrule">auto_date</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment">#enable auto date, it can auto fill the date by time today</span>
+  <span class="token key atrule">force</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment">#enable force mode,in this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had abbrlink.</span>
+<span class="token key atrule">permalink</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>layout/<span class="token punctuation">:</span>lang/<span class="token punctuation">:</span>abbrlink.html <span class="token comment"># :year/:month/:day/:title/</span>
+<span class="token key atrule">permalink_defaults</span><span class="token punctuation">:</span>
+  <span class="token key atrule">lang</span><span class="token punctuation">:</span> en<span class="token punctuation">-</span>US <span class="token comment"># 设定默认</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="站内搜索"><a href="#站内搜索" class="headerlink" title="站内搜索"></a>站内搜索</h3><p>Hexo 使用 <code>hexo-generator-search</code> 添加 <code>local-search</code>，需要在网站配置文件 <code>_config.yml</code> 新增如下内容：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">## Hexo使用hexo-generator-search添加local-search
-search:
-  path: search.xml
-  field: post
-  content: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment">## Hexo使用hexo-generator-search添加local-search</span>
+<span class="token key atrule">search</span><span class="token punctuation">:</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
+  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
+  <span class="token key atrule">content</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="支持代码行显示数字"><a href="#支持代码行显示数字" class="headerlink" title="支持代码行显示数字"></a>支持代码行显示数字</h3><p>为了支持代码行支持显示数字序号，可以添加文件 <code>themes/xin/source/css/xin-prism.css/</code>，并在 <code>themes/xin/layout/_partial/head.ejs</code> 中新增 CSS 引用。</p>
 <h3 id="添加-W3-CSS-与-tab-切换-支持"><a href="#添加-W3-CSS-与-tab-切换-支持" class="headerlink" title="添加 W3.CSS 与 tab 切换 支持"></a>添加 W3.CSS 与 tab 切换 支持</h3><p>在 <code>themes/xin/layout/_partial/head.ejs</code> 中新增：</p>
@@ -1813,7 +1813,7 @@ search:
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/dao/about" target="_blank">xinetzone</a>
@@ -1914,7 +1914,7 @@ search:
 
 
 
-    <a href="https://www.zhihu.com/people/liu-xin-wei-55" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: liu-xin-wei-55" data-position="top" data-delay="50">
+    <a href="https://www.zhihu.com/people/xinetzone" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: xinetzone" data-position="top" data-delay="50">
         <i class="fab fa-zhihu1">知</i>
     </a>
 
